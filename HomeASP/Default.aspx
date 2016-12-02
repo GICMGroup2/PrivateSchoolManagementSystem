@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="styles/custom.css" type="text/css" />    
     <link rel="stylesheet" href="styles/font-awesome.css" type="text/css" />    
-    <link rel="stylesheet" href="styles/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="styles/bootstrap.css" type="text/css" />     
+    <link rel="stylesheet" href="styles/style.css" type="text/css" />
+    <link rel="stylesheet" href="styles/booking.css" type="text/css" />
     <script type="text/javascript">
 
     </script>
@@ -70,25 +72,47 @@
             <br class="clear" />
         </div>
     </div>
-    <form id="form1" runat="server">
-        <div runat="server" height="561px">
-            <div style="width: 150px; height: 550px; color: #FFFFFF; background-color: #1A7EBA; padding: 0px; border-spacing: 0px;">
-                <br />
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="main-menu">
-                    <li>
-                        <a href="#">Home</a>
-                    </li>
-                    <li>
-                        <a href="Contact.aspx">Login</a>
-                    </li>
-                    <li>
-                        <a href="index.html">Exit</a>
-                    </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </form>
+    <div class="wrapper col1" runat="server" height="561px">
+        <div style="width: 150px; height: 550px; color: #FFFFFF; background-color: #1A7EBA; padding: 0px; border-spacing: 0px;">
+            <br />
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="Contact.aspx">Login</a>
+                </li>
+                <li>
+                    <a href="index.html">Exit</a>
+                </li>
+                </ul>
+                    <div id="page-wrapper">
+                        <div id="page-inner">
+                            <%--<div class="row">
+                                <div class="col-md-12">
+                                    <asp:Login ID="Login1" runat="server" CheckBoxStyle-VerticalAlign="Middle">
+                                    </asp:Login>
+                                </div>
+                            </div>--%>
+                            <form id="bookingForm" class="booking-form">
+                                <div class="tmInput">
+                                  <input name="Name" placeHolder="Name" type="text" data-constraints='@NotEmpty @Required @AlphaSpecial'>
+                                </div>
+                                <div class="tmInput">
+                                  <input name="Email" placeHolder="E - mail " type="text" data-constraints="@NotEmpty @Required @Email">
+                                </div>
+                                <div class="tmInput">
+                                  <input name="Phone" placeHolder="Phone" type="text" data-constraints="@NotEmpty @Required @Phone">
+                                </div>
+                                <div class="booking-form_controls">
+                                  <a href="#" class="btn" data-type="submit">Get Started Now!</a>
+                                </div>
+                             </form>
+                        </div>
+                    </div>
+            </div>           
+        </div>        
+    </div>    
 </body>
 </html>
