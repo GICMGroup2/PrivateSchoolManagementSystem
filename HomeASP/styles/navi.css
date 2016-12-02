@@ -14,7 +14,7 @@ File: Navigation CSS
 #topnav ul ul li a:link, #topnav ul ul li a:visited{border:none;text-decoration:none;}
 #topnav li.last a{margin-right:0;}
 #topnav li a:hover, #topnav ul li.active a{color:#FFFFFF; background-color:#f3f3f3;}
-#topnav li li a:link, #topnav li li a:visited{width:150px; float:none; margin:0; padding:7px 10px; font-size:12px; font-weight:normal; color:#1A7EBA; background-color:#f3f3f3;}
+#topnav li li a:link, #topnav li li a:visited{width:150px; float:none; margin:0; padding:7px 10px; font-size:12px; font-weight:bold; color:#1A7EBA; background-color:#f3f3f3;}
 #topnav li li a:hover{color:#f3f3f3; background-color:#1A7EBA;}
 #topnav li ul{background:#fff; z-index:9999; position:absolute; left:-999em; height:auto; width:170px; border-left:1px solid #f3f3f3; border-bottom:1px solid #f3f3f3;}
 #topnav li ul a{width:140px;}

@@ -22,7 +22,7 @@ body {
 }
 
 #page-wrapper {
-    padding: 15px 15px;
+    padding: 0px 0px;
     min-height: 600px;
     background:#F3F3F3;
    
@@ -30,9 +30,10 @@ body {
 #page-inner {
     width:100%;
     margin:10px 20px 10px 0px;
-    background-color:#fff!important;
+    background-color:#1A7EBA!important;
     padding:10px;
-    min-height:1200px;
+    min-height:520px;
+    min-width:800px;
 }
 
 .text-center {
@@ -245,6 +246,7 @@ font-weight: 700;
 }
 .sidebar-collapse , .sidebar-collapse .nav{
 	background:none;
+    float:left;
 }
 .sidebar-collapse .nav {
 	padding:0;
@@ -256,7 +258,7 @@ font-weight: 700;
 	
 }
 .sidebar-collapse > .nav > li > a {
-	padding:5px 45px;
+	padding:5px 56px;
     outline:double;
     outline-color:white;
 }
@@ -361,8 +363,8 @@ line-height: 1.428571429;
  @media(min-width:768px) {
      #page-wrapper{
                margin: 0 0 0 260px;
-        padding: 15px 30px;
-        min-height: 1200px;
+        padding: 0px 0px;
+        min-height: 500px;
 		
     }
 	

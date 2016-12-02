@@ -34,9 +34,9 @@ img{display:block; margin:0; padding:0; border:0;}
 
 /* ----------------------------------------------Wrapper------------------------------------- */
 
-div.wrapper{display:block; width:100%; margin:0; text-align:left;}
+div.wrapper{display:block; width:100%; margin:0; text-align:left; max-height:550px;}
 div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{margin:0 0 20px 0; padding:0 0 8px 0; font-size:20px; font-weight:normal; font-family:Georgia, "Times New Roman", Times, serif; border-bottom:1px dotted #DDDDDD;}
-.col1{color:#666666; background-color:#E3F1F9;}
+.col1{color:#F3F3F3; background-color:#F3F3F3;float:left;}
 .col2{color:#F3F3F3; background-color:#F3F3F3;}
 .col3, .col4, .col5{color:#666666; background-color:#FFFFFF;}
 .col6{color:#999999; background-color:#F3F3F3;}
