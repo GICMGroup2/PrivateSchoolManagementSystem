@@ -410,3 +410,6 @@ button:hover {
 .tmFile + .tmFile {
   margin-top: 10px;
 }
+.tmInput {
+  margin-top: 10px;
+}

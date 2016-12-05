@@ -15,7 +15,7 @@
     </script>
 </head>
 
-<body id="top">
+<body>
     <div>
         <div id="title" runat="server" align="center" style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; font-weight: normal; font-style: normal; font-variant: normal; text-transform: none; color: #FFFFFF; background-color: #1A7EBA; height: 40px;">
             Student Management System
@@ -73,7 +73,7 @@
         </div>
     </div>
     <div class="wrapper col1" runat="server" height="561px">
-        <div style="width: 150px; height: 550px; color: #FFFFFF; background-color: #1A7EBA; padding: 0px; border-spacing: 0px;">
+        <div style="width: 150px; height: 560px; color: #FFFFFF; background-color: #1A7EBA; padding: 0px; border-spacing: 0px;">
             <br />
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
@@ -89,12 +89,6 @@
                 </ul>
                     <div id="page-wrapper">
                         <div id="page-inner">
-                            <%--<div class="row">
-                                <div class="col-md-12">
-                                    <asp:Login ID="Login1" runat="server" CheckBoxStyle-VerticalAlign="Middle">
-                                    </asp:Login>
-                                </div>
-                            </div>--%>
                             <form id="bookingForm" class="booking-form">
                                 <div class="tmInput">
                                   <input name="Name" placeHolder="Name" type="text" data-constraints='@NotEmpty @Required @AlphaSpecial'>
@@ -106,7 +100,7 @@
                                   <input name="Phone" placeHolder="Phone" type="text" data-constraints="@NotEmpty @Required @Phone">
                                 </div>
                                 <div class="booking-form_controls">
-                                  <a href="#" class="btn" data-type="submit">Get Started Now!</a>
+                                  <a href="#" class="btn" data-type="submit">Login</a>
                                 </div>
                              </form>
                         </div>
