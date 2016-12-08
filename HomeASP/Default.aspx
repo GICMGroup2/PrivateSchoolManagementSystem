@@ -2,6 +2,7 @@
 
 <!-- Layout -->
 <html>
+
 <head runat="server">
     <title>Home </title>
     <link rel="stylesheet" href="styles/layout.css" type="text/css" />
@@ -32,7 +33,7 @@
                             <asp:Image ID="stdInfo" runat="server" Height="100px" Width="150px" BackColor="#1A74BA" ToolTip="Student Information" /><br />
                         </a>
                         <ul>
-                            <li><a href="#">Student Entry</a></li>
+                            <li><a href="SMS003＿学生情報">Student Entry</a></li>
                             <li><a href="#">Student List</a></li>
                         </ul>
                     </li>

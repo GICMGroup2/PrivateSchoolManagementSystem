@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SMS003＿学生情報.aspx.cs" Inherits="HomeASP.SMS003" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SMS003_StudentEntry.aspx.cs" Inherits="HomeASP.SMS003" %>
 
 <!-- Layout -->
 <html>
@@ -91,7 +91,7 @@
                         <div id="page-inner">
                             <form id="bookingForm" class="booking-form">
                               
-
+                            <div>This is 学生情報</div>
 
                              </form>
                         </div>
