@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SMS025＿社員情報明細.aspx.cs" Inherits="HomeASP.SMS025" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SMS034_EquipmentDisplay.aspx.cs" Inherits="HomeASP.SMS034" %>
 
 <!-- Layout -->
 <html>
@@ -17,7 +17,7 @@
 
 <body>
     <div>
-        <div id="title" runat="server" align="center" style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; font-weight: normal; font-style: normal; font-variant: normal; text-transform: none; color: #FFFFFF; background-color: #1A7EBA; height: 40px;">
+        <div id="title" runat="server" align="center" style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; font-weight: normal; font-style: normal; font-variant: normal; text-transform: none; color: #FFFFFF; background-color: #1A7EBA; height: 40px; border-radius :7px 10px;">
             Student Management System
         </div>
     </div>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SMS024＿社員リスト.aspx.cs" Inherits="HomeASP.SMS024" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SMS023_StaffEntry.aspx.cs" Inherits="HomeASP.SMS023" %>
 
 <!-- Layout -->
 <html>
@@ -101,4 +101,3 @@
     </div>    
 </body>
 </html>
-

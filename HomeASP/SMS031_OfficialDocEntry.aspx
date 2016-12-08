@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SMS022＿スケジュール照会.aspx.cs" Inherits="HomeASP.SMS022" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SMS031_OfficialDocEntry.aspx.cs" Inherits="HomeASP.SMS031" %>
 
 <!-- Layout -->
 <html>
