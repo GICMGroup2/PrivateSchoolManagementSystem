@@ -228,40 +228,35 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="SMS001.aspx" />
-    <Content Include="SMS002.aspx" />
-    <Content Include="SMS003.aspx" />
-    <Content Include="SMS004.aspx" />
-    <Content Include="SMS005.aspx" />
-    <Content Include="SMS006.aspx" />
-    <Content Include="SMS007.aspx" />
-    <Content Include="SMS008.aspx" />
-    <Content Include="SMS009.aspx" />
-    <Content Include="SMS010.aspx" />
-    <Content Include="SMS011.aspx" />
-    <Content Include="SMS012.aspx" />
-    <Content Include="SMS013.aspx" />
-    <Content Include="SMS014.aspx" />
-    <Content Include="SMS015.aspx" />
-    <Content Include="SMS016.aspx" />
-    <Content Include="SMS017.aspx" />
-    <Content Include="SMS018.aspx" />
-    <Content Include="SMS019.aspx" />
-    <Content Include="SMS020.aspx" />
-    <Content Include="SMS021.aspx" />
-    <Content Include="SMS022.aspx" />
-    <Content Include="SMS023.aspx" />
-    <Content Include="SMS024.aspx" />
-    <Content Include="SMS025.aspx" />
-    <Content Include="SMS026.aspx" />
-    <Content Include="SMS027.aspx" />
-    <Content Include="SMS028.aspx" />
-    <Content Include="SMS029.aspx" />
-    <Content Include="SMS030.aspx" />
-    <Content Include="SMS031.aspx" />
-    <Content Include="SMS032.aspx" />
-    <Content Include="SMS033.aspx" />
-    <Content Include="SMS034.aspx" />
+    <Content Include="SMS001_ユーザマスタ.aspx" />
+    <Content Include="SMS002_グレードと科目登録.aspx" />
+    <Content Include="SMS003＿学生情報.aspx" />
+    <Content Include="SMS004＿学生リスト.aspx" />
+    <Content Include="SMS005＿学生明細.aspx" />
+    <Content Include="SMS006＿学生試験結果登録.aspx" />
+    <Content Include="SMS007＿学生試験結果リスト.aspx" />
+    <Content Include="SMS008＿試験結果明細.aspx" />
+    <Content Include="SMS009＿勤怠登録.aspx" />
+    <Content Include="SMS010＿勤怠リスト.aspx" />
+    <Content Include="SMS011＿勤怠明細.aspx" />
+    <Content Include="SMS014＿設備マスタ.aspx" />
+    <Content Include="SMS015＿学生支払い情報.aspx" />
+    <Content Include="SMS016＿支払いリスト.aspx" />
+    <Content Include="SMS017＿支払い明細.aspx" />
+    <Content Include="SMS021＿学生スケジュール.aspx" />
+    <Content Include="SMS022＿スケジュール照会.aspx" />
+    <Content Include="SMS023＿社員情報.aspx" />
+    <Content Include="SMS024＿社員リスト.aspx" />
+    <Content Include="SMS025＿社員情報明細.aspx" />
+    <Content Include="SMS026＿イベントとニューズヘッダ.aspx" />
+    <Content Include="SMS027＿費用登録.aspx" />
+    <Content Include="SMS028＿費用リスト.aspx" />
+    <Content Include="SMS029＿費用明細.aspx" />
+    <Content Include="SMS030＿給料計算.aspx" />
+    <Content Include="SMS031＿公文書登録.aspx" />
+    <Content Include="SMS032＿公文書照会.aspx" />
+    <Content Include="SMS033＿設備情報.aspx" />
+    <Content Include="SMS034＿設備情報照会.aspx" />
     <Content Include="styles\bootstrap.css" />
     <Content Include="styles\custom.css" />
     <Content Include="styles\font-awesome.css" />
@@ -340,243 +335,179 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="SMS001.aspx.cs">
-      <DependentUpon>SMS001.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS001_ユーザマスタ.aspx.cs">
+      <DependentUpon>SMS001_ユーザマスタ.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS001.aspx.designer.cs">
-      <DependentUpon>SMS001.aspx</DependentUpon>
+    <Compile Include="SMS001_ユーザマスタ.aspx.designer.cs">
+      <DependentUpon>SMS001_ユーザマスタ.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS002.aspx.cs">
-      <DependentUpon>SMS002.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS002_グレードと科目登録.aspx.cs">
+      <DependentUpon>SMS002_グレードと科目登録.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS002.aspx.designer.cs">
-      <DependentUpon>SMS002.aspx</DependentUpon>
+    <Compile Include="SMS002_グレードと科目登録.aspx.designer.cs">
+      <DependentUpon>SMS002_グレードと科目登録.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS003.aspx.cs">
-      <DependentUpon>SMS003.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS003＿学生情報.aspx.cs">
+      <DependentUpon>SMS003＿学生情報.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS003.aspx.designer.cs">
-      <DependentUpon>SMS003.aspx</DependentUpon>
+    <Compile Include="SMS003＿学生情報.aspx.designer.cs">
+      <DependentUpon>SMS003＿学生情報.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS004.aspx.cs">
-      <DependentUpon>SMS004.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS004＿学生リスト.aspx.cs">
+      <DependentUpon>SMS004＿学生リスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS004.aspx.designer.cs">
-      <DependentUpon>SMS004.aspx</DependentUpon>
+    <Compile Include="SMS004＿学生リスト.aspx.designer.cs">
+      <DependentUpon>SMS004＿学生リスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS005.aspx.cs">
-      <DependentUpon>SMS005.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS005＿学生明細.aspx.cs">
+      <DependentUpon>SMS005＿学生明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS005.aspx.designer.cs">
-      <DependentUpon>SMS005.aspx</DependentUpon>
+    <Compile Include="SMS005＿学生明細.aspx.designer.cs">
+      <DependentUpon>SMS005＿学生明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS006.aspx.cs">
-      <DependentUpon>SMS006.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS006＿学生試験結果登録.aspx.cs">
+      <DependentUpon>SMS006＿学生試験結果登録.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS006.aspx.designer.cs">
-      <DependentUpon>SMS006.aspx</DependentUpon>
+    <Compile Include="SMS006＿学生試験結果登録.aspx.designer.cs">
+      <DependentUpon>SMS006＿学生試験結果登録.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS007.aspx.cs">
-      <DependentUpon>SMS007.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS007＿学生試験結果リスト.aspx.cs">
+      <DependentUpon>SMS007＿学生試験結果リスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS007.aspx.designer.cs">
-      <DependentUpon>SMS007.aspx</DependentUpon>
+    <Compile Include="SMS007＿学生試験結果リスト.aspx.designer.cs">
+      <DependentUpon>SMS007＿学生試験結果リスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS008.aspx.cs">
-      <DependentUpon>SMS008.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS008＿試験結果明細.aspx.cs">
+      <DependentUpon>SMS008＿試験結果明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS008.aspx.designer.cs">
-      <DependentUpon>SMS008.aspx</DependentUpon>
+    <Compile Include="SMS008＿試験結果明細.aspx.designer.cs">
+      <DependentUpon>SMS008＿試験結果明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS009.aspx.cs">
-      <DependentUpon>SMS009.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS009＿勤怠登録.aspx.cs">
+      <DependentUpon>SMS009＿勤怠登録.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS009.aspx.designer.cs">
-      <DependentUpon>SMS009.aspx</DependentUpon>
+    <Compile Include="SMS009＿勤怠登録.aspx.designer.cs">
+      <DependentUpon>SMS009＿勤怠登録.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS010.aspx.cs">
-      <DependentUpon>SMS010.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS010＿勤怠リスト.aspx.cs">
+      <DependentUpon>SMS010＿勤怠リスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS010.aspx.designer.cs">
-      <DependentUpon>SMS010.aspx</DependentUpon>
+    <Compile Include="SMS010＿勤怠リスト.aspx.designer.cs">
+      <DependentUpon>SMS010＿勤怠リスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS011.aspx.cs">
-      <DependentUpon>SMS011.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS011＿勤怠明細.aspx.cs">
+      <DependentUpon>SMS011＿勤怠明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS011.aspx.designer.cs">
-      <DependentUpon>SMS011.aspx</DependentUpon>
+    <Compile Include="SMS011＿勤怠明細.aspx.designer.cs">
+      <DependentUpon>SMS011＿勤怠明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS012.aspx.cs">
-      <DependentUpon>SMS012.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS014＿設備マスタ.aspx.cs">
+      <DependentUpon>SMS014＿設備マスタ.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS012.aspx.designer.cs">
-      <DependentUpon>SMS012.aspx</DependentUpon>
+    <Compile Include="SMS014＿設備マスタ.aspx.designer.cs">
+      <DependentUpon>SMS014＿設備マスタ.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS013.aspx.cs">
-      <DependentUpon>SMS013.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS015＿学生支払い情報.aspx.cs">
+      <DependentUpon>SMS015＿学生支払い情報.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS013.aspx.designer.cs">
-      <DependentUpon>SMS013.aspx</DependentUpon>
+    <Compile Include="SMS015＿学生支払い情報.aspx.designer.cs">
+      <DependentUpon>SMS015＿学生支払い情報.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS014.aspx.cs">
-      <DependentUpon>SMS014.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS016＿支払いリスト.aspx.cs">
+      <DependentUpon>SMS016＿支払いリスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS014.aspx.designer.cs">
-      <DependentUpon>SMS014.aspx</DependentUpon>
+    <Compile Include="SMS016＿支払いリスト.aspx.designer.cs">
+      <DependentUpon>SMS016＿支払いリスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS015.aspx.cs">
-      <DependentUpon>SMS015.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS017＿支払い明細.aspx.cs">
+      <DependentUpon>SMS017＿支払い明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS015.aspx.designer.cs">
-      <DependentUpon>SMS015.aspx</DependentUpon>
+    <Compile Include="SMS017＿支払い明細.aspx.designer.cs">
+      <DependentUpon>SMS017＿支払い明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS016.aspx.cs">
-      <DependentUpon>SMS016.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS021＿学生スケジュール.aspx.cs">
+      <DependentUpon>SMS021＿学生スケジュール.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS016.aspx.designer.cs">
-      <DependentUpon>SMS016.aspx</DependentUpon>
+    <Compile Include="SMS021＿学生スケジュール.aspx.designer.cs">
+      <DependentUpon>SMS021＿学生スケジュール.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS017.aspx.cs">
-      <DependentUpon>SMS017.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS022＿スケジュール照会.aspx.cs">
+      <DependentUpon>SMS022＿スケジュール照会.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS017.aspx.designer.cs">
-      <DependentUpon>SMS017.aspx</DependentUpon>
+    <Compile Include="SMS022＿スケジュール照会.aspx.designer.cs">
+      <DependentUpon>SMS022＿スケジュール照会.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS018.aspx.cs">
-      <DependentUpon>SMS018.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS023＿社員情報.aspx.cs">
+      <DependentUpon>SMS023＿社員情報.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS018.aspx.designer.cs">
-      <DependentUpon>SMS018.aspx</DependentUpon>
+    <Compile Include="SMS023＿社員情報.aspx.designer.cs">
+      <DependentUpon>SMS023＿社員情報.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS019.aspx.cs">
-      <DependentUpon>SMS019.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS024＿社員リスト.aspx.cs">
+      <DependentUpon>SMS024＿社員リスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS019.aspx.designer.cs">
-      <DependentUpon>SMS019.aspx</DependentUpon>
+    <Compile Include="SMS024＿社員リスト.aspx.designer.cs">
+      <DependentUpon>SMS024＿社員リスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS020.aspx.cs">
-      <DependentUpon>SMS020.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS025＿社員情報明細.aspx.cs">
+      <DependentUpon>SMS025＿社員情報明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS020.aspx.designer.cs">
-      <DependentUpon>SMS020.aspx</DependentUpon>
+    <Compile Include="SMS025＿社員情報明細.aspx.designer.cs">
+      <DependentUpon>SMS025＿社員情報明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS021.aspx.cs">
-      <DependentUpon>SMS021.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS026＿イベントとニューズヘッダ.aspx.cs">
+      <DependentUpon>SMS026＿イベントとニューズヘッダ.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS021.aspx.designer.cs">
-      <DependentUpon>SMS021.aspx</DependentUpon>
+    <Compile Include="SMS026＿イベントとニューズヘッダ.aspx.designer.cs">
+      <DependentUpon>SMS026＿イベントとニューズヘッダ.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS022.aspx.cs">
-      <DependentUpon>SMS022.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS027＿費用登録.aspx.cs">
+      <DependentUpon>SMS027＿費用登録.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS022.aspx.designer.cs">
-      <DependentUpon>SMS022.aspx</DependentUpon>
+    <Compile Include="SMS027＿費用登録.aspx.designer.cs">
+      <DependentUpon>SMS027＿費用登録.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS023.aspx.cs">
-      <DependentUpon>SMS023.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS028＿費用リスト.aspx.cs">
+      <DependentUpon>SMS028＿費用リスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS023.aspx.designer.cs">
-      <DependentUpon>SMS023.aspx</DependentUpon>
+    <Compile Include="SMS028＿費用リスト.aspx.designer.cs">
+      <DependentUpon>SMS028＿費用リスト.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS024.aspx.cs">
-      <DependentUpon>SMS024.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS029＿費用明細.aspx.cs">
+      <DependentUpon>SMS029＿費用明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS024.aspx.designer.cs">
-      <DependentUpon>SMS024.aspx</DependentUpon>
+    <Compile Include="SMS029＿費用明細.aspx.designer.cs">
+      <DependentUpon>SMS029＿費用明細.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS025.aspx.cs">
-      <DependentUpon>SMS025.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS030＿給料計算.aspx.cs">
+      <DependentUpon>SMS030＿給料計算.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS025.aspx.designer.cs">
-      <DependentUpon>SMS025.aspx</DependentUpon>
+    <Compile Include="SMS030＿給料計算.aspx.designer.cs">
+      <DependentUpon>SMS030＿給料計算.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS026.aspx.cs">
-      <DependentUpon>SMS026.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS031＿公文書登録.aspx.cs">
+      <DependentUpon>SMS031＿公文書登録.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS026.aspx.designer.cs">
-      <DependentUpon>SMS026.aspx</DependentUpon>
+    <Compile Include="SMS031＿公文書登録.aspx.designer.cs">
+      <DependentUpon>SMS031＿公文書登録.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS027.aspx.cs">
-      <DependentUpon>SMS027.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS032＿公文書照会.aspx.cs">
+      <DependentUpon>SMS032＿公文書照会.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS027.aspx.designer.cs">
-      <DependentUpon>SMS027.aspx</DependentUpon>
+    <Compile Include="SMS032＿公文書照会.aspx.designer.cs">
+      <DependentUpon>SMS032＿公文書照会.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS028.aspx.cs">
-      <DependentUpon>SMS028.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS033＿設備情報.aspx.cs">
+      <DependentUpon>SMS033＿設備情報.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS028.aspx.designer.cs">
-      <DependentUpon>SMS028.aspx</DependentUpon>
+    <Compile Include="SMS033＿設備情報.aspx.designer.cs">
+      <DependentUpon>SMS033＿設備情報.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS029.aspx.cs">
-      <DependentUpon>SMS029.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="SMS034＿設備情報照会.aspx.cs">
+      <DependentUpon>SMS034＿設備情報照会.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMS029.aspx.designer.cs">
-      <DependentUpon>SMS029.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SMS030.aspx.cs">
-      <DependentUpon>SMS030.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SMS030.aspx.designer.cs">
-      <DependentUpon>SMS030.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SMS031.aspx.cs">
-      <DependentUpon>SMS031.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SMS031.aspx.designer.cs">
-      <DependentUpon>SMS031.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SMS032.aspx.cs">
-      <DependentUpon>SMS032.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SMS032.aspx.designer.cs">
-      <DependentUpon>SMS032.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SMS033.aspx.cs">
-      <DependentUpon>SMS033.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SMS033.aspx.designer.cs">
-      <DependentUpon>SMS033.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SMS034.aspx.cs">
-      <DependentUpon>SMS034.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SMS034.aspx.designer.cs">
-      <DependentUpon>SMS034.aspx</DependentUpon>
+    <Compile Include="SMS034＿設備情報照会.aspx.designer.cs">
+      <DependentUpon>SMS034＿設備情報照会.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
