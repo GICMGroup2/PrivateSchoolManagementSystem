@@ -11,6 +11,7 @@ namespace HomeASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             imgSchool.ImageUrl = "~/Images/school.png";
             stdInfo.ImageUrl = "~/Images/student.png";
@@ -18,6 +19,7 @@ namespace HomeASP
             examInfo.ImageUrl = "~/Images/exam.png";
             teacherInfo.ImageUrl = "~/Images/teacher.png";
             system.ImageUrl = "~/Images/system.jpg";
+           // this.Image1.ImageUrl = "~/Images/School1.png";
         }
 
         protected void btnHome_Click(object sender, EventArgs e)

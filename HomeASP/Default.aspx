@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles/bootstrap.css" type="text/css" />     
     <link rel="stylesheet" href="styles/style.css" type="text/css" />
     <link rel="stylesheet" href="styles/booking.css" type="text/css" />
+    <link rel="stylesheet" href="styles/BgImage.css" type="text/css" />
     <script type="text/javascript">
 
     </script>
@@ -33,8 +34,9 @@
                             <asp:Image ID="stdInfo" runat="server" Height="100px" Width="150px" BackColor="#1A74BA" ToolTip="Student Information" /><br />
                         </a>
                         <ul>
-                            <li><a href="SMS003＿学生情報">Student Entry</a></li>
+                            <li><a href="Testing">Student Entry</a></li>
                             <li><a href="#">Student List</a></li>
+                            <li><a href="#">Payment</a></li>
                         </ul>
                     </li>
                     <li>
@@ -44,6 +46,7 @@
                         <ul>
                             <li><a href="#">Attendance Entry</a></li>
                             <li><a href="#">Attendance List</a></li>
+                            <li><a href="#">Class Timetable</a></li>
                         </ul>
                         </li>
                     <li>
@@ -60,13 +63,22 @@
                             <asp:Image ID="teacherInfo" runat="server" Height="100px" Width="150px" BackColor="#1A74BA" ToolTip="Teacher Information" /><br />
                         </a>
                         <ul>
-                            <li><a href="#">Account Creation</a></li>
+                            <%--<li><a href="#">Account Creation</a></li>--%>
+                            <li><a href="#">Staff Entry</a></li>
+                            <li><a href="#">Staff List</a></li>
+                            <li><a href="#">Salary Calculation</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#">
-                            <asp:Image ID="system" runat="server" Height="100px" Width="150px" BackColor="#1A74BA" ToolTip="System Information" /><br />
+                            <asp:Image ID="system" runat="server" Height="100px" Width="150px" BackColor="#1A74BA" ToolTip="System Information"  /><br />
                         </a>
+                         <ul>
+                            <li><a href="#">Expense List</a></li>
+                            <li><a href="#">Equipment List</a></li>
+                            <li><a href="#">Official Doc</a></li>
+                            <li><a href="#">Events and News Entry</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -88,24 +100,15 @@
                     <a href="index.html">Exit</a>
                 </li>
                 </ul>
-                    <div id="page-wrapper">
-                        <div id="page-inner">
-                            <form id="bookingForm" class="booking-form">
-                                <div class="tmInput">
-                                  <input name="Name" placeHolder="User Name" type="text" data-constraints='@NotEmpty @Required @Email'>
-                                </div>
-                                <div class="tmInput">
-                                  <input name="Email" placeHolder="Password" type="text" data-constraints="@NotEmpty @Required">
-                                </div>
-                                <div class="booking-form_controls">
-                                  <a href="#" class="btn" data-type="submit">
-                                      Login</a>
-                                </div>
-                             </form>
+
+               <div id="page-separate">
+                        <div id="bg-image">
+                            <%--<asp:Image ID="Image1" runat="server" />--%>
+                                
                         </div>
-                    </div>
-            </div>           
-        </div>        
-    </div>    
+                   </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

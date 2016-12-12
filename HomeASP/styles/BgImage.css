@@ -1,0 +1,17 @@
+﻿body {
+}
+#bg-image {
+    width:100%;
+    margin:0px 0px 0px 0px;
+    background-color:#1AB4BA !important;
+    background-image: url('../Images/school1.png');
+    padding:100px 150px;
+    min-height:530px;
+    min-width:1160px;
+}
+ #page-separate{
+       margin: 0 0 0 170px;
+        padding: 0px 0px;
+        min-height: 500px;
+		
+    }
