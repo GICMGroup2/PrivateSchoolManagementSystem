@@ -11,7 +11,12 @@ namespace HomeASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            imgSchool.ImageUrl = "~/Images/school.png";
+            stdInfo.ImageUrl = "~/Images/student.png";
+            attendanceInfo.ImageUrl = "~/Images/attendance.jpg";
+            examInfo.ImageUrl = "~/Images/exam.png";
+            teacherInfo.ImageUrl = "~/Images/teacher.png";
+            system.ImageUrl = "~/Images/system.jpg";
         }
     }
 }

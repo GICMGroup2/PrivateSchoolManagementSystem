@@ -4,15 +4,44 @@
 <html>
 <head id="Head1" runat="server">
     <title>Home </title>
+    
     <link rel="stylesheet" href="styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="styles/custom.css" type="text/css" />    
     <link rel="stylesheet" href="styles/font-awesome.css" type="text/css" />    
     <link rel="stylesheet" href="styles/bootstrap.css" type="text/css" />     
     <link rel="stylesheet" href="styles/style.css" type="text/css" />
-    <link rel="stylesheet" href="styles/booking.css" type="text/css" />
+    <link rel="stylesheet" href="styles/booking.css" type="text/css" />    
+    <link rel="stylesheet" href="styles/navi.css" type="text/css" />
     <script type="text/javascript">
+         </script>
 
-    </script>
+    <style type="text/css">
+        #bookingForm
+        {
+            height: 498px;
+            width: 909px;
+            margin-right: 0px;
+            margin-top: 0px;
+        }
+         #stupageinner {
+            width:100%;
+            margin:5px 7px 7px 0px;
+            background-color:#1A7EBA!important;
+            padding:100px 150px;
+            min-height:520px;
+            min-width:800px;
+        }   
+         #stupagewrapper {
+   
+            min-height: 600px;
+            background:#F3F3F3;
+            margin: 0px 0px 0px 170px;                  
+        }
+
+       
+         </style>  
+
+   
 </head>
 
 <body>
@@ -87,13 +116,68 @@
                     <a href="index.html">Exit</a>
                 </li>
                 </ul>
-                    <div id="page-wrapper">
-                        <div id="page-inner">
-                            <form id="bookingForm" class="booking-form">
+                    <div id="stupagewrapper">
+                        <div id="stupageinner">
+                            <form id="bookingForm" runat="server">
+                                
+                                <asp:Table runat="server" CellSpacing="0" ForeColor="White" Height="94px" CellPadding="3" Width="795px"> 
+                                <asp:TableRow>
+
+                                <asp:TableCell>
+                                <asp:Label runat="server" Text="Name"> </asp:Label>&nbsp; &nbsp; &nbsp;
+                                <asp:TextBox ID="stulistname" runat="server" Width="166px"></asp:TextBox> </asp:TableCell>
+
+                                <asp:TableCell><asp:Label runat="server" Text="Grade"></asp:Label>&nbsp; &nbsp;
+                                <asp:DropDownList ID="stulistgrade" runat="server" Height="33px" Width="168px"> </asp:DropDownList></asp:TableCell>
+
+                                <asp:TableCell><asp:Label  runat="server" Text="Student ID"></asp:Label>&nbsp; &nbsp;
+                                <asp:TextBox ID="stulistid" runat="server" Width="166px"></asp:TextBox><br /></asp:TableCell></asp:TableRow>
+
+
+                                <asp:TableRow><asp:TableCell>
+                                <asp:Label ID="Label2" runat="server" Text="Roll No"></asp:Label>&nbsp; &nbsp;
+                                <asp:TextBox ID="stulistroll" runat="server" Width="166px"></asp:TextBox></asp:TableCell>
                               
+                                    
+                               
+                                <asp:TableCell> 
+                                
+                                <asp:Label Text="Class" runat="server"></asp:Label> &nbsp; &nbsp;
+                                    <asp:DropDownList ID="stulistclass" runat="server" Height="33px" Width="168px"> </asp:DropDownList>
+                                </asp:TableCell>
 
+                                <asp:TableCell>
+                               
+                                <asp:Label ID="Label4" runat="server" Text="Class Year"></asp:Label>&nbsp; &nbsp;
+                                <asp:DropDownList ID="DropDownList1" runat="server" Height="33px" Width="166px"> </asp:DropDownList>
 
-                             </form>
+                                </asp:TableCell>
+                                    </asp:TableRow>
+                               </asp:Table> 
+                                <br />
+
+                                <div align="center">
+
+                                    <asp:Button ID="search" runat="server" Text="Search" BackColor="Gray" Width="103px" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="searchall" runat="server" Text="Search All" BackColor="Gray" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="detail" runat="server" Text="Detail" BackColor="Gray" Width="103px" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="add" runat="server" Text="Add" BackColor="Gray" Width="103px" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="edit" runat="server" Text="Edit" BackColor="Gray" Width="103px" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <br />
+                                  
+                                </div>
+                                 <br />
+                          <asp:TextBox ID="TextBox2" runat="server" TextMode="MultiLine" Height="400" Width="800"></asp:TextBox>
+                        <script type="text/javascript">
+                         window.onload = function () {
+                         var textarea = document.getElementById('<%=TextBox2.ClientID %>');
+                         textarea.scrollTop = textarea.scrollHeight;
+                            }
+                        </script>
+                                
+                           
+                                
+                            </form>
                         </div>
                     </div>
             </div>           
