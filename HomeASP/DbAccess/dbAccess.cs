@@ -7,11 +7,11 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 
-namespace PSMS.DbAccess
+namespace HomeASP.DbAccess
 {
     class dbAccess
     {
-        private string path = @"C:\PSMS\ConStrPSMS.txt";
+        private string path = @"C:\Users\AyeThin\Desktop\PSMS_ASP\ConStrPSMS.txt";
         private string conStr = "";
         public SqlConnection conn = new SqlConnection();
 
