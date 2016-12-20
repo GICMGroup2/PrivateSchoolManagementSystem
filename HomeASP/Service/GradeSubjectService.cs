@@ -9,9 +9,9 @@ using HomeASP.DbAccess;
 
 namespace HomeASP.Service
 {
-    class GradeSubjectService:dbAccess
+    class GradeSubjectService : dbAccess
     {
-        attendanceDb db = new attendanceDb();
+        GradeSubjectDb db = new GradeSubjectDb();
         
         public bool isExist(DataSet.DsPSMS.ST_GRADE_MSTRow dr, out string msg)
         {

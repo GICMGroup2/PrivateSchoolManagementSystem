@@ -12,7 +12,7 @@ using HomeASP.DbAccess;
 
 namespace HomeASP.DbAccess
 {
-    class attendanceDb:dbAccess
+    class GradeSubjectDb : dbAccess
     {
         public DataSet.DsPSMS.ST_GRADE_MSTDataTable selectGrade(DataSet.DsPSMS.ST_GRADE_MSTRow dr)
         {

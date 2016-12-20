@@ -40,7 +40,7 @@ namespace HomeASP
                 }
                 else
                 {
-                    bool isOk = service.saveGrade(gradeRow, out msg);
+                    //bool isOk = service.saveGrade(gradeRow, out msg);
                     //MessageBox.Show(msg);
                     DisplayData();
                     //Fillcombo();
@@ -50,6 +50,7 @@ namespace HomeASP
             {
                 //MessageBox.Show(msg);
             }
+            DisplayData();
         }
 
         private bool checkValidation()
@@ -77,16 +78,20 @@ namespace HomeASP
             if (resultDt != null)
             {
                 // MessageBox.Show(msg);
-                GridView1.DataSource = resultDt;
+                
+                resultDt.Columns.Remove(resultDt.Columns[3]);
+                resultDt.Columns.Remove(resultDt.Columns[3]);
+                resultDt.Columns.Remove(resultDt.Columns[3]);
+                resultDt.Columns.Remove(resultDt.Columns[3]);
+                resultDt.Columns.Remove(resultDt.Columns[3]);
 
-                //resultDt.Columns.Remove(resultDt.Columns[3]);
-                //resultDt.Columns.Remove(resultDt.Columns[3]);
-                //resultDt.Columns.Remove(resultDt.Columns[3]);
-                //resultDt.Columns.Remove(resultDt.Columns[3]);
-                //resultDt.Columns.Remove(resultDt.Columns[3]);
-                //GridView1.Columns[0].HeaderText = "Year";
-                //GridView1.Columns[1].HeaderText = "ID";
-                //GridView1.Columns[2].HeaderText = "Grade";
+                gridViewGrade.DataSource = resultDt;
+                gridViewGrade.DataBind();
+
+                //gridViewGrade.Columns[0].HeaderText = "Year";
+                //gridViewGrade.Columns[1].HeaderText = "ID";
+                //gridViewGrade.Columns[2].HeaderText = "Grade";
+                
             }
         }
 

@@ -102,66 +102,8 @@
                                             <asp:Button class="btn_display" ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
                                             <asp:Button class="btn_display" ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" />
                                         </div>
-                                    <div class="table-responsive">
-                                        <% if (txtId.Text.Trim().Length != 0) { %>
-                                        <%--<table class="table table-striped table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Username</th>
-                                                    <th>Usery No.</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td>100090</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td>100090</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                    <td>100090</td>
-                                                </tr>
-                                                    <tr>
-                                                    <td>1</td>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td>100090</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td>100090</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                    <td>100090</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>--%>
-                                        
-                                           <% }  %>
-                                        <asp:GridView ID="GridView1" runat="server" BackColor="Black">
+                                    <div class="table-responsive">                                       
+                                        <asp:GridView ID="gridViewGrade" AutoGenerateColumns="true" runat="server" BackColor="Black">
                                         </asp:GridView>
                                     </div>
                                     </form>
