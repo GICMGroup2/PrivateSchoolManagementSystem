@@ -13,6 +13,12 @@
     <script type="text/javascript">
 
     </script>
+    <style type="text/css">
+        #bookingForm {
+            height: 386px;
+            width: 783px;
+        }
+    </style>
 </head>
 
 <body>
@@ -89,11 +95,30 @@
                 </ul>
                     <div id="page-wrapper">
                         <div id="page-inner">
-                            <form id="bookingForm" class="booking-form">
-                              
-
-
-                             </form>
+                            <form id="bookingForm" runat="server">
+                                Grade&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="ddltimegradelist" runat="server" Width="152px" AppendDataBoundItems="True" ForeColor="#003300">
+                                </asp:DropDownList>
+&nbsp;&nbsp;&nbsp; Class&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="DropDownList2" runat="server" Width="161px" ForeColor="#003300">
+                                    <asp:ListItem>Select Class</asp:ListItem>
+                                    <asp:ListItem>Class A</asp:ListItem>
+                                    <asp:ListItem>Class B</asp:ListItem>
+                                    <asp:ListItem>Class C</asp:ListItem>
+                                    <asp:ListItem>Class D</asp:ListItem>
+                                </asp:DropDownList>
+&nbsp;&nbsp;&nbsp; Subject&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="DropDownList3" runat="server" Width="171px">
+                                </asp:DropDownList>
+                                <br />
+                                <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                                <asp:Button ID="Button1" runat="server" Text="INSERT" Width="105px" ForeColor="#003300" />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                            </form>
                         </div>
                     </div>
             </div>           
