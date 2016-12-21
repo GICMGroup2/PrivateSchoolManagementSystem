@@ -1,12 +1,28 @@
 ﻿body {
+    margin:0;
+}
+.logo-img {
+    margin:0px 0px 0px 0px;
+    /*width:150px;
+    height:70px;
+    float:left;
+    float:right;
+    background-color:#1AB4BA !important;
+    background-image: url('../Images/logo1.png');
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;*/
 }
 #bg-image {
     width:100%;
     margin:0px 0px 0px 0px;
     background-color:#1AB4BA !important;
-    background-image: url('../Images/school1.png');
+    background-image: url('../Images/School1.jpg');
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
     padding:100px 150px;
-    min-height:530px;
+    min-height:520px;
     min-width:1160px;
 }
  #page-separate{
@@ -15,3 +31,94 @@
         min-height: 500px;
 		
     }
+.noneimageli {
+    margin: 0 0 0 170px;
+        padding: 0px 0px;
+        min-height: 150px;
+        min-width:120px;
+        background-color:#1A7EBA;
+}
+ .page-separate{
+       margin: 0 0 0 170px;
+        padding: 0px 0px;
+        min-height: 500px;
+		
+    }
+ .Div22{
+       margin: 0 0 0 170px;
+        padding: 0px 0px;
+        min-height: 150px;
+		
+    }
+#bg-Frm {
+    width:100%;
+    margin:0px 0px 0px 0px;
+    background-color: #358A90;
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding:50px 50px 0px 50px;
+    min-height:520px;
+    min-width:1160px;
+    border-radius:7px 7px;
+}
+#cash-Frm {
+    margin:auto;
+}
+.Lab-format {
+    font-family:'Times New Roman';
+    font-size:20px;
+    font-weight:bold;
+    color:whitesmoke;
+    padding:5px 5px 5px 5px;
+}
+.Txtbox-format {
+    font-family:'Times New Roman';
+    font-size:17px;
+    color:black;
+    width:200px;
+
+}
+tr.spaceUnder > td
+{
+  padding-bottom: 2em;
+}
+.Header {
+    background-image:url('../Images/Head.png');
+    width:100%;
+    height:100px;
+}
+.Header_div {
+    background-image:url('../Images/logo1.png');
+     background-repeat: no-repeat;
+     width:150px;
+     margin:0px 0px 0px 0px;
+     min-height:100px;
+    min-width:150px;
+    
+}
+.Header_logo {
+    
+    font-size:50px;
+    font-family:'Edwardian Script ITC';
+    text-shadow:1px 2px 3px #7AE995;
+    text-align:center;
+    line-height:70px;
+    margin:auto;
+
+}
+.pa-Format {
+    width:505px;
+    height:320px;
+    background-color:#3b838c; 
+    border-radius:3px 3px;
+    padding:20px 7px 10px 40px;
+}
+.ressize {
+    width:150px;
+    height:auto;
+}
+.ressize {
+    width:100px;
+    height:auto;
+}
