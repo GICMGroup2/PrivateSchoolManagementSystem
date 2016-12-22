@@ -18,6 +18,7 @@ namespace HomeASP
             teacherInfo.ImageUrl = "~/Images/teacher.png";
             system.ImageUrl = "~/Images/system.jpg";
 
+
         }
 
         protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
