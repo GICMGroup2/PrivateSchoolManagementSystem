@@ -1,4 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SMS021_ClassTimetableEntry.aspx.cs" Inherits="HomeASP.SMS021" %>
+<%@ Register Assembly="TimePicker" Namespace="MKB.TimePicker" TagPrefix="cc1" %>
+
 
 <!-- Layout -->
 <html>
@@ -96,10 +98,10 @@
                     <div id="page-wrapper">
                         <div id="page-inner">
                             <form id="bookingForm" runat="server">
-                                Grade&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="ddltimegradelist" runat="server" Width="152px" AppendDataBoundItems="True" ForeColor="#003300">
+                                Grade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="ddltimegradelist" runat="server" Width="153px" AppendDataBoundItems="True" ForeColor="#003300">
                                 </asp:DropDownList>
-&nbsp;&nbsp;&nbsp; Class&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; Class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DropDownList2" runat="server" Width="161px" ForeColor="#003300">
                                     <asp:ListItem>Select Class</asp:ListItem>
                                     <asp:ListItem>Class A</asp:ListItem>
@@ -108,11 +110,37 @@
                                     <asp:ListItem>Class D</asp:ListItem>
                                 </asp:DropDownList>
 &nbsp;&nbsp;&nbsp; Subject&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList3" runat="server" Width="171px">
+                                <asp:DropDownList ID="DropDownList3" runat="server" Width="171px" ForeColor="Black">
+                                    <asp:ListItem>Select Subject</asp:ListItem>
+                                    <asp:ListItem>Myanmar</asp:ListItem>
+                                    <asp:ListItem>English</asp:ListItem>
+                                    <asp:ListItem>Maths</asp:ListItem>
+                                    <asp:ListItem>Chemistry</asp:ListItem>
+                                    <asp:ListItem>Physics</asp:ListItem>
+                                    <asp:ListItem>Ecology</asp:ListItem>
+                                    <asp:ListItem>Biology</asp:ListItem>
+                                    <asp:ListItem>History</asp:ListItem>
+                                    <asp:ListItem>Geology</asp:ListItem>
+                                    <asp:ListItem>Science</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                                Day&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="DropDownList4" runat="server" ForeColor="Black" Width="152px">
+                                    <asp:ListItem>Select Date</asp:ListItem>
+                                    <asp:ListItem>MON</asp:ListItem>
+                                    <asp:ListItem>TUE</asp:ListItem>
+                                    <asp:ListItem>WED</asp:ListItem>
+                                    <asp:ListItem>THU</asp:ListItem>
+                                    <asp:ListItem>FRI</asp:ListItem>
+                                </asp:DropDownList>
+&nbsp;&nbsp;&nbsp;&nbsp; Start Time
+                                <asp:TextBox ID="TextBox1" runat="server" Width="156px"></asp:TextBox>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Time
+                                <asp:TextBox ID="TextBox2" runat="server" Width="160px"></asp:TextBox>
+                                <br />
+                                <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="Button1" runat="server" Text="INSERT" Width="105px" ForeColor="#003300" />
                                 <br />
                                 <br />
