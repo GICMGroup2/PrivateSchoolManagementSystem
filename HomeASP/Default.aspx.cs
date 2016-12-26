@@ -43,5 +43,11 @@ namespace HomeASP
         {
 
         }
+
+        protected void pay_Click(object sender, EventArgs e)
+        {
+            
+        }
+        
     }
 }

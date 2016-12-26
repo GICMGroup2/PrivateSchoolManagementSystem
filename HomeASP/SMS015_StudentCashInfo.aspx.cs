@@ -5,14 +5,25 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows;
+using HomeASP.Service;
+using HomeASP.DataSet;
+using HomeASP.DbAccess;
 
 namespace HomeASP
 {
     public partial class SMS015 : System.Web.UI.Page
     {
-        DataSet.DataSet2.ST_STUDENT_DATARow stdr = new DataSet.DataSet2.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
-        DataSet.DataSet2.ST_STUDENT_CASHRow dr = new DataSet.DataSet2.ST_STUDENT_CASHDataTable().NewST_STUDENT_CASHRow();
-        Database.StudentCashDb db = new Database.StudentCashDb();
+        string msg = "";
+        GradeSubjectDb grdDb = new GradeSubjectDb();
+
+        StudentCashInfoService stuCashService = new StudentCashInfoService();
+        //GradeSubjectService grdSubService = new GradeSubjectService();
+        
+        DsPSMS.ST_STUDENT_DATARow stDr = new DsPSMS.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
+        DsPSMS.ST_STUDENT_CASHDataTable stuCashDt = new DsPSMS.ST_STUDENT_CASHDataTable();
+        DsPSMS.ST_STUDENT_CASHRow stuCashDr = new DsPSMS.ST_STUDENT_CASHDataTable().NewST_STUDENT_CASHRow();
+        DsPSMS.ST_GRADE_MSTDataTable grdDt = new DsPSMS.ST_GRADE_MSTDataTable();
+        DsPSMS.ST_GRADE_MSTRow grdDr = new DsPSMS.ST_GRADE_MSTDataTable().NewST_GRADE_MSTRow();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,30 +39,66 @@ namespace HomeASP
 
         protected void BtnPay_Click(object sender, EventArgs e)
         {
+            stuCashDr.EDU_YEAR = CoboYear.Text;
+            stuCashDr.STUDENT_ID = TxtStudID.Text;
+            stuCashDr.CASH_TITLE = LabCashTypeVal.Text;
+            stuCashDr.CASH_DATE = cashDate.Text;
+            stuCashDr.ACCOUNT_NO = txtAccNoVal.Text;
+            stuCashDr.AMOUNT = Convert.ToInt64(TxtAmountVal.Text);
+            stuCashDr.CRT_DT_TM = "";
+            stuCashDr.CRT_USER_ID = "";
+            stuCashDr.UPD_DT_TM = "";
+            stuCashDr.UPD_USER_ID = "";
+            stuCashDr.DEL_FLG = 0;
 
-            stdr.EDU_YEAR = "2006";
-            stdr.STUDENT_ID = TxtStudID.Text;
-            stdr.STUDENT_NAME = TxtStuName.Text;
-            stdr.GRADE_ID = "5";
-            // select Cash Type
-            stdr= db.selectCashType(stdr);
-            // show Cash Type
-            LabCashTypeVal.Text = stdr.CASH_TYPE1;
+            stuCashService.SaveStudentCashInfo(stuCashDr, out msg);
 
-            dr.EDU_YEAR = CoboYear.Text;
-            dr.STUDENT_ID = TxtStudID.Text;
-            dr.CASH_TITLE = LabCashTypeVal.Text;
-            dr.CASH_DATE =cashDate.Text ;
-            dr.ACCOUNT_NO = txtAccNoVal.Text;
-            dr.AMOUNT = Convert.ToInt64(TxtAmountVal.Text);
-            dr.CRT_DT_TM = "";
-            dr.CRT_USER_ID = "";
-            dr.UPD_DT_TM = "";
-            dr.UPD_USER_ID = "";
-            dr.DEF_FLG = 0;
+            calculation();
+           // Response.Write("<script>alert('login successful');</script>");
+        }
 
-            db.insertStuCash(dr);
-           
+        protected void CoboSelect_Change(object sender, EventArgs e)
+        {
+            if(TxtStudID.Text.Trim().Length!=0 && TxtStuName.Text.Trim().Length!=0 && CoboGrade.Text.Trim().Length !=0 && CoboYear.Text.Trim().Length!=0)
+            {
+                
+                // select Cash Type
+                stDr.EDU_YEAR = CoboYear.Text;
+                stDr.STUDENT_ID = TxtStudID.Text;
+                stDr.STUDENT_NAME = TxtStuName.Text;
+                stDr.GRADE_ID = calculation();
+                //stDr = stuCashService.getCashType(stDr,out msg);
+
+                //// show Cash Type
+                //if(stDr!=null)
+                //    LabCashTypeVal.Text = stDr.CASH_TYPE1;
+            }
+        }
+
+        public string calculation()
+        {
+            int totalPaid = 0;
+            string gradeId = "";
+
+            //select GRADE_ID and CASH_AMOUNT
+            grdDr.GRADE_NAME = CoboGrade.Text;
+            grdDt = grdDb.selectGrade(grdDr);
+
+            //get cash data and calculate paid amount
+            stuCashDr.STUDENT_ID = TxtStudID.Text;
+            stuCashDr.EDU_YEAR = CoboYear.Text;
+            stuCashDt = stuCashService.getCashData(stuCashDr, out msg);
+            for (int i = 0; i < stuCashDt.Rows.Count; i++)
+            {
+                totalPaid += Convert.ToInt32(stuCashDt[i].AMOUNT);
+            }
+            gradeId = grdDt[0].GRADE_ID;
+            LabMonVal.Text = "10 months";
+            LabKyatVal.Text = grdDt[0].MONTHLY_FEE;
+            LabPaidVal.Text = Convert.ToString(totalPaid);
+            LabRemainVal.Text = Convert.ToString((10 * Convert.ToInt32(LabKyatVal.Text)) - totalPaid);
+
+            return gradeId;
         }
     }
 }

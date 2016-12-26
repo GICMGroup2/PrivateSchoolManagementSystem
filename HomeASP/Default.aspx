@@ -36,7 +36,8 @@
                         <ul>
                             <li><a href="SMS003_StudentEntry.aspx">Student Entry</a></li>
                             <li><a href="SMS004_StudentList.aspx">Student List</a></li>
-                            <li><a href="SMS017_StudentCashDetail.aspx">Payment</a></li>
+                            <li><a href="SMS017_StudentCashInfo.aspx">Payment</a></li>
+                            <%-- <li><button id="test" runat="server" onclick="pay_Click">Payment</button></li>--%>
                         </ul>
                     </li>
                     <li>

@@ -120,6 +120,8 @@
                     </li>
                     <li>
                         <a href="index.html">Exit</a>
+                   
+                   
                     </li>
                 </ul>
 
@@ -130,50 +132,52 @@
                             <table id="cashTbl" runat="server" >
                                 <tr class="spaceUnder">
                                     <td>
-                                        <asp:Label ID="LabStudId" CssClass="Lab-format" runat="server">ID</asp:Label></td>
+                                        <asp:Label ID="LabStudId" CssClass="Lab-format" runat="server">ID*</asp:Label></td>
                                     <td><span style="margin-left: 2em"></span></td>
                                     <td>
                                         <asp:TextBox ID="TxtStudID" CssClass="Txtbox-format" runat="server" ForeColor="Black"></asp:TextBox></td>
                                     <td><span style="margin-left: 2em"></span></td>
                                     <td>
-                                        <asp:Label ID="Label1" CssClass="Lab-format" runat="server">Name</asp:Label></td>
+                                        <asp:Label ID="Label1" CssClass="Lab-format" runat="server">Name*</asp:Label></td>
                                     <td><span style="margin-left: 2em"></span></td>
                                     <td>
                                         <asp:TextBox ID="TxtStuName" CssClass="Txtbox-format" runat="server"></asp:TextBox></td>
                                     <td><span style="margin-left: 2em"></span></td>
                                     <td>
-                                        <asp:Label ID="LblDate" CssClass="Lab-format" runat="server"> Date</asp:Label></td>
+                                        <asp:Label ID="LblDate" CssClass="Lab-format" runat="server"> Date*</asp:Label></td>
                                 </tr>
                               </table>
                             </div>
                             <div style="float:right;padding:0px 100px 0px 0px">
                               <%--<input type="text" id="datepicker" style="color:black">--%> 
-                              <asp:TextBox CssClass="datepicker" ID="cashDate" runat="server" />
+                              <asp:TextBox CssClass="datepicker" ID="cashDate" style="color:black" runat="server" />
                             </div> 
                               <table id="cashTb2" runat="server" >
                                 <tr class="spaceUnder">
                                     <td>
-                                        <asp:Label ID="LabGrade" CssClass="Lab-format" runat="server">Grade</asp:Label></td>
+                                        <asp:Label ID="LabGrade" CssClass="Lab-format" runat="server">Grade*</asp:Label></td>
                                     <td><span style="margin-left: 2em"></span></td>
                                     <td>
-                                        <asp:DropDownList ID="CoboGrade" CssClass="Txtbox-format" runat="server">
+                                        <asp:DropDownList ID="CoboGrade" CssClass="Txtbox-format" AutoPostBack="true" OnSelectedIndexChanged="CoboSelect_Change" runat="server">
+                                            <asp:ListItem></asp:ListItem>
                                             <asp:ListItem Value="Grade 1">Grade 1</asp:ListItem>
-                                            <asp:ListItem>Grade 2</asp:ListItem>
-                                            <asp:ListItem>Grade 3</asp:ListItem>
-                                            <asp:ListItem>Grade 4</asp:ListItem>
-                                            <asp:ListItem>Grade 5</asp:ListItem>
-                                            <asp:ListItem>Grade 6</asp:ListItem>
-                                            <asp:ListItem>Grade 7</asp:ListItem>
-                                            <asp:ListItem>Grade 8</asp:ListItem>
-                                            <asp:ListItem>Grade 9</asp:ListItem>
-                                            <asp:ListItem>Grade 10</asp:ListItem>
+                                            <asp:ListItem>Grade2</asp:ListItem>
+                                            <asp:ListItem>Grade3</asp:ListItem>
+                                            <asp:ListItem>Grade4</asp:ListItem>
+                                            <asp:ListItem>Grade5</asp:ListItem>
+                                            <asp:ListItem>Grade6</asp:ListItem>
+                                            <asp:ListItem>Grade7</asp:ListItem>
+                                            <asp:ListItem>Grade8</asp:ListItem>
+                                            <asp:ListItem>Grade9</asp:ListItem>
+                                            <asp:ListItem>Grade10</asp:ListItem>
                                         </asp:DropDownList></td>
                                     <td><span style="margin-left: 2em"></span></td>
                                     <td>
-                                        <asp:Label ID="LabYear" CssClass="Lab-format" runat="server">Year</asp:Label></td>
+                                        <asp:Label ID="LabYear" CssClass="Lab-format" runat="server">Year*</asp:Label></td>
                                     <td><span style="margin-left: 2em"></span></td>
                                     <td>
-                                        <asp:DropDownList ID="CoboYear" CssClass="Txtbox-format" runat="server">
+                                        <asp:DropDownList ID="CoboYear" CssClass="Txtbox-format" runat="server" AutoPostBack="true" OnSelectedIndexChanged="CoboSelect_Change" >
+                                            <asp:ListItem></asp:ListItem>
                                             <asp:ListItem>2010-2011</asp:ListItem>
                                             <asp:ListItem>2011-2012</asp:ListItem>
                                             <asp:ListItem>2012-2013</asp:ListItem>
@@ -202,7 +206,8 @@
                                             <asp:Label ID="LabAmount" CssClass="Lab-format" runat="server">Amount </asp:Label>
                                             <span style="margin-left: 2em"></span>
                                             <asp:TextBox ID="TxtAmountVal" CssClass="Txtbox-format" runat="server"></asp:TextBox><br />
-                                            <asp:Button ID="BtnPay" runat="server" text="Pay" style="text-align:center; margin:4px 7px 2px 4px;" OnClick="BtnPay_Click" />
+                                            <br />
+                                            <asp:Button ID="BtnPay" runat="server" text="Pay" style="text-align:center; border-radius:3px 3px; margin:4px 100px 2px 4px; float:right;" OnClick="BtnPay_Click" />
                                             </asp:Panel></td>
                                         <td><span style="margin-left: 3em"/></td>
                                         <td><asp:Panel ID="Panel1" runat="server"  CssClass="pa-Format"  GroupingText="Cash Detail">
@@ -210,24 +215,24 @@
                                             <span style="margin-left: 1em; color:black"/>:<span style="margin-left: 1em"/>
                                             <asp:Label ID="LabMonVal" runat="server" ForeColor="Black"></asp:Label>
                                             <br /><br />
-                                            <asp:Label ID="Label2" CssClass="Lab-format" runat="server" >Kyat/Month</asp:Label>
+                                            <asp:Label ID="LabKyat" CssClass="Lab-format" runat="server" >Kyats/Month</asp:Label>
                                             <span style="margin-left: 1em; color:black"/>:<span style="margin-left: 1em"/>
-                                            <asp:Label ID="Label3" runat="server" ForeColor="Black"></asp:Label>
+                                            <asp:Label ID="LabKyatVal" runat="server" ForeColor="Black"></asp:Label>
                                             <br /><br />
-                                            <asp:Label ID="Label4" CssClass="Lab-format" runat="server" >Paid</asp:Label>
+                                            <asp:Label ID="LabPaid" CssClass="Lab-format" runat="server" >Paid</asp:Label>
                                             <span style="margin-left: 1em; color:black"/>:<span style="margin-left: 1em"/>
-                                            <asp:Label ID="Label6" runat="server" ForeColor="Black"></asp:Label>
+                                            <asp:Label ID="LabPaidVal" runat="server" ForeColor="Black"></asp:Label>
                                             <br /><br />
-                                            <asp:Label ID="Label7" CssClass="Lab-format" runat="server" >Remain</asp:Label>
+                                            <asp:Label ID="LabRemain" CssClass="Lab-format" runat="server" >Remain</asp:Label>
                                             <span style="margin-left: 1em; color:black"/>:<span style="margin-left: 1em"/>
-                                            <asp:Label ID="Label8" runat="server" ForeColor="Black"> </asp:Label>
+                                            <asp:Label ID="LabRemainVal" runat="server" ForeColor="Black"> </asp:Label>
                                             <br /><br />
                                         </asp:Panel></td>
                                     </tr>
                                 </table>
                             </div>
+                            <asp:Label ID="ShAll" runat="server" Style="float:right"><a>Show All Cash List</a></asp:Label>
                         </form>
-                       
                         <br />
                     </div>
                 </div>
