@@ -69,5 +69,17 @@ namespace HomeASP.DbAccess
             Close();
             return stuCashDt;
         }
+
+        //select all cash information from ST_STUDENT_CASH table
+        public DataSet.DsPSMS.ST_STUDENT_CASHDataTable selectCashAllData()
+        {
+            Open();
+            query = "SELECT* FROM ST_STUDENT_CASH ";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(stuCashDt);
+            Close();
+            return stuCashDt;
+        }
     }
 }

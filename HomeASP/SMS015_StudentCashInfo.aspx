@@ -231,7 +231,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <asp:Label ID="ShAll" runat="server" Style="float:right"><a>Show All Cash List</a></asp:Label>
+                            <asp:Label ID="ShAll" runat="server" Style="float:right"><a href="SMS016_StudentCashList.aspx">Show All Cash List</a></asp:Label>
                         </form>
                         <br />
                     </div>

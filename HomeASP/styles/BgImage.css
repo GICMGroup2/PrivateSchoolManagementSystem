@@ -62,6 +62,13 @@
     min-width:1160px;
     border-radius:7px 7px;
 }
+.cashList-Frm {
+    
+    margin:0px 0px 0px 0px;
+    background-color: #3b838c;
+    padding:50px 50px 0px 50px;
+    border-radius:7px 7px;
+}
 #cash-Frm {
     margin:auto;
 }

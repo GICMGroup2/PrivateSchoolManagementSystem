@@ -35,6 +35,19 @@ namespace HomeASP
             teacherInfo.ImageUrl = "~/Images/teacher.png";
             system.ImageUrl = "~/Images/system.jpg";
             logoImage.ImageUrl = "~/Images/logo1.png";
+
+            if((Session["EDU_YEAR"]).ToString().Length !=0)
+            {
+                CoboYear.Text = (string)(Session["EDU_YEAR"]);
+            }
+            //if ((Session["CASHI_ID"]).ToString().Length != 0)
+            //{
+            //    CoboYear.Text = (string)(Session["CASH_ID"]);
+            //}
+            //if ((Session["STUDENT_ID"]).ToString().Length != 0)
+            //{
+            //    CoboYear.Text = (string)(Session["STUDENT_ID"]);
+            //}
         }
 
         protected void BtnPay_Click(object sender, EventArgs e)

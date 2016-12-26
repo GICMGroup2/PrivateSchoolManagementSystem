@@ -64,6 +64,27 @@ namespace HomeASP.Service
             return stuCashDt;
         }
 
+        public DataSet.DsPSMS.ST_STUDENT_CASHDataTable getCashAllData()
+        {
+            try
+            {
+                db.Open();
+                stuCashDt = stuCashDb.selectCashAllData();
+                //msg = "Have data";
+            }
+            catch
+            {
+               // msg = "error occurs when selecting cash data";
+                return null;
+            }
+            finally
+            {
+                db.Close();
+            }
+
+            return stuCashDt;
+        }
+
         public DsPSMS.ST_STUDENT_DATARow getCashType(DsPSMS.ST_STUDENT_DATARow stuDr, out string msg)
         {
             
