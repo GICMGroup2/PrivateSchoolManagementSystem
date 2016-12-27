@@ -36,18 +36,24 @@ namespace HomeASP
             system.ImageUrl = "~/Images/system.jpg";
             logoImage.ImageUrl = "~/Images/logo1.png";
 
-            if((Session["EDU_YEAR"]).ToString().Length !=0)
-            {
-                CoboYear.Text = (string)(Session["EDU_YEAR"]);
-            }
-            //if ((Session["CASHI_ID"]).ToString().Length != 0)
-            //{
-            //    CoboYear.Text = (string)(Session["CASH_ID"]);
-            //}
-            //if ((Session["STUDENT_ID"]).ToString().Length != 0)
-            //{
-            //    CoboYear.Text = (string)(Session["STUDENT_ID"]);
-            //}
+                if (Session["EDU_YEAR"] != null)
+                {
+                    CoboYear.Text = (string)(Session["EDU_YEAR"] ?? "  ");
+                }
+                if (Session["STUDENT_ID"] != null)
+                {
+                    TxtStudID.Text = (string)(Session["STUDENT_ID"] ?? "  ");
+                    stDr = stuCashService.getStuName(CoboYear.Text, TxtStudID.Text);
+                    TxtStuName.Text = stDr.STUDENT_NAME;
+                    grdDr = stuCashService.getGradeName(stDr.GRADE_ID);
+                    CoboGrade.Text = grdDr.GRADE_NAME;
+                    CoboSelect_Change(sender,e);
+                }
+                if (Session["CASH_DATE"] != null)
+                {
+                    cashDate.Text = (string)(Session["CASH_DATE"] ?? "  ");
+                }
+
         }
 
         protected void BtnPay_Click(object sender, EventArgs e)

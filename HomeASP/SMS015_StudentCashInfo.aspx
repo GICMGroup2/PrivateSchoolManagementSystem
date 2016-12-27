@@ -158,7 +158,7 @@
                                         <asp:Label ID="LabGrade" CssClass="Lab-format" runat="server">Grade*</asp:Label></td>
                                     <td><span style="margin-left: 2em"></span></td>
                                     <td>
-                                        <asp:DropDownList ID="CoboGrade" CssClass="Txtbox-format" AutoPostBack="true" OnSelectedIndexChanged="CoboSelect_Change" runat="server">
+                                        <asp:DropDownList ID="CoboGrade" CssClass="Txtbox-format" AutoPostBack="true" OnSelectedIndexChanged="CoboSelect_Change" OnTextChanged="CoboSelect_Change" runat="server">
                                             <asp:ListItem></asp:ListItem>
                                             <asp:ListItem Value="Grade 1">Grade 1</asp:ListItem>
                                             <asp:ListItem>Grade2</asp:ListItem>
@@ -176,7 +176,7 @@
                                         <asp:Label ID="LabYear" CssClass="Lab-format" runat="server">Year*</asp:Label></td>
                                     <td><span style="margin-left: 2em"></span></td>
                                     <td>
-                                        <asp:DropDownList ID="CoboYear" CssClass="Txtbox-format" runat="server" AutoPostBack="true" OnSelectedIndexChanged="CoboSelect_Change" >
+                                        <asp:DropDownList ID="CoboYear" CssClass="Txtbox-format" runat="server" AutoPostBack="true" OnSelectedIndexChanged="CoboSelect_Change" OnTextChanged="CoboSelect_Change" >
                                             <asp:ListItem></asp:ListItem>
                                             <asp:ListItem>2010-2011</asp:ListItem>
                                             <asp:ListItem>2011-2012</asp:ListItem>
