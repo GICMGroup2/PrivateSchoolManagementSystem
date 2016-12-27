@@ -92,20 +92,90 @@
                         <div class="col-md-9 col-sm-12 col-xs-12">               
                             <div class="panel panel-default">                       
                                 <div class="panel-body">
-                                    <form id="Form1" runat="server" style="float:left;">
-                                        <div>
-                                            <asp:Label ID="id" runat="server" Text="ID" ForeColor="Black"></asp:Label>
-                                            <asp:TextBox ID="txtId" runat="server" ForeColor="Black" Width="100px"></asp:TextBox>
+                                    <form id="GradeSubjectForm" runat="server">
+                                        <div style="float:left;">
+                                            <asp:Label runat="server" Text="ID" ForeColor="Black"></asp:Label>
+                                            <asp:TextBox ID="gradeId" runat="server" ForeColor="Black" Width="100px"></asp:TextBox>
                                             <asp:Label ID="grade" runat="server" Text="Grade" ForeColor="Black"></asp:Label>
-                                            <asp:TextBox ID="txtGrade" runat="server" ForeColor="Black" Width="136px"></asp:TextBox><br /><br />
+                                            <asp:TextBox ID="gradeName" runat="server" ForeColor="Black" Width="136px"></asp:TextBox><br /><br />
                                             <asp:Button class="btn_display" ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" />
                                             <asp:Button class="btn_display" ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
                                             <asp:Button class="btn_display" ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" />
                                         </div>
-                                    <div class="table-responsive">                                       
-                                        <asp:GridView ID="gridViewGrade" AutoGenerateColumns="true" runat="server" BackColor="Black">
-                                        </asp:GridView>
-                                    </div>
+                                        <div class="table-responsive">                                       
+                                            <asp:GridView ID="gridViewGrade" AutoGenerateColumns="true" runat="server" BackColor="#1A74BA" Width="300px" style="float:right;" ForeColor="White">
+                                            </asp:GridView>
+                                            <br />
+                                            <br />
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <div style="float:left;">
+                                            <asp:Label runat="server" Text="ID" ForeColor="Black"></asp:Label>
+                                            <asp:TextBox ID="subjectId" runat="server" ForeColor="Black" Width="100px"></asp:TextBox>
+                                            <asp:Label ID="subject" runat="server" Text="Subject" ForeColor="Black"></asp:Label>
+                                            <asp:TextBox ID="subjectName" runat="server" ForeColor="Black" Width="136px"></asp:TextBox><br /><br />
+                                            <asp:Button class="btn_display" ID="subjectAdd" runat="server" Text="Add" OnClick="btnSubjectAdd_Click" />
+                                            <asp:Button class="btn_display" ID="subjectUpdate" runat="server" Text="Update" OnClick="btnSubjectUpdate_Click" />
+                                            <asp:Button class="btn_display" ID="subjectDelete" runat="server" Text="Delete" OnClick="btnSubjectDelete_Click" />
+                                        </div>
+                                        <div class="table-responsive">                                       
+                                            <asp:GridView ID="gridViewSubject" AutoGenerateColumns="true" runat="server" BackColor="#1A74BA" Width="300px" style="float:right;" ForeColor="White">
+                                            </asp:GridView>
+                                            <br />
+                                            <br />
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <div style="float:left;">
+                                            <asp:Label runat="server" Text="ID" ForeColor="Black"></asp:Label>
+                                            <asp:TextBox ID="gradeSubjectId" runat="server" ForeColor="Black" Width="100px"></asp:TextBox>
+                                            <asp:Label runat="server" Text="Grade" ForeColor="Black"></asp:Label>
+                                            <asp:DropDownList ID="gradeList" Width="200px" runat="server" ForeColor="Black"></asp:DropDownList><br /><br />
+                                            <asp:GridView ID="subjectGridView" AutoGenerateColumns="false" runat="server" BackColor="#1A74BA" Width="200px" Visible="true" ForeColor="White">
+                                                <Columns>
+                                                    <asp:templatefield HeaderText="Select">
+                                                        <itemtemplate>
+                                                            <asp:checkbox ID="selectedSubject" runat="server"></asp:checkbox>
+                                                        </itemtemplate>
+                                                    </asp:templatefield>
+                                                    <asp:BoundField HeaderText="Subject" 
+                                                    DataField="SUBJECT_NAME"                                                    
+                                                    SortExpression="SUBJECT_NAME"></asp:BoundField>
+                                                    <asp:BoundField HeaderText="ID" 
+                                                    DataField="SUBJECT_ID"                                                    
+                                                    SortExpression="SUBJECT_ID" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" ></asp:BoundField>
+                                                </Columns>
+                                            </asp:GridView><br />
+                                            <asp:Button class="btn_display" ID="gradeSubjectAdd" runat="server" Text="Add" OnClick="btnGradeSubjectAdd_Click" />
+                                            <asp:Button class="btn_display" ID="gradeSubjectUpdate" runat="server" Text="Update" OnClick="btnGradeSubjectUpdate_Click" />
+                                            <asp:Button class="btn_display" ID="gradeSubjectDelete" runat="server" Text="Delete" OnClick="btnGradeSubjectDelete_Click" />
+                                        </div>
+                                        <div class="table-responsive">                                       
+                                            <asp:GridView ID="gradeSubjectGridView" AutoGenerateColumns="false" runat="server" BackColor="#1A74BA" Width="300px" style="float:right;" ForeColor="White">
+                                                <Columns>
+                                                    <asp:BoundField ReadOnly="True" 
+                                                      HeaderText="Year" InsertVisible="False" 
+                                                      DataField="EDU_YEAR"
+                                                        SortExpression="EDU_YEAR"></asp:BoundField>
+                                                    <asp:BoundField HeaderText="ID" 
+                                                      DataField="ID" SortExpression="ID">
+                                                    </asp:BoundField>
+                                                    <asp:BoundField HeaderText="Grade" 
+                                                      DataField="GRADE_ID" SortExpression="GRADE_ID">
+                                                    </asp:BoundField>
+                                                    <asp:BoundField HeaderText="Subject" 
+                                                      DataField="SUBJECT_ID_LIST" SortExpression="SUBJECT_ID_LIST">
+                                                    </asp:BoundField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </div>
                                     </form>
                                 </div>
                             </div>                    

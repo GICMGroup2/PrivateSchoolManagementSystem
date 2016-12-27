@@ -27,12 +27,23 @@ body {
     background:#F3F3F3;
    
 }
+
 #page-inner {
     width:100%;
     margin:10px 20px 10px 0px;
     background-color:#1A7EBA!important;
     padding:100px 150px;
     min-height:520px;
+    min-width:800px;
+}
+
+/* ATK */
+#page-inner-wrapper {
+    width:100%;
+    margin:10px 20px 10px 0px;
+    background-color:#1A7EBA!important;
+    padding:10px 10px;
+    min-height:800px;
     min-width:800px;
 }
 
@@ -170,6 +181,7 @@ line-height: 30px;
  .chat-panel .panel-body {
 height: 450px;
 overflow-y: scroll;
+width:100%;
 }
  .chat-box {
 margin: 0;

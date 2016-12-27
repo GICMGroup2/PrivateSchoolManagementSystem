@@ -24,3 +24,21 @@ File: Navigation CSS
 #topnav li:hover ul, #topnav li li:hover ul{left:auto;}
 #topnav li:hover{position:static;}
 #topnav li.last a{margin-right:0;}
+
+.btn_display {
+  padding: 10px 10px 10px 10px;
+  line-height: 20px;
+  color: #FFF;
+  background: #4280c9;
+  font-size: 18px;
+}
+
+.btn_display:hover{
+    background: #3067a8;
+    color: #000;
+}
+
+.hiddencol
+  {
+    display: none;
+  }
