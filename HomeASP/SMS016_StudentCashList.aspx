@@ -136,8 +136,7 @@
                                     <SortedDescendingHeaderStyle BackColor="#15524A" />
                                 </asp:GridView>
                             </div>
-                            <div><asp:Button ID="viewDetail" Text="Detail" runat="server" OnClick="viewDetail_Click" />
-                                <asp:TextBox ID="txtShow" color="black" runat="server"></asp:TextBox>
+                            <div><asp:Button ID="viewDetail" Text="Detail" Color="Black" ForeColor="#333333" runat="server" OnClick="viewDetail_Click" />
                             </div>
                         </form>
                     </div>

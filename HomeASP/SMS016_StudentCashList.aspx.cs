@@ -27,9 +27,9 @@ namespace HomeASP
             
         }
 
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+      protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtShow.Text = cashList.SelectedRow.Cells[2].Text;
+            //txtShow.Text = cashList.SelectedRow.Cells[2].Text;
         }
 
         protected override void Render(System.Web.UI.HtmlTextWriter textWriter)
@@ -54,8 +54,8 @@ namespace HomeASP
             //txtShow.Text = cashList.SelectedRow.Cells[2].Text;
 
             Session["EDU_YEAR"] = cashList.SelectedRow.Cells[0].Text;
-            Session["CASH_ID"] = cashList.SelectedRow.Cells[1].Text;
-            Session["STUDENT_ID"] = cashList.SelectedRow.Cells[2].Text;// insert name into session
+            Session["CASH_DATE"] = cashList.SelectedRow.Cells[4].Text;
+            Session["STUDENT_ID"] = cashList.SelectedRow.Cells[2].Text; 
             Response.Redirect("SMS015_StudentCashInfo.aspx");
         }
     }
