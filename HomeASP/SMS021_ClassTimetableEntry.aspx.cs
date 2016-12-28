@@ -15,6 +15,9 @@ namespace HomeASP
     public partial class SMS021 :Page
     {
         TimeTableEntryService timeService = new TimeTableEntryService();
+        DataSet.DsPSMS.ST_TIMETABLERow timetable = new DataSet.DsPSMS.ST_TIMETABLEDataTable().NewST_TIMETABLERow();
+
+        private string msg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -25,17 +28,153 @@ namespace HomeASP
             teacherInfo.ImageUrl = "~/Images/teacher.png";
             system.ImageUrl = "~/Images/system.jpg";
             bindGrade();
+            bindTeacher();
             ddltimegradelist.Items.Insert(0, new ListItem("Select Grade", "0"));
+            ddlTeacherList.Items.Insert(0, new ListItem("Select Teacher", "0"));
+            txttimetabledate.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            DisplayData();
         }
 
         public void bindGrade()
         {
-            string msg = "aaa";
+            msg = "aaa";
             DataSet.DsPSMS.ST_GRADE_MSTDataTable grades = timeService.getAllGradeData(out msg);
             ddltimegradelist.DataSource = grades;
             ddltimegradelist.DataTextField = "GRADE_NAME";
             ddltimegradelist.DataValueField = "GRADE_ID";
             ddltimegradelist.DataBind();
+        }
+
+        public void bindTeacher()
+        {
+            msg = "aaa";
+            DataSet.DsPSMS.ST_TEACHER_DATADataTable grades = timeService.getAllTeacherData(out msg);
+            ddlTeacherList.DataSource = grades;
+            ddlTeacherList.DataTextField = "TEACHER_NAME";
+            ddlTeacherList.DataValueField = "TEACHER_ID";
+            ddlTeacherList.DataBind();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            msg = "";
+            if (!checkValidation())
+            {
+                timetable.GRADE_ID = ddltimegradelist.SelectedItem.Value;
+                timetable.TEACHER_ID = ddlTeacherList.SelectedItem.Value;
+                timetable.DAY = txttimetabledate.Text;
+                timetable.PERIOD1 = ddlclass1.SelectedItem.Value;
+                timetable.PERIOD2 = ddlclass2.SelectedItem.Value;
+                timetable.PERIOD3 = ddlclass3.SelectedItem.Value;
+                timetable.PERIOD4 = ddlclass4.SelectedItem.Value;
+                timetable.PERIOD5 = ddlclass5.SelectedItem.Value;
+                timetable.PERIOD6 = ddlclass6.SelectedItem.Value;
+                timetable.PERIOD7 = ddlclass7.SelectedItem.Value;
+                timetable.DEL_FLG = 0;
+
+                bool isOk = timeService.saveTimeTable(timetable, out msg);
+                DisplayData();
+                resetForm();
+                //bool existFlag = timeService.isExist(timetable, out msg);
+
+                //if (existFlag)
+                //{
+                //    //DisplayData();
+                //}
+                //else
+                //{
+                //    //bool isOk = timeService.saveTimeTable(timetable, out msg);
+                //    //MessageBox.Show(msg);
+                //    //DisplayData();
+                //    //Fillcombo();
+                //}
+            }
+
+        }
+
+        private bool checkValidation()
+        {
+            bool isErr = false;
+            //if (txtId.Text.Trim().Length == 0)
+            //{
+            //    //msg = "Please enter ID !\n";
+            //    msg = "Please enter require field";
+            //    isErr = true;
+            //}
+            //if (txtGrade.Text.Trim().Length == 0)
+            //{
+            //    //msg = "Please enter ID !\n";
+            //    msg = "Please enter require field";
+            //    isErr = true;
+            //}
+            return isErr;
+        }
+
+        protected void btncalendar_Click(object sender, EventArgs e)
+        {
+            Panel1.Visible = true;
+        }
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            txttimetabledate.Text = Calendar1.SelectedDate.ToShortDateString();
+            Panel1.Visible = false;
+        }
+
+        private void DisplayData()
+        {
+
+            DataSet.DsPSMS.ST_TIMETABLEDataTable resultDt = timeService.getAllTimeTableData(out msg);
+
+            if (resultDt != null)
+            {
+                // MessageBox.Show(msg);
+
+                resultDt.Columns.Remove(resultDt.Columns["CRT_DT_TM"]);
+                resultDt.Columns.Remove(resultDt.Columns["CRT_USER_ID"]);
+                resultDt.Columns.Remove(resultDt.Columns["UPD_DT_TM"]);
+                resultDt.Columns.Remove(resultDt.Columns["UPD_USER_ID"]);
+                resultDt.Columns.Remove(resultDt.Columns["DEL_FLG"]);
+
+                dvtimetable.DataSource = resultDt;
+                dvtimetable.DataBind();
+                dvtimetable.HeaderRow.Cells[1].Text = "Year";
+                dvtimetable.HeaderRow.Cells[2].Text = "ID";
+                dvtimetable.HeaderRow.Cells[3].Text = "GRADE";
+                dvtimetable.HeaderRow.Cells[4].Text = "TEACHER";
+            }
+        }
+
+        protected void Delete(object sender, GridViewDeleteEventArgs e)
+        {
+            int id = int.Parse(dvtimetable.DataKeys[e.RowIndex].Value.ToString());
+            bool isOk = timeService.deleteTimeTable(id,out msg);
+            DisplayData();
+        }
+
+        protected void Edit(object sender, GridViewEditEventArgs e)
+        {
+            int id = int.Parse(dvtimetable.DataKeys[e.NewEditIndex].Value.ToString());
+            
+        }
+
+        protected void resetForm()
+        {
+            txttimetabledate.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            ddltimegradelist.SelectedIndex = 0;
+            ddlTeacherList.SelectedIndex = 0;
+            ddlclass1.SelectedIndex = 0;
+            ddlclass2.SelectedIndex = 0;
+            ddlclass3.SelectedIndex = 0;
+            ddlclass4.SelectedIndex = 0;
+            ddlclass5.SelectedIndex = 0;
+            ddlclass6.SelectedIndex = 0;
+            ddlclass7.SelectedIndex = 0;
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            resetForm();
         }
     }
 }

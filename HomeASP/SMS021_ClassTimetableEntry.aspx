@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SMS021_ClassTimetableEntry.aspx.cs" Inherits="HomeASP.SMS021" %>
-<%@ Register Assembly="TimePicker" Namespace="MKB.TimePicker" TagPrefix="cc1" %>
-
+<%@ Register TagPrefix="Ajaxified" Assembly="Ajaxified" Namespace="Ajaxified" %>
 
 <!-- Layout -->
 <html>
@@ -12,13 +11,18 @@
     <link rel="stylesheet" href="styles/bootstrap.css" type="text/css" />     
     <link rel="stylesheet" href="styles/style.css" type="text/css" />
     <link rel="stylesheet" href="styles/booking.css" type="text/css" />
-    <script type="text/javascript">
-
-    </script>
+   
     <style type="text/css">
         #bookingForm {
-            height: 386px;
-            width: 783px;
+            height: 1086px;
+            width: 976px;
+            margin-right: 133px;
+        }
+        .auto-style1 {
+            width: 397px;
+        }
+        .auto-style2 {
+            width: 128px;
         }
     </style>
 </head>
@@ -99,49 +103,134 @@
                         <div id="page-inner">
                             <form id="bookingForm" runat="server">
                                 Grade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="ddltimegradelist" runat="server" Width="153px" AppendDataBoundItems="True" ForeColor="#003300">
+                                <asp:DropDownList ID="ddltimegradelist" runat="server" Width="158px" AppendDataBoundItems="True" ForeColor="#003300">
                                 </asp:DropDownList>
-&nbsp;&nbsp;&nbsp;&nbsp; Class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList2" runat="server" Width="161px" ForeColor="#003300">
-                                    <asp:ListItem>Select Class</asp:ListItem>
-                                    <asp:ListItem>Class A</asp:ListItem>
-                                    <asp:ListItem>Class B</asp:ListItem>
-                                    <asp:ListItem>Class C</asp:ListItem>
-                                    <asp:ListItem>Class D</asp:ListItem>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teacher&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="ddlTeacherList" runat="server" ForeColor="Black" Width="166px" AppendDataBoundItems="True">
                                 </asp:DropDownList>
-&nbsp;&nbsp;&nbsp; Subject&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList3" runat="server" Width="171px" ForeColor="Black">
-                                    <asp:ListItem>Select Subject</asp:ListItem>
-                                    <asp:ListItem>Myanmar</asp:ListItem>
-                                    <asp:ListItem>English</asp:ListItem>
-                                    <asp:ListItem>Maths</asp:ListItem>
-                                    <asp:ListItem>Chemistry</asp:ListItem>
-                                    <asp:ListItem>Physics</asp:ListItem>
-                                    <asp:ListItem>Ecology</asp:ListItem>
-                                    <asp:ListItem>Biology</asp:ListItem>
-                                    <asp:ListItem>History</asp:ListItem>
-                                    <asp:ListItem>Geology</asp:ListItem>
-                                    <asp:ListItem>Science</asp:ListItem>
-                                </asp:DropDownList>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date&nbsp;
+                                <asp:TextBox ID="txttimetabledate" style="color:black" runat="server" Height="23px" Width="154px" />
+                                <asp:Button ID="btncalendar" runat="server" ForeColor="Black" OnClick="btncalendar_Click" Text="Calendar" />
+                                <div style="margin-left: 520px">
+                                    <asp:Panel ID="Panel1" runat="server" Height="23px" style="margin-left: 72px" Visible="False" Width="700px">
+                                        <asp:Calendar ID="Calendar1" runat="server" Height="224px" OnSelectionChanged="Calendar1_SelectionChanged" Width="264px"></asp:Calendar>
+                                    </asp:Panel>
+                                </div>
                                 <br />
-                                <br />
-                                Day&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList4" runat="server" ForeColor="Black" Width="152px">
-                                    <asp:ListItem>Select Date</asp:ListItem>
-                                    <asp:ListItem>MON</asp:ListItem>
-                                    <asp:ListItem>TUE</asp:ListItem>
-                                    <asp:ListItem>WED</asp:ListItem>
-                                    <asp:ListItem>THU</asp:ListItem>
-                                    <asp:ListItem>FRI</asp:ListItem>
-                                </asp:DropDownList>
-&nbsp;&nbsp;&nbsp;&nbsp; Start Time
-                                <asp:TextBox ID="TextBox1" runat="server" Width="156px"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Time
-                                <asp:TextBox ID="TextBox2" runat="server" Width="160px"></asp:TextBox>
-                                <br />
+                                <table style="width:100%; margin-left: 34px;">
+                                    <tr>
+                                        <td class="auto-style2" style="color:white;">Period</td>
+                                        <td class="auto-style1" style="color:white;">Select Class</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style2" style="color:white;">8:00  ~ 8:45 AM</td>
+                                        <td>
+                                            <asp:DropDownList ID="ddlclass1" runat="server" Width="165px">
+                                                <asp:ListItem>Select Class</asp:ListItem>
+                                                <asp:ListItem>Class A</asp:ListItem>
+                                                <asp:ListItem>Class B</asp:ListItem>
+                                                <asp:ListItem>Class C</asp:ListItem>
+                                                <asp:ListItem>Class D</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style2" style="color:white;">8:55  ~ 9:40 AM</td>
+                                        <td>
+                                            <asp:DropDownList ID="ddlclass2" runat="server" Width="165px">
+                                                <asp:ListItem>Select Class</asp:ListItem>
+                                                <asp:ListItem>Class A</asp:ListItem>
+                                                <asp:ListItem>Class B</asp:ListItem>
+                                                <asp:ListItem>Class C</asp:ListItem>
+                                                <asp:ListItem>Class D</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style2" style="color:white;">9:50  ~ 10:35 AM</td>
+                                        <td>
+                                            <asp:DropDownList ID="ddlclass3" runat="server" Width="165px">
+                                                <asp:ListItem>Select Class</asp:ListItem>
+                                                <asp:ListItem>Class A</asp:ListItem>
+                                                <asp:ListItem>Class B</asp:ListItem>
+                                                <asp:ListItem>Class C</asp:ListItem>
+                                                <asp:ListItem>Class D</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style2" style="color:white;">10:45 ~ 11:20AM</td>
+                                        <td>
+                                            <asp:DropDownList ID="ddlclass4" runat="server" Width="165px">
+                                                <asp:ListItem>Select Class</asp:ListItem>
+                                                <asp:ListItem>Class A</asp:ListItem>
+                                                <asp:ListItem>Class B</asp:ListItem>
+                                                <asp:ListItem>Class C</asp:ListItem>
+                                                <asp:ListItem>Class D</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style2" style="color:white;">10:45 ~ 11:20AM</td>
+                                        <td>
+                                            <asp:DropDownList ID="ddlclass5" runat="server" Width="165px">
+                                                <asp:ListItem>Select Class</asp:ListItem>
+                                                <asp:ListItem>Class A</asp:ListItem>
+                                                <asp:ListItem>Class B</asp:ListItem>
+                                                <asp:ListItem>Class C</asp:ListItem>
+                                                <asp:ListItem>Class D</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td class="auto-style2" style="color:white;">10:45 ~ 11:20AM</td>
+                                        <td>
+                                            <asp:DropDownList ID="ddlclass6" runat="server" Width="165px">
+                                                <asp:ListItem>Select Class</asp:ListItem>
+                                                <asp:ListItem>Class A</asp:ListItem>
+                                                <asp:ListItem>Class B</asp:ListItem>
+                                                <asp:ListItem>Class C</asp:ListItem>
+                                                <asp:ListItem>Class D</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td class="auto-style2" style="color:white;">10:45 ~ 11:20AM</td>
+                                        <td>
+                                            <asp:DropDownList ID="ddlclass7" runat="server" Width="165px">
+                                                <asp:ListItem>Select Class</asp:ListItem>
+                                                <asp:ListItem>Class A</asp:ListItem>
+                                                <asp:ListItem>Class B</asp:ListItem>
+                                                <asp:ListItem>Class C</asp:ListItem>
+                                                <asp:ListItem>Class D</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="Button1" runat="server" Text="INSERT" Width="105px" ForeColor="#003300" />
+                                <asp:Button ID="Button1" runat="server" Text="INSERT" Width="105px" ForeColor="#003300" OnClick="Button1_Click" />
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="Button2" runat="server" ForeColor="Black" Text="Cancel" Width="97px" OnClick="Button2_Click" />
+                                <br />
+                                <br />
+                                <asp:GridView ID="dvtimetable" runat="server" Width="280px" ForeColor="Black" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" GridLines="Vertical" AllowPaging="True" PageSize="5"
+                                    DataKeyNames="ID" OnRowEditing="Edit" OnRowDeleting="Delete" AutoGenerateDeleteButton="True" AutoGenerateEditButton="True">
+                                    <AlternatingRowStyle BackColor="White" />
+                                    <FooterStyle BackColor="#CCCC99" />
+                                    <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+                                    <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
+                                    <RowStyle BackColor="#F7F7DE" />
+                                    <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
+                                    <SortedAscendingCellStyle BackColor="#FBFBF2" />
+                                    <SortedAscendingHeaderStyle BackColor="#848384" />
+                                    <SortedDescendingCellStyle BackColor="#EAEAD3" />
+                                    <SortedDescendingHeaderStyle BackColor="#575357" />
+                                </asp:GridView>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
                                 <br />
                                 <br />
                                 <br />
