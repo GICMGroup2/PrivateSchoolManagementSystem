@@ -18,6 +18,9 @@ namespace HomeASP
         DataSet.DsPSMS.ST_TIMETABLERow timetable = new DataSet.DsPSMS.ST_TIMETABLEDataTable().NewST_TIMETABLERow();
 
         private string msg = "";
+        static int delFlag = 0;
+        static int updateId;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -63,13 +66,13 @@ namespace HomeASP
                 timetable.GRADE_ID = ddltimegradelist.SelectedItem.Value;
                 timetable.TEACHER_ID = ddlTeacherList.SelectedItem.Value;
                 timetable.DAY = txttimetabledate.Text;
-                timetable.PERIOD1 = ddlclass1.SelectedItem.Value;
-                timetable.PERIOD2 = ddlclass2.SelectedItem.Value;
-                timetable.PERIOD3 = ddlclass3.SelectedItem.Value;
-                timetable.PERIOD4 = ddlclass4.SelectedItem.Value;
-                timetable.PERIOD5 = ddlclass5.SelectedItem.Value;
-                timetable.PERIOD6 = ddlclass6.SelectedItem.Value;
-                timetable.PERIOD7 = ddlclass7.SelectedItem.Value;
+                timetable.PERIOD1 = checkselectIndex(ddlclass1.SelectedIndex, ddlclass1.SelectedItem.Value);
+                timetable.PERIOD2 = checkselectIndex(ddlclass2.SelectedIndex, ddlclass2.SelectedItem.Value);
+                timetable.PERIOD3 = checkselectIndex(ddlclass3.SelectedIndex, ddlclass3.SelectedItem.Value);
+                timetable.PERIOD4 = checkselectIndex(ddlclass4.SelectedIndex, ddlclass4.SelectedItem.Value);
+                timetable.PERIOD5 = checkselectIndex(ddlclass5.SelectedIndex, ddlclass5.SelectedItem.Value);
+                timetable.PERIOD6 = checkselectIndex(ddlclass6.SelectedIndex, ddlclass6.SelectedItem.Value);
+                timetable.PERIOD7 = checkselectIndex(ddlclass7.SelectedIndex, ddlclass7.SelectedItem.Value);
                 timetable.DEL_FLG = 0;
 
                 bool isOk = timeService.saveTimeTable(timetable, out msg);
@@ -90,6 +93,21 @@ namespace HomeASP
                 //}
             }
 
+        }
+
+        protected string checkselectIndex(int selectIndex,string value)
+        {
+            string selectValue;
+
+            if (selectIndex == 0)
+            {
+                selectValue = "-";
+            }
+            else
+            {
+                selectValue = value;
+            }
+            return selectValue;
         }
 
         private bool checkValidation()
@@ -129,13 +147,37 @@ namespace HomeASP
             if (resultDt != null)
             {
                 // MessageBox.Show(msg);
-
                 resultDt.Columns.Remove(resultDt.Columns["CRT_DT_TM"]);
                 resultDt.Columns.Remove(resultDt.Columns["CRT_USER_ID"]);
                 resultDt.Columns.Remove(resultDt.Columns["UPD_DT_TM"]);
                 resultDt.Columns.Remove(resultDt.Columns["UPD_USER_ID"]);
                 resultDt.Columns.Remove(resultDt.Columns["DEL_FLG"]);
 
+                foreach (DataSet.DsPSMS.ST_TIMETABLERow row in resultDt.Rows)
+                {
+                    int gradeId;
+                    string gradevalue = null;
+
+                    int teacherId;
+                    string teachervalue = null;
+
+                    if (row.GRADE_ID != null)
+                    {
+                        gradeId = int.Parse(row.GRADE_ID);
+                        DataSet.DsPSMS.ST_GRADE_MSTRow grade = timeService.getGradeByid(gradeId);
+                        gradevalue = grade.GRADE_NAME;
+                        row.GRADE_ID = gradevalue;
+                    }
+
+                    if (row.TEACHER_ID != null)
+                    {
+                        teacherId = int.Parse(row.TEACHER_ID);
+                        DataSet.DsPSMS.ST_TEACHER_DATARow teacher = timeService.getTeacherByid(teacherId);
+                        teachervalue = teacher.TEACHER_NAME;
+                        row.TEACHER_ID = teachervalue;
+                    }
+                }
+                
                 dvtimetable.DataSource = resultDt;
                 dvtimetable.DataBind();
                 dvtimetable.HeaderRow.Cells[1].Text = "Year";
@@ -152,10 +194,34 @@ namespace HomeASP
             DisplayData();
         }
 
-        protected void Edit(object sender, GridViewEditEventArgs e)
+        protected int checkClassIndex(String strClass)
         {
-            int id = int.Parse(dvtimetable.DataKeys[e.NewEditIndex].Value.ToString());
-            
+            int resIndex;
+            if (strClass.Equals("Class A"))
+            {
+                resIndex = 1;
+            }
+            else if (strClass.Equals("Class B"))
+            {
+                resIndex = 2;
+            }
+            else if (strClass.Equals("Class C"))
+            {
+                resIndex = 3;
+            }
+            else if (strClass.Equals("Class D"))
+            {
+                resIndex = 4;
+            }
+            else if (strClass.Equals("Class E"))
+            {
+                resIndex = 5;
+            }
+            else
+            {
+                resIndex = 0;
+            }
+            return resIndex;
         }
 
         protected void resetForm()
@@ -170,11 +236,67 @@ namespace HomeASP
             ddlclass5.SelectedIndex = 0;
             ddlclass6.SelectedIndex = 0;
             ddlclass7.SelectedIndex = 0;
+            Button1.Visible = true;
+            btnUpdate.Visible = false;
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
+            Button1.Visible = true;
+            btnUpdate.Visible = false;
             resetForm();
+            //DisplayData();
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+             msg = "";
+             if (!checkValidation())
+             {
+                 timetable.GRADE_ID = ddltimegradelist.SelectedItem.Value;
+                 timetable.TEACHER_ID = ddlTeacherList.SelectedItem.Value;
+                 timetable.DAY = txttimetabledate.Text;
+                 timetable.PERIOD1 = checkselectIndex(ddlclass1.SelectedIndex, ddlclass1.SelectedItem.Value);
+                 timetable.PERIOD2 = checkselectIndex(ddlclass2.SelectedIndex, ddlclass2.SelectedItem.Value); ;
+                 timetable.PERIOD3 = checkselectIndex(ddlclass3.SelectedIndex, ddlclass3.SelectedItem.Value); ;
+                 timetable.PERIOD4 = checkselectIndex(ddlclass4.SelectedIndex, ddlclass4.SelectedItem.Value); ;
+                 timetable.PERIOD5 = checkselectIndex(ddlclass5.SelectedIndex, ddlclass5.SelectedItem.Value); ;
+                 timetable.PERIOD6 = checkselectIndex(ddlclass6.SelectedIndex, ddlclass6.SelectedItem.Value); ;
+                 timetable.PERIOD7 = checkselectIndex(ddlclass7.SelectedIndex, ddlclass7.SelectedItem.Value); ;
+                 timetable.DEL_FLG = delFlag;
+                 bool isOk = timeService.updateTimeTable(timetable, updateId, out msg);
+                 DisplayData();
+                 resetForm();
+             }
+        }
+
+        protected void Edit(object sender, GridViewSelectEventArgs e)
+        {
+            updateId = int.Parse(dvtimetable.DataKeys[e.NewSelectedIndex].Value.ToString());
+            DataSet.DsPSMS.ST_TIMETABLERow timetable = timeService.getTimeTableByid(updateId);
+
+            if (timetable != null)
+            {
+                delFlag = (int)timetable.DEL_FLG;
+                txttimetabledate.Text = timetable.DAY;
+                ddltimegradelist.SelectedIndex = int.Parse(timetable.GRADE_ID);
+                ddlTeacherList.SelectedIndex = int.Parse(timetable.TEACHER_ID);
+                ddlclass1.SelectedIndex = checkClassIndex(timetable.PERIOD1);
+                ddlclass2.SelectedIndex = checkClassIndex(timetable.PERIOD2);
+                ddlclass3.SelectedIndex = checkClassIndex(timetable.PERIOD3);
+                ddlclass4.SelectedIndex = checkClassIndex(timetable.PERIOD4);
+                ddlclass5.SelectedIndex = checkClassIndex(timetable.PERIOD5);
+                ddlclass6.SelectedIndex = checkClassIndex(timetable.PERIOD6);
+                ddlclass7.SelectedIndex = checkClassIndex(timetable.PERIOD7);
+                Button1.Visible = false;
+                btnUpdate.Visible = true;
+            }  
+        }
+
+        protected void dvtimetable_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dvtimetable.PageIndex = e.NewPageIndex;
+            dvtimetable.DataBind();
         }
     }
 }
