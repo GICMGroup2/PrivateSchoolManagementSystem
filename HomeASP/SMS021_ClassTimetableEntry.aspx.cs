@@ -257,12 +257,12 @@ namespace HomeASP
                  timetable.TEACHER_ID = ddlTeacherList.SelectedItem.Value;
                  timetable.DAY = txttimetabledate.Text;
                  timetable.PERIOD1 = checkselectIndex(ddlclass1.SelectedIndex, ddlclass1.SelectedItem.Value);
-                 timetable.PERIOD2 = checkselectIndex(ddlclass2.SelectedIndex, ddlclass2.SelectedItem.Value); ;
-                 timetable.PERIOD3 = checkselectIndex(ddlclass3.SelectedIndex, ddlclass3.SelectedItem.Value); ;
-                 timetable.PERIOD4 = checkselectIndex(ddlclass4.SelectedIndex, ddlclass4.SelectedItem.Value); ;
-                 timetable.PERIOD5 = checkselectIndex(ddlclass5.SelectedIndex, ddlclass5.SelectedItem.Value); ;
-                 timetable.PERIOD6 = checkselectIndex(ddlclass6.SelectedIndex, ddlclass6.SelectedItem.Value); ;
-                 timetable.PERIOD7 = checkselectIndex(ddlclass7.SelectedIndex, ddlclass7.SelectedItem.Value); ;
+                 timetable.PERIOD2 = checkselectIndex(ddlclass2.SelectedIndex, ddlclass2.SelectedItem.Value); 
+                 timetable.PERIOD3 = checkselectIndex(ddlclass3.SelectedIndex, ddlclass3.SelectedItem.Value); 
+                 timetable.PERIOD4 = checkselectIndex(ddlclass4.SelectedIndex, ddlclass4.SelectedItem.Value); 
+                 timetable.PERIOD5 = checkselectIndex(ddlclass5.SelectedIndex, ddlclass5.SelectedItem.Value); 
+                 timetable.PERIOD6 = checkselectIndex(ddlclass6.SelectedIndex, ddlclass6.SelectedItem.Value); 
+                 timetable.PERIOD7 = checkselectIndex(ddlclass7.SelectedIndex, ddlclass7.SelectedItem.Value); 
                  timetable.DEL_FLG = delFlag;
                  bool isOk = timeService.updateTimeTable(timetable, updateId, out msg);
                  DisplayData();
