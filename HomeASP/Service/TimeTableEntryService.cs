@@ -201,5 +201,53 @@ namespace HomeASP.Service
             return result;
         }
 
+         public DataSet.DsPSMS.ST_TIMETABLERow getTimeTableByid(int id)
+         {
+             DataSet.DsPSMS.ST_TIMETABLERow resultData = new DataSet.DsPSMS.ST_TIMETABLEDataTable().NewST_TIMETABLERow();
+             resultData = timedb.selectTimetableByid(id);
+             return resultData;
+         }
+
+         public bool updateTimeTable(DataSet.DsPSMS.ST_TIMETABLERow dr,int id, out string msg)
+         {
+             bool isOk = true;
+
+             if (dr == null)
+             {
+                 msg = "data is empty ";
+                 return false;
+             }
+             try
+             {
+                 timedb.Open();
+                 int result = timedb.updateStuTimeTable(dr,id);
+                 msg = "update complete";
+             }
+             catch
+             {
+                 msg = "error occurs when updating data to ST_TIMETABLE table";
+                 return false;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+
+             return isOk;
+         }
+
+         public DataSet.DsPSMS.ST_GRADE_MSTRow getGradeByid(int id)
+         {
+             DataSet.DsPSMS.ST_GRADE_MSTRow resultData = new DataSet.DsPSMS.ST_GRADE_MSTDataTable().NewST_GRADE_MSTRow();
+             resultData = timedb.selectGradeByid(id);
+             return resultData;
+         }
+
+         public DataSet.DsPSMS.ST_TEACHER_DATARow getTeacherByid(int id)
+         {
+             DataSet.DsPSMS.ST_TEACHER_DATARow resultData = new DataSet.DsPSMS.ST_TEACHER_DATADataTable().NewST_TEACHER_DATARow();
+             resultData = timedb.selectTeacherByid(id);
+             return resultData;
+         }
     }
 }
