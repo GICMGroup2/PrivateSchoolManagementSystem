@@ -65,7 +65,7 @@ namespace HomeASP.DbAccess
             int result;
             if (id == 0)
                 return -1;
-            string query = "UPDATE ST_TIMETABLE SET DEL_FLG=1 WHERE ID =" + id;
+            string query = "UPDATE ST_TIMETABLE SET GRADE_ID='" + dr.GRADE_ID + "',TEACHER_ID='" + dr.TEACHER_ID + "',DAY='" + dr.DAY + "',PERIOD1='" + dr.PERIOD1 + "',PERIOD2='" + dr.PERIOD2 + "',PERIOD3='" + dr.PERIOD3 + "',PERIOD4='" + dr.PERIOD4 + "',PERIOD5='" + dr.PERIOD5 + "',PERIOD6='" + dr.PERIOD6 + "',PERIOD7='" + dr.PERIOD7 + "' WHERE ID=" + id;
             string sqlQuery = query;
             SqlCommand cmd = new SqlCommand(query, conn);
             result = cmd.ExecuteNonQuery();
@@ -100,6 +100,30 @@ namespace HomeASP.DbAccess
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet.DsPSMS.ST_TIMETABLEDataTable dt = new DataSet.DsPSMS.ST_TIMETABLEDataTable();
+            da.Fill(dt);
+            //return single row
+            return dt[0];
+        }
+
+        public DataSet.DsPSMS.ST_GRADE_MSTRow selectGradeByid(int id)
+        {
+            //conn.Open();
+            string query = "SELECT * FROM ST_GRADE_MST WHERE GRADE_ID=" + id;
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet.DsPSMS.ST_GRADE_MSTDataTable dt = new DataSet.DsPSMS.ST_GRADE_MSTDataTable();
+            da.Fill(dt);
+            //return single row
+            return dt[0];
+        }
+
+        public DataSet.DsPSMS.ST_TEACHER_DATARow selectTeacherByid(int id)
+        {
+            //conn.Open();
+            string query = "SELECT * FROM ST_TEACHER_DATA WHERE TEACHER_ID=" + id;
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet.DsPSMS.ST_TEACHER_DATADataTable dt = new DataSet.DsPSMS.ST_TEACHER_DATADataTable();
             da.Fill(dt);
             //return single row
             return dt[0];
