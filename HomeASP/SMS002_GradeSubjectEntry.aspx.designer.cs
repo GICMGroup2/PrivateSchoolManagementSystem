@@ -103,6 +103,15 @@ namespace HomeASP {
         protected global::System.Web.UI.HtmlControls.HtmlForm GradeSubjectForm;
         
         /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        
+        /// <summary>
         /// gradeId control.
         /// </summary>
         /// <remarks>
@@ -139,13 +148,13 @@ namespace HomeASP {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// btnUpdate control.
+        /// btnShowAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdate;
+        protected global::System.Web.UI.WebControls.Button btnShowAll;
         
         /// <summary>
         /// btnDelete control.
@@ -202,13 +211,13 @@ namespace HomeASP {
         protected global::System.Web.UI.WebControls.Button subjectAdd;
         
         /// <summary>
-        /// subjectUpdate control.
+        /// subjectShowAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button subjectUpdate;
+        protected global::System.Web.UI.WebControls.Button subjectShowAll;
         
         /// <summary>
         /// subjectDelete control.
@@ -265,13 +274,13 @@ namespace HomeASP {
         protected global::System.Web.UI.WebControls.Button gradeSubjectAdd;
         
         /// <summary>
-        /// gradeSubjectUpdate control.
+        /// gradeSubjectShowAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button gradeSubjectUpdate;
+        protected global::System.Web.UI.WebControls.Button gradeSubjectShowAll;
         
         /// <summary>
         /// gradeSubjectDelete control.

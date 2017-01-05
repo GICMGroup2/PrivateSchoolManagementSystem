@@ -14,9 +14,19 @@ namespace HomeASP.DbAccess
 {
     class GradeSubjectDb : dbAccess
     {
-        public DataSet.DsPSMS.ST_GRADE_MSTDataTable selectGrade(DataSet.DsPSMS.ST_GRADE_MSTRow dr)
+        public DataSet.DsPSMS.ST_GRADE_MSTDataTable selectGradeByName(DataSet.DsPSMS.ST_GRADE_MSTRow dr)
         {
             string query = "SELECT * FROM ST_GRADE_MST where GRADE_NAME= '" + dr.GRADE_NAME + "'";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet.DsPSMS.ST_GRADE_MSTDataTable dt = new DataSet.DsPSMS.ST_GRADE_MSTDataTable();
+            da.Fill(dt);
+            return dt;
+        }
+
+        public DataSet.DsPSMS.ST_GRADE_MSTDataTable selectGradeByID(DataSet.DsPSMS.ST_GRADE_MSTRow dr)
+        {
+            string query = "SELECT * FROM ST_GRADE_MST where GRADE_ID= '" + dr.GRADE_ID + "'";
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet.DsPSMS.ST_GRADE_MSTDataTable dt = new DataSet.DsPSMS.ST_GRADE_MSTDataTable();
@@ -48,17 +58,15 @@ namespace HomeASP.DbAccess
             return dt;
         }
 
-        public int updateGrade(DataSet.DsPSMS.ST_GRADE_MSTRow oldData, DataSet.DsPSMS.ST_GRADE_MSTRow newData)
+        public int updateGrade(DataSet.DsPSMS.ST_GRADE_MSTRow dr)
         {
-            if (oldData == null || newData == null)
-                return -1;
             int result;
             string query = "UPDATE ST_GRADE_MST SET ";
-            if (oldData.GRADE_NAME != null)
+            if (dr.GRADE_NAME != null)
             {
-                query += " GRADE_NAME ='" + newData.GRADE_NAME + "'";
+                query += " GRADE_NAME ='" + dr.GRADE_NAME + "'";
             }
-            query += " WHERE GRADE_ID=" + oldData.GRADE_ID;
+            query += " WHERE GRADE_ID=" + dr.GRADE_ID;
             SqlCommand cmd = new SqlCommand(query, conn);
             result = cmd.ExecuteNonQuery();
             return result;
@@ -75,9 +83,18 @@ namespace HomeASP.DbAccess
             return result;
         }
 
-        public DataSet.DsPSMS.ST_SUBJECT_MSTDataTable selectSubject(DataSet.DsPSMS.ST_SUBJECT_MSTRow dr)
+        public DataSet.DsPSMS.ST_SUBJECT_MSTDataTable selectSubjectByID(DataSet.DsPSMS.ST_SUBJECT_MSTRow dr)
         {
-            conn.Open();
+            string query = "SELECT * FROM ST_SUBJECT_MST where SUBJECT_ID= '" + dr.SUBJECT_ID + "'";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet.DsPSMS.ST_SUBJECT_MSTDataTable dt = new DataSet.DsPSMS.ST_SUBJECT_MSTDataTable();
+            da.Fill(dt);
+            return dt;
+        }
+
+        public DataSet.DsPSMS.ST_SUBJECT_MSTDataTable selectSubjectByName(DataSet.DsPSMS.ST_SUBJECT_MSTRow dr)
+        {
             string query = "SELECT * FROM ST_SUBJECT_MST where SUBJECT_NAME= '" + dr.SUBJECT_NAME + "'";
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -110,6 +127,20 @@ namespace HomeASP.DbAccess
             return dt;
         }
 
+        public int updateSubject(DataSet.DsPSMS.ST_SUBJECT_MSTRow dr)
+        {
+            int result;
+            string query = "UPDATE ST_SUBJECT_MST SET ";
+            if (dr.SUBJECT_NAME != null)
+            {
+                query += " SUBJECT_NAME ='" + dr.SUBJECT_NAME + "'";
+            }
+            query += " WHERE SUBJECT_ID=" + dr.SUBJECT_ID;
+            SqlCommand cmd = new SqlCommand(query, conn);
+            result = cmd.ExecuteNonQuery();
+            return result;
+        }
+
         public int deleteSubject(DataSet.DsPSMS.ST_SUBJECT_MSTRow dr)
         {
             int result;
@@ -133,7 +164,7 @@ namespace HomeASP.DbAccess
             return result;
         }
 
-        public DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILDataTable selectGradeSubject(DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILRow dr)
+        public DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILDataTable selectGradeSubjectByID(DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILRow dr)
         {
             string query = "SELECT * FROM ST_GRADE_SUBJECT_DETAIL where ID= '" + dr.ID + "'";
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -161,6 +192,24 @@ namespace HomeASP.DbAccess
             DataSet.DsPSMS.ST_SUBJECT_MSTDataTable dt = new DataSet.DsPSMS.ST_SUBJECT_MSTDataTable();
             da.Fill(dt);
             return dt;
+        }
+
+        public int updateGradeSubject(DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILRow dr)
+        {
+            int result;
+            string query = "UPDATE ST_GRADE_SUBJECT_DETAIL SET ";
+            if (dr.GRADE_ID != null)
+            {
+                query += " GRADE_ID ='" + dr.GRADE_ID + "'";
+            }
+            if (dr.SUBJECT_ID_LIST != null)
+            {
+                query += ", SUBJECT_ID_LIST ='" + dr.SUBJECT_ID_LIST + "'";
+            }
+            query += " WHERE ID=" + dr.ID;
+            SqlCommand cmd = new SqlCommand(query, conn);
+            result = cmd.ExecuteNonQuery();
+            return result;
         }
 
         public int deleteGradeSubject(DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILRow dr)
