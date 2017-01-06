@@ -24,36 +24,31 @@ namespace HomeASP
             examInfo.ImageUrl = "~/Images/exam.png";
             teacherInfo.ImageUrl = "~/Images/teacher.png";
             system.ImageUrl = "~/Images/system.jpg";
-        }
+        }            
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             gradeRow = new DataSet.DsPSMS.ST_GRADE_MSTDataTable().NewST_GRADE_MSTRow();
-            if (btnAdd.Text.Equals("Add"))
+            if (!checkValidationForGrade())
             {
-                msg = "";                
-                if (!checkValidation())
+                if (btnAdd.Text.Equals("Add"))
                 {
+                    msg = "";                
                     gradeRow.GRADE_ID = gradeId.Text;
                     gradeRow.GRADE_NAME = gradeName.Text;
-
                     DataSet.DsPSMS.ST_GRADE_MSTDataTable gradeData = service.selectGradeByID(gradeRow, out msg);
 
                     if (gradeData != null && gradeData.Rows.Count > 0)
                     {
-                        //bool isOk = service.saveGrade(gradeRow, out msg);
-                        
+                        ModelState.AddModelError(string.Empty, "Data already exists");      
                     }
                     else
-                    {                        
-                        //show error message
+                    {
+                        service.saveGrade(gradeRow, out msg);
                     }
-                }                
-            }
-            else if (btnAdd.Text.Equals("Update"))
-            {
-                if (gradeName.Text.Trim().Length != 0)
-                {
+                }
+                else if (btnAdd.Text.Equals("Update"))
+                {                    
                     gradeRow.GRADE_NAME = gradeName.Text;
                     gradeRow.GRADE_ID = gradeId.Text;
                     service.updateGrade(gradeRow, out msg);
@@ -61,35 +56,29 @@ namespace HomeASP
                     btnAdd.Text = "Add";
                     gradeId.Enabled = true;
                     btnDelete.Enabled = true;
-                    btnShowAll.Enabled = true; 
+                    btnShowAll.Enabled = true;                                       
                 }
-                else
-                { 
-                    //display error message;
-                }
-            }
-            displayGradeData();
-            FillGradeListCombo();
-            gradeId.Text = "";
-            gradeName.Text = "";
+                displayGradeData();
+                FillGradeListCombo();
+                gradeId.Text = "";
+                gradeName.Text = "";
+            }            
         }
 
-        private bool checkValidation()
+        private Boolean checkValidationForGrade()
         {
-            bool isErr = false;
+            Boolean isError = false;
             if (gradeId.Text.Trim().Length == 0)
             {
-                //msg = "Please enter ID !\n";
-                msg = "Please enter require field";
-                isErr = true;
+                ModelState.AddModelError(string.Empty, "Please enter grade Id");
+                isError = true;
             }
             if (gradeName.Text.Trim().Length == 0)
             {
-                //msg = "Please enter ID !\n";
-                msg = "Please enter require field";
-                isErr = true;
+                ModelState.AddModelError(string.Empty, "Please enter grade Name");
+                isError = true;
             }
-            return isErr;
+            return isError;
         }
 
         private void displayGradeData()
@@ -146,73 +135,77 @@ namespace HomeASP
         {
             gradeRow = new DataSet.DsPSMS.ST_GRADE_MSTDataTable().NewST_GRADE_MSTRow();
             msg = "";
-            if (!checkValidation())
+            if (!checkValidationForGrade())
             {
                 gradeRow.GRADE_ID = gradeId.Text;
                 gradeRow.GRADE_NAME = gradeName.Text;
-
                 DataSet.DsPSMS.ST_GRADE_MSTDataTable resultDt = service.selectGradeByID(gradeRow, out msg);
-                if (resultDt != null)
+
+                if (resultDt != null && resultDt.Rows.Count > 0)
                 {
-                    //MessageBox.Show(msg);
+                    service.deleteGrade(gradeRow, out msg);
+                    displayGradeData(); 
                 }
                 else
-                {                    
-                    int result = service.deleteGrade(gradeRow, out msg);
-                    displayGradeData();               
+                {
+                    ModelState.AddModelError(string.Empty, "Data doesn't exist");                                  
                 }
-            }
-            else
-            {
-                //MessageBox.Show(msg);
             }
         }
 
         protected void btnAddSubject_Click(object sender, EventArgs e)
         {            
             subjectRow = new DataSet.DsPSMS.ST_SUBJECT_MSTDataTable().NewST_SUBJECT_MSTRow();
-            if (subjectAdd.Text.Equals("Add"))
+            if (!checkValidationForSubject())
             {
-                msg = "";
-                if (subjectId.Text.Trim().Length != 0)
+                if (subjectAdd.Text.Equals("Add"))
                 {
+                    msg = "";                
                     subjectRow.SUBJECT_ID = subjectId.Text;
                     subjectRow.SUBJECT_NAME = subjectName.Text;
-
                     DataSet.DsPSMS.ST_SUBJECT_MSTDataTable subjectData = service.selectSubjectByID(subjectRow, out msg);
 
                     if (subjectData != null && subjectData.Rows.Count > 0)
                     {
-                        //MessageBox.Show(msg);                       
+                        ModelState.AddModelError(string.Empty, "Data already exists");      
                     }
                     else
                     {
-                        //bool isOk = service.saveSubject(subjectRow, out msg);
+                        service.saveSubject(subjectRow, out msg);
                     }
-                }                
-            }
-            else if (subjectAdd.Text.Equals("Update"))
-            {
-                if (subjectName.Text.Trim().Length != 0)
+                }
+                else if (subjectAdd.Text.Equals("Update"))
                 {
                     subjectRow.SUBJECT_NAME = subjectName.Text;
                     subjectRow.SUBJECT_ID = subjectId.Text;
                     service.updateSubject(subjectRow, out msg);
-                    
+
                     subjectAdd.Text = "Add";
                     subjectId.Enabled = true;
                     subjectDelete.Enabled = true;
-                    subjectShowAll.Enabled = true;
+                    subjectShowAll.Enabled = true;                   
                 }
-                else
-                {
-                    //display error message;
-                }
+                displaySubjectData();
+                displaySubjectInGridView();
+                subjectId.Text = "";
+                subjectName.Text = "";
+            } 
+        }
+
+        private Boolean checkValidationForSubject()
+        {
+            Boolean isError = false;
+            if (subjectId.Text.Trim().Length == 0)
+            {
+                ModelState.AddModelError(string.Empty, "Please enter Subject Id");
+                isError = true;
             }
-            displaySubjectData();
-            displaySubjectInGridView();
-            subjectId.Text = "";
-            subjectName.Text = "";
+            if (subjectName.Text.Trim().Length == 0)
+            {
+                ModelState.AddModelError(string.Empty, "Please enter Subject Name");
+                isError = true;
+            }
+            return isError;
         }
 
         private void displaySubjectData()
@@ -265,56 +258,48 @@ namespace HomeASP
         {
             subjectRow = new DataSet.DsPSMS.ST_SUBJECT_MSTDataTable().NewST_SUBJECT_MSTRow();
             msg = "";
-            if (checkValidation())
+            if (!checkValidationForSubject())
             {
                 subjectRow.SUBJECT_ID = subjectId.Text;
                 subjectRow.SUBJECT_NAME = subjectName.Text;
-
                 DataSet.DsPSMS.ST_SUBJECT_MSTDataTable subjectData = service.selectSubjectByID(subjectRow, out msg);
-                if (subjectData == null)
+
+                if (subjectData != null && subjectData.Rows.Count > 0)
                 {
-                    //MessageBox.Show(msg);
+                    service.deleteSubject(subjectRow, out msg);
+                    displaySubjectData();
                 }
                 else
                 {
-                    int result = service.deleteSubject(subjectRow, out msg);
-                    displaySubjectData();
+                    ModelState.AddModelError(string.Empty, "Data doesn't exist");
                 }
-            }
-            else
-            {
-                //MessageBox.Show(msg);
-            }
+            }            
         }
 
         protected void btnAddGradeSubject_Click(object sender, EventArgs e)
         {
             gradeSubjectRow = new DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILDataTable().NewST_GRADE_SUBJECT_DETAILRow();
-            if (gradeSubjectAdd.Text.Equals("Add"))
+            if (!checkValidationForGradeSubject())
             {
-                msg = "";
-                string subjectId = null;
-                if (checkValidation())
+                if (gradeSubjectAdd.Text.Equals("Add"))
                 {
+                    msg = "";       
                     gradeSubjectRow.ID = gradeSubjectId.Text;
                     gradeSubjectRow.GRADE_ID = gradeList.Text;
 
-                    subjectId = getSubjectIdList();
+                    string subjectId = getSubjectIdList();
                     DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILDataTable resultDt = service.selectGradeSubjectByID(gradeSubjectRow, out msg);
 
-                    if (resultDt == null)
+                    if (resultDt != null && resultDt.Rows.Count > 0)
                     {
-                        //show error message
+                        service.saveGradeSubject(gradeSubjectRow, subjectId, out msg);            
                     }
                     else
-                    {
-                        //bool isOk = service.saveGradeSubject(gradeSubjectRow, subjectId, out msg);                        
+                    {                        
+                        ModelState.AddModelError(string.Empty, "Data already exists");
                     }
                 }
-            }
-            else if (gradeSubjectAdd.Text.Equals("Update"))
-            {
-                if (gradeList.Text.Trim().Length != 0)
+                else if (gradeSubjectAdd.Text.Equals("Update"))
                 {
                     gradeSubjectRow.ID = gradeSubjectId.Text;
                     gradeSubjectRow.GRADE_ID = gradeList.Text;
@@ -324,25 +309,49 @@ namespace HomeASP
                     gradeSubjectAdd.Text = "Add";
                     gradeSubjectId.Enabled = true;
                     gradeSubjectDelete.Enabled = true;
-                    gradeSubjectShowAll.Enabled = true; 
+                    gradeSubjectShowAll.Enabled = true;                    
                 }
-                else
+                displayGradeSubjectData();
+                gradeSubjectId.Text = "";
+                gradeList.SelectedIndex = 0;
+                foreach (GridViewRow row in subjectGridView.Rows)
                 {
-                    //display error message;
+                    CheckBox chk = (CheckBox)row.FindControl("selectedSubject");
+                    if (chk != null && chk.Checked)
+                    {
+                        chk.Checked = false;
+                    }
                 }
-            }
+            }            
+        }
 
-            displayGradeSubjectData();
-            gradeSubjectId.Text = "";
-            gradeList.SelectedIndex = 0;
+        private Boolean checkValidationForGradeSubject()
+        {
+            Boolean isError = false;
+            if (gradeSubjectId.Text.Trim().Length == 0)
+            {
+                ModelState.AddModelError(string.Empty, "Please enter ID");
+                isError = true;
+            }
+            if (gradeList.SelectedIndex == 0)
+            {
+                ModelState.AddModelError(string.Empty, "Please Select Grade");
+                isError = true;
+            }
+            int count = 0;
             foreach (GridViewRow row in subjectGridView.Rows)
             {
                 CheckBox chk = (CheckBox)row.FindControl("selectedSubject");
-                if (chk != null && chk.Checked)
+                if (chk != null && chk.Checked == false)
                 {
-                    chk.Checked = false;
+                    count++;
                 }
             }
+            if (count == subjectGridView.Rows.Count)
+            {
+                ModelState.AddModelError(string.Empty, "Please Select Subject");
+            }
+            return isError;
         }
 
         private string getSubjectIdList()
@@ -396,8 +405,7 @@ namespace HomeASP
                     subjectName = subjectName.Substring(0, subjectName.Length - 1);
 
                     row.SUBJECT_ID_LIST = subjectName;
-                }
-                
+                }                
                 gradeSubjectGridView.DataSource = resultDt;
                 gradeSubjectGridView.DataBind();
             }
@@ -429,25 +437,21 @@ namespace HomeASP
         {
             gradeSubjectRow = new DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILDataTable().NewST_GRADE_SUBJECT_DETAILRow();
             msg = "";
-            if (checkValidation())
+            if (!checkValidationForGradeSubject())
             {
                 gradeSubjectRow.ID = gradeSubjectId.Text;
                 gradeSubjectRow.GRADE_ID = gradeList.Text;
-
                 DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILDataTable resultDt = service.selectGradeSubjectByID(gradeSubjectRow, out msg);
-                if (resultDt == null)
+
+                if (resultDt != null && resultDt.Rows.Count > 0)
                 {
-                    //MessageBox.Show(msg);
+                    service.deleteGradeSubject(gradeSubjectRow, out msg);
+                    displayGradeSubjectData();                    
                 }
                 else
                 {
-                    int result = service.deleteGradeSubject(gradeSubjectRow, out msg);
-                    displayGradeSubjectData();
+                    ModelState.AddModelError(string.Empty, "Data doesn't exist");
                 }
-            }
-            else
-            {
-                //MessageBox.Show(msg);
             }
         }
     }

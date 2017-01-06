@@ -96,18 +96,14 @@
                                     <form id="GradeSubjectForm" runat="server">
                                         <div style="float: left;">
                                             <asp:ValidationSummary ID="ValidationSummary1" runat="server"
-                                                DisplayMode="BulletList" ShowSummary="true" HeaderText="Errors:" ForeColor="Red" />
-                                            <%--<asp:RequiredFieldValidator ID="rfvgradeId" 
-                                                runat="server" ControlToValidate="gradeId"
-                                                ErrorMessage="Please enter gradeId" 
-                                                InitialValue="Please enter gradeId"
-                                                ForeColor="Red">   
-                                            </asp:RequiredFieldValidator>--%>
+                                                DisplayMode="BulletList" ShowSummary="true" HeaderText="" ForeColor="Red" />
 
                                             <asp:Label runat="server" Text="ID" ForeColor="Black"></asp:Label>
                                             <asp:TextBox ID="gradeId" runat="server" ForeColor="Black" Width="100px"></asp:TextBox>
+
                                             <asp:Label ID="grade" runat="server" Text="Grade" ForeColor="Black"></asp:Label>
-                                            <asp:TextBox ID="gradeName" runat="server" ForeColor="Black" Width="136px"></asp:TextBox><br />
+                                            <asp:TextBox ID="gradeName" runat="server" ForeColor="Black" Width="136px"></asp:TextBox>
+                                            <br />
                                             <br />
                                             <asp:Button class="btn_display" ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" />
                                             <asp:Button class="btn_display" ID="btnShowAll" runat="server" Text="Show All" OnClick="btnSelect_Click" />
@@ -140,11 +136,14 @@
                                         <br />
                                         <br />
                                         <br />
+                                        <br />
                                         <div style="float: left;">
                                             <asp:Label runat="server" Text="ID" ForeColor="Black"></asp:Label>
                                             <asp:TextBox ID="subjectId" runat="server" ForeColor="Black" Width="100px"></asp:TextBox>
+
                                             <asp:Label ID="subject" runat="server" Text="Subject" ForeColor="Black"></asp:Label>
-                                            <asp:TextBox ID="subjectName" runat="server" ForeColor="Black" Width="136px"></asp:TextBox><br />
+                                            <asp:TextBox ID="subjectName" runat="server" ForeColor="Black" Width="136px"></asp:TextBox>
+                                            <br />
                                             <br />
                                             <asp:Button class="btn_display" ID="subjectAdd" runat="server" Text="Add" OnClick="btnAddSubject_Click" />
                                             <asp:Button class="btn_display" ID="subjectShowAll" runat="server" Text="Show All" OnClick="btnSelectSubject_Click" />
