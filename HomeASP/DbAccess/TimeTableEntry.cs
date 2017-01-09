@@ -128,5 +128,49 @@ namespace HomeASP.DbAccess
             //return single row
             return dt[0];
         }
+
+        public DataSet.DsPSMS.ST_TIMETABLEDataTable selectTimetableBydateandid(int id, string date)
+        {
+            //conn.Open();
+            string query = "SELECT * FROM ST_TIMETABLE WHERE TEACHER_ID=" + id + " AND DAY='" + date + "'";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet.DsPSMS.ST_TIMETABLEDataTable dt = new DataSet.DsPSMS.ST_TIMETABLEDataTable();
+            da.Fill(dt);
+            return dt;
+        }
+
+       public DataSet.DsPSMS.ST_TIMETABLEDataTable selectTimetableByteacherid(int id)
+        {
+            //conn.Open();
+            string query = "SELECT * FROM ST_TIMETABLE WHERE TEACHER_ID=" + id ;
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet.DsPSMS.ST_TIMETABLEDataTable dt = new DataSet.DsPSMS.ST_TIMETABLEDataTable();
+            da.Fill(dt);
+            return dt;
+        }
+
+       public DataSet.DsPSMS.ST_TIMETABLEDataTable selectTimetableBydate(string date)
+       {
+           //conn.Open();
+           string query = "SELECT * FROM ST_TIMETABLE WHERE DAY='" + date + "'";
+           SqlCommand cmd = new SqlCommand(query, conn);
+           SqlDataAdapter da = new SqlDataAdapter(cmd);
+           DataSet.DsPSMS.ST_TIMETABLEDataTable dt = new DataSet.DsPSMS.ST_TIMETABLEDataTable();
+           da.Fill(dt);
+           return dt;
+       }
+
+       public DataSet.DsPSMS.ST_TIMETABLEDataTable selectTimetableBygradeid(int id)
+       {
+           //conn.Open();
+           string query = "SELECT * FROM ST_TIMETABLE WHERE GRADE_ID=" + id;
+           SqlCommand cmd = new SqlCommand(query, conn);
+           SqlDataAdapter da = new SqlDataAdapter(cmd);
+           DataSet.DsPSMS.ST_TIMETABLEDataTable dt = new DataSet.DsPSMS.ST_TIMETABLEDataTable();
+           da.Fill(dt);
+           return dt;
+       }
     }
 }
