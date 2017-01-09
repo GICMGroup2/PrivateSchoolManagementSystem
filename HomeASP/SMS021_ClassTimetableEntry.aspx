@@ -4,7 +4,7 @@
 <!-- Layout -->
 <html>
 <head id="Head1" runat="server">
-    <title>Home </title>
+    <title>Time Table Entry</title>
     <link rel="stylesheet" href="styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="styles/custom.css" type="text/css" />    
     <link rel="stylesheet" href="styles/font-awesome.css" type="text/css" />    
@@ -14,15 +14,16 @@
    
     <style type="text/css">
         #bookingForm {
-            height: 1086px;
-            width: 976px;
+            height: 1135px;
+            width: 1511px;
             margin-right: 133px;
+            margin-left: 0px;
         }
         .auto-style1 {
             width: 397px;
         }
         .auto-style2 {
-            width: 128px;
+            width: 125px;
         }
     </style>
 </head>
@@ -102,22 +103,36 @@
                     <div id="page-wrapper">
                         <div id="page-inner">
                             <form id="bookingForm" runat="server">
+                                <div style="margin-left: 80px">
+                                    <asp:RequiredFieldValidator ID="validatorgrade" runat="server" ControlToValidate="ddltimegradelist" ErrorMessage="Please select grade !" ForeColor="Red" InitialValue="0"></asp:RequiredFieldValidator>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:RequiredFieldValidator ID="validatorteacher" runat="server" ControlToValidate="ddlTeacherList" ErrorMessage="Please select teacher !" ForeColor="Red" InitialValue="0"></asp:RequiredFieldValidator>
+                                </div>
                                 Grade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="ddltimegradelist" runat="server" Width="158px" AppendDataBoundItems="True" ForeColor="#003300">
                                 </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teacher&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="ddlTeacherList" runat="server" ForeColor="Black" Width="166px" AppendDataBoundItems="True">
                                 </asp:DropDownList>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date&nbsp;
                                 <asp:TextBox ID="txttimetabledate" style="color:black" runat="server" Height="23px" Width="154px" />
                                 <asp:Button ID="btncalendar" runat="server" ForeColor="Black" OnClick="btncalendar_Click" Text="Calendar" />
                                 <div style="margin-left: 520px">
                                     <asp:Panel ID="Panel1" runat="server" Height="23px" style="margin-left: 72px" Visible="False" Width="700px">
-                                        <asp:Calendar ID="Calendar1" runat="server" Height="224px" OnSelectionChanged="Calendar1_SelectionChanged" Width="264px"></asp:Calendar>
+                                        <asp:Calendar ID="Calendar1" runat="server" Height="200px" OnSelectionChanged="Calendar1_SelectionChanged" Width="220px" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399">
+                                            <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
+                                            <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
+                                            <OtherMonthDayStyle ForeColor="#999999" />
+                                            <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+                                            <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
+                                            <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
+                                            <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
+                                            <WeekendDayStyle BackColor="#CCCCFF" />
+                                        </asp:Calendar>
                                     </asp:Panel>
                                 </div>
                                 <br />
-                                <table style="width:100%; margin-left: 34px;">
+                                <table style="width:75%; margin-left: 34px; height: 217px;">
                                     <tr>
                                         <td class="auto-style2" style="color:white;">Period</td>
                                         <td class="auto-style1" style="color:white;">Select Class</td>
@@ -216,7 +231,7 @@
                                 <br />
                                 <br />
                                 <asp:GridView ID="dvtimetable" runat="server" Width="280px" ForeColor="Black" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" GridLines="Vertical" AllowPaging="True" PageSize="5"
-                                    DataKeyNames="ID" OnRowDeleting="Delete" AutoGenerateDeleteButton="True" AutoGenerateSelectButton="True" OnSelectedIndexChanging="Edit" OnPageIndexChanging="dvtimetable_PageIndexChanging">
+                                    DataKeyNames="ID" OnRowDeleting="Delete" AutoGenerateDeleteButton="True" AutoGenerateSelectButton="True" OnSelectedIndexChanging="Edit" OnPageIndexChanging="dvtimetable_PageIndexChanging" CellSpacing="1">
                                     <AlternatingRowStyle BackColor="White" />
                                     <FooterStyle BackColor="#CCCC99" />
                                     <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />

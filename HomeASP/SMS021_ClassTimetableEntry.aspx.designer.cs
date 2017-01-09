@@ -103,6 +103,24 @@ namespace HomeASP {
         protected global::System.Web.UI.HtmlControls.HtmlForm bookingForm;
         
         /// <summary>
+        /// validatorgrade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorgrade;
+        
+        /// <summary>
+        /// validatorteacher control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator validatorteacher;
+        
+        /// <summary>
         /// ddltimegradelist control.
         /// </summary>
         /// <remarks>

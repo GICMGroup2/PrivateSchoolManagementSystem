@@ -34,7 +34,7 @@ namespace HomeASP
             bindTeacher();
             ddltimegradelist.Items.Insert(0, new ListItem("Select Grade", "0"));
             ddlTeacherList.Items.Insert(0, new ListItem("Select Teacher", "0"));
-            txttimetabledate.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            txttimetabledate.Text = DateTime.Today.ToString("MM/dd/yyyy");
             DisplayData();
         }
 
@@ -92,7 +92,6 @@ namespace HomeASP
                 //    //Fillcombo();
                 //}
             }
-
         }
 
         protected string checkselectIndex(int selectIndex,string value)
@@ -113,17 +112,14 @@ namespace HomeASP
         private bool checkValidation()
         {
             bool isErr = false;
-            //if (txtId.Text.Trim().Length == 0)
+            //if (ddltimegradelist.SelectedIndex == 0)
             //{
-            //    //msg = "Please enter ID !\n";
-            //    msg = "Please enter require field";
-            //    isErr = true;
+            //    isErr = false;
             //}
-            //if (txtGrade.Text.Trim().Length == 0)
+            //if (ddlTeacherList.SelectedIndex == 0)
             //{
-            //    //msg = "Please enter ID !\n";
-            //    msg = "Please enter require field";
-            //    isErr = true;
+            //    validatorteacher.Visible = true;
+            //    isErr = false;
             //}
             return isErr;
         }
