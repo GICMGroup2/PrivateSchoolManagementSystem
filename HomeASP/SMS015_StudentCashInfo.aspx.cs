@@ -17,7 +17,8 @@ namespace HomeASP
         GradeSubjectDb grdDb = new GradeSubjectDb();
 
         StudentCashInfoService stuCashService = new StudentCashInfoService();
-        //GradeSubjectService grdSubService = new GradeSubjectService();
+        StudentCashInfoDb stuCashDb = new StudentCashInfoDb();
+        GradeSubjectService grdSubService = new GradeSubjectService();
         
         DsPSMS.ST_STUDENT_DATARow stDr = new DsPSMS.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
         DsPSMS.ST_STUDENT_CASHDataTable stuCashDt = new DsPSMS.ST_STUDENT_CASHDataTable();
@@ -39,21 +40,39 @@ namespace HomeASP
                 if (Session["EDU_YEAR"] != null)
                 {
                     CoboYear.Text = (string)(Session["EDU_YEAR"] ?? "  ");
+                    stDr.EDU_YEAR = CoboYear.Text;
+                    Session["EDU_YEAR"] = null;
                 }
                 if (Session["STUDENT_ID"] != null)
                 {
                     TxtStudID.Text = (string)(Session["STUDENT_ID"] ?? "  ");
-                    stDr = stuCashService.getStuName(CoboYear.Text, TxtStudID.Text);
+                    stDr.STUDENT_ID = TxtStudID.Text;
+                    stDr = stuCashService.getStuName(stDr);
                     TxtStuName.Text = stDr.STUDENT_NAME;
                     grdDr = stuCashService.getGradeName(stDr.GRADE_ID);
-                    CoboGrade.Text = grdDr.GRADE_NAME;
+                   // CoboGrade.Text = grdDr.GRADE_NAME;
+                    CoboGrade.SelectedItem.Text = stDr.GRADE_ID;
+                   
                     CoboSelect_Change(sender,e);
+                    Session["STUDENT_ID"] = null;
                 }
                 if (Session["CASH_DATE"] != null)
                 {
                     cashDate.Text = (string)(Session["CASH_DATE"] ?? "  ");
+                    Session["CASH_DATE"] = null;
                 }
 
+                // binding grade to combo box
+                grdDt = grdSubService.getAllGradeData(out msg);
+                if (grdDt.Rows.Count != 0)
+                {
+                    CoboGrade.DataSource = null;
+                    CoboGrade.DataSource = grdDt;
+                    CoboGrade.DataTextField = "GRADE_NAME";
+                    CoboGrade.DataValueField = "GRADE_ID";
+                    CoboGrade.DataBind();
+                }
+                
         }
 
         protected void BtnPay_Click(object sender, EventArgs e)
@@ -78,7 +97,7 @@ namespace HomeASP
 
         protected void CoboSelect_Change(object sender, EventArgs e)
         {
-            if(TxtStudID.Text.Trim().Length!=0 && TxtStuName.Text.Trim().Length!=0 && CoboGrade.Text.Trim().Length !=0 && CoboYear.Text.Trim().Length!=0)
+            if(TxtStudID.Text.Trim().Length!=0 && TxtStuName.Text.Trim().Length!=0 &&  CoboGrade.SelectedItem.Text.Trim().Length !=0 && CoboYear.Text.Trim().Length!=0)
             {
                 
                 // select Cash Type
@@ -86,11 +105,11 @@ namespace HomeASP
                 stDr.STUDENT_ID = TxtStudID.Text;
                 stDr.STUDENT_NAME = TxtStuName.Text;
                 stDr.GRADE_ID = calculation();
-                //stDr = stuCashService.getCashType(stDr,out msg);
+                stDr = stuCashService.getCashType(stDr,out msg);
 
-                //// show Cash Type
-                //if(stDr!=null)
-                //    LabCashTypeVal.Text = stDr.CASH_TYPE1;
+                // show Cash Type
+                if(stDr!=null)
+                   LabCashTypeVal.Text = stDr.CASH_TYPE1;
             }
         }
 
@@ -99,9 +118,9 @@ namespace HomeASP
             int totalPaid = 0;
             string gradeId = "";
 
-            //select GRADE_ID and CASH_AMOUNT
-            grdDr.GRADE_NAME = CoboGrade.Text;
-            grdDt = grdDb.selectGrade(grdDr);
+           // select GRADE_ID and CASH_AMOUNT
+            grdDr.GRADE_ID = CoboGrade.SelectedItem.Text;
+            grdDt = grdSubService.selectGradeByID(grdDr,out msg);   
 
             //get cash data and calculate paid amount
             stuCashDr.STUDENT_ID = TxtStudID.Text;
@@ -112,6 +131,7 @@ namespace HomeASP
                 totalPaid += Convert.ToInt32(stuCashDt[i].AMOUNT);
             }
             gradeId = grdDt[0].GRADE_ID;
+           // gradeId = CoboGrade.Text;
             LabMonVal.Text = "10 months";
             LabKyatVal.Text = grdDt[0].MONTHLY_FEE;
             LabPaidVal.Text = Convert.ToString(totalPaid);

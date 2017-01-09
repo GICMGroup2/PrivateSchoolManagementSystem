@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="styles/BgImage.css" type="text/css" />
 
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="http://localhost:59463/code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -121,19 +121,54 @@
                 <div id="page-separate" style="background-color: #b1f2eb">
                     <div id="bg-Frm">
                         <form id="cashListform"  runat="server">
+                            <div style="float:left">
+                            <table id="cashTbl" runat="server" >
+                                <tr class="spaceUnder">
+                                    <td>
+                                        <asp:Label ID="LabStudId" CssClass="Lab-format" runat="server" >ID*</asp:Label></td>
+                                    <td><span style="margin-left: 2em"></span></td>
+                                    <td>
+                                        <asp:TextBox ID="TxtStudID" CssClass="Txtbox-format" runat="server" ForeColor="Black"></asp:TextBox></td>
+                                    <td><span style="margin-left: 2em"></span></td>
+                                    <td>
+                                        <asp:Label ID="LabStuName" CssClass="Lab-format" runat="server">Name*</asp:Label></td>
+                                    <td><span style="margin-left: 2em"></span></td>
+                                    <td>
+                                        <asp:Label ID="LabStuNameVal" CssClass="Txtbox-format" runat="server"></asp:Label></td>
+                                    <td><span style="margin-left: 2em"></span></td>
+                                    <td>
+                                        <asp:Label ID="LabYear" CssClass="Lab-format" runat="server">Year*</asp:Label></td>
+                                    <td><span style="margin-left: 2em"></span></td>
+                                    <td>
+                                        <asp:DropDownList ID="CoboYear" CssClass="Txtbox-format" runat="server" AutoPostBack="true" OnSelectedIndexChanged="CoboSelect_Change" OnTextChanged="CoboSelect_Change" >
+                                            <asp:ListItem></asp:ListItem>
+                                            <asp:ListItem>2010-2011</asp:ListItem>
+                                            <asp:ListItem>2011-2012</asp:ListItem>
+                                            <asp:ListItem>2012-2013</asp:ListItem>
+                                            <asp:ListItem>2013-2014</asp:ListItem>
+                                            <asp:ListItem>2014-2015</asp:ListItem>
+                                            <asp:ListItem>2015-2016</asp:ListItem>
+                                            <asp:ListItem>2016-2017</asp:ListItem>
+                                            <asp:ListItem>2017-2018</asp:ListItem>
+                                            <asp:ListItem>2018-2019</asp:ListItem>
+                                            <asp:ListItem>2019-2020</asp:ListItem>
+                                        </asp:DropDownList></td>
+                                </tr>
+                              </table>
+                            </div>
+                            <div> <asp:Button ID="btnSearch" Text="Search" Color="Black" ForeColor="#333333" runat="server" OnClick="search_Click"  /></div>
                             <div runat="server" >
-                                <asp:GridView ID="cashList" class="cashList-Frm"  OnSelectedIndexChanged="GridView1_SelectedIndexChanged" runat="server" ForeColor="#333333" CellPadding="4" GridLines="None">
-                                    <AlternatingRowStyle BackColor="White" Wrap="False" />
-                                    <EditRowStyle BackColor="#7C6F57" />
-                                    <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                    <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                                    <RowStyle BackColor="#E3EAEB" />
-                                    <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-                                    <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                                    <SortedAscendingHeaderStyle BackColor="#246B61" />
-                                    <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                                    <SortedDescendingHeaderStyle BackColor="#15524A" />
+                                <asp:GridView ID="cashList" class="cashList-Frm" Width="100%"  runat="server" CellPadding="4" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellSpacing="3">
+                                    <AlternatingRowStyle Wrap="False" />
+                                    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+                                    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+                                    <RowStyle BackColor="White" ForeColor="#330099" />
+                                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+                                    <SortedAscendingCellStyle BackColor="#FEFCEB" />
+                                    <SortedAscendingHeaderStyle BackColor="#AF0101" />
+                                    <SortedDescendingCellStyle BackColor="#F6F0C0" />
+                                    <SortedDescendingHeaderStyle BackColor="#7E0000" />
                                 </asp:GridView>
                             </div>
                             <div><asp:Button ID="viewDetail" Text="Detail" Color="Black" ForeColor="#333333" runat="server" OnClick="viewDetail_Click" />

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="styles/BgImage.css" type="text/css" />
 
       
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="http://localhost:59463/code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <link rel="stylesheet" href="/resources/demos/style.css">
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -158,18 +158,8 @@
                                         <asp:Label ID="LabGrade" CssClass="Lab-format" runat="server">Grade*</asp:Label></td>
                                     <td><span style="margin-left: 2em"></span></td>
                                     <td>
-                                        <asp:DropDownList ID="CoboGrade" CssClass="Txtbox-format" AutoPostBack="true" OnSelectedIndexChanged="CoboSelect_Change" OnTextChanged="CoboSelect_Change" runat="server">
-                                            <asp:ListItem></asp:ListItem>
-                                            <asp:ListItem Value="Grade 1">Grade 1</asp:ListItem>
-                                            <asp:ListItem>Grade2</asp:ListItem>
-                                            <asp:ListItem>Grade3</asp:ListItem>
-                                            <asp:ListItem>Grade4</asp:ListItem>
-                                            <asp:ListItem>Grade5</asp:ListItem>
-                                            <asp:ListItem>Grade6</asp:ListItem>
-                                            <asp:ListItem>Grade7</asp:ListItem>
-                                            <asp:ListItem>Grade8</asp:ListItem>
-                                            <asp:ListItem>Grade9</asp:ListItem>
-                                            <asp:ListItem>Grade10</asp:ListItem>
+                                        <asp:DropDownList ID="CoboGrade" CssClass="Txtbox-format" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="CoboSelect_Change" runat="server">
+                                            <asp:ListItem Text="--Select One ---" Value="       ">    </asp:ListItem>
                                         </asp:DropDownList></td>
                                     <td><span style="margin-left: 2em"></span></td>
                                     <td>

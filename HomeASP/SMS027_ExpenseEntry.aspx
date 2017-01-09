@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="styles/BgImage.css" type="text/css" />
 
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="http://localhost:59463/code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -54,7 +54,8 @@
                                 <asp:Image ID="stdInfo" runat="server" Style="border-radius: 7px 7px" Height="100px" Width="150px" BackColor="#1A74BA" ToolTip="Student Information" /><br />
                             </a>
                             <ul>
-                                <li><a href="SMS003_StudentEntry.aspx">Student Entry</a></li>
+                                <li><a href="SMS003_StudentEntry.aspx">
+                                Student Entry                     
                                 <li><a href="SMS004_StudentList.aspx">Student List</a></li>
                                 <li><a href="SMS017_StudentCashDetail.aspx">Payment</a></li>
                             </ul>
@@ -119,7 +120,7 @@
                     </li>
                     <li>
                         <a href="index.html">Exit</a>
-                   
+
                     </li>
                 </ul>
                 <div id="page-separate" style="background-color: #b1f2eb">
@@ -147,81 +148,55 @@
                                             </asp:DropDownList></td>
                                         <td><span style="margin-left: 2em"></span></td>
                                         <td>
-                                            <asp:Label ID="LblDate" CssClass="Lab-format" runat="server">Expance Date*</asp:Label></td>
+                                            <asp:Label ID="LblExpDate" CssClass="Lab-format" runat="server">Expance Date*</asp:Label></td>
                                         <td>
-                                           <asp:TextBox CssClass="datepicker" ID="cashDate" Style="color: black" runat="server" /></td>
+                                            <asp:TextBox CssClass="datepicker" ID="cashDate" Style="color: black" runat="server" /></td>
                                     </tr>
                                     <tr class="spaceUnder">
                                         <td>
-                                            <asp:Label ID="LabStudId" CssClass="Lab-format" runat="server">Expance Title </asp:Label></td>
+                                            <asp:Label ID="LabExpTitle" CssClass="Lab-format" runat="server">Expance Title </asp:Label></td>
                                         <td><span style="margin-left: 2em"></span></td>
                                         <td>
-                                            <asp:TextBox ID="TxtStudID" CssClass="Txtbox-format" runat="server" ForeColor="Black"></asp:TextBox></td>
+                                            <asp:TextBox ID="TxtExpTitle" CssClass="Txtbox-format" runat="server" ForeColor="Black"></asp:TextBox></td>
                                         <td><span style="margin-left: 2em"></span></td>
                                         <td>
-                                            <asp:Label ID="Label1" CssClass="Lab-format" runat="server">Remark</asp:Label></td>
+                                            <asp:Label ID="LabRe" CssClass="Lab-format" runat="server">Remark</asp:Label></td>
                                         <td>
-                                            <asp:TextBox ID="TxtStuName" CssClass="Txtbox-format" runat="server"></asp:TextBox></td>
+                                            <asp:TextBox ID="TxtRe" CssClass="Txtbox-format" runat="server"></asp:TextBox></td>
                                     </tr>
+
                                 </table>
+                                <div>
+                                    <asp:Button ID="BtnPay" runat="server" Text="Save" Style="text-align: center; color: black; border-radius: 3px 3px; margin: 4px 100px 2px 4px; float: right; float: right" OnClick="BtnSave_Click" />
+                                    <asp:Button ID="BtnConfirm" runat="server" Text="confirm" Style="text-align: center; color: black; border-radius: 3px 3px; margin: 4px 100px 2px 4px; float: right; float: right" OnClick="BtnConfirm_Click" />
+                                </div>
                             </div>
-                            <%--<div>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <asp:Panel ID="payPannel" runat="server" CssClass="pa-Format" GroupingText="Payment">
-                                                <asp:Label ID="labCashType" CssClass="Lab-format" runat="server">Cash Type</asp:Label>
-                                                <span style="margin-left: 1em; color: black" />:<span style="margin-left: 1em" />
-                                                <asp:Label ID="LabCashTypeVal" runat="server" ForeColor="Black"></asp:Label>
-                                                <br />
-                                                <br />
-                                                <asp:Label ID="LabAccNo" CssClass="Lab-format" runat="server">Account No.</asp:Label>
-                                                <span style="margin-left: 2em"></span>
-                                                <asp:TextBox ID="txtAccNoVal" CssClass="Txtbox-format" runat="server"></asp:TextBox>
-                                                <br />
-                                                <br />
-                                                <asp:Label ID="LabAmount" CssClass="Lab-format" runat="server">Amount </asp:Label>
-                                                <span style="margin-left: 2em"></span>
-                                                <asp:TextBox ID="TxtAmountVal" CssClass="Txtbox-format" runat="server"></asp:TextBox><br />
-                                                <br />
-                                                <asp:Button ID="BtnPay" runat="server" Text="Pay" Style="text-align: center; border-radius: 3px 3px; margin: 4px 100px 2px 4px; float: right;" OnClick="BtnPay_Click" />
-                                            </asp:Panel>
-                                        </td>
-                                        <td><span style="margin-left: 3em" /></td>
-                                        <td>
-                                            <asp:Panel ID="Panel1" runat="server" CssClass="pa-Format" GroupingText="Cash Detail">
-                                                <asp:Label ID="LabTtMon" CssClass="Lab-format" runat="server">Months</asp:Label>
-                                                <span style="margin-left: 1em; color: black" />:<span style="margin-left: 1em" />
-                                                <asp:Label ID="LabMonVal" runat="server" ForeColor="Black"></asp:Label>
-                                                <br />
-                                                <br />
-                                                <asp:Label ID="LabKyat" CssClass="Lab-format" runat="server">Kyats/Month</asp:Label>
-                                                <span style="margin-left: 1em; color: black" />:<span style="margin-left: 1em" />
-                                                <asp:Label ID="LabKyatVal" runat="server" ForeColor="Black"></asp:Label>
-                                                <br />
-                                                <br />
-                                                <asp:Label ID="LabPaid" CssClass="Lab-format" runat="server">Paid</asp:Label>
-                                                <span style="margin-left: 1em; color: black" />:<span style="margin-left: 1em" />
-                                                <asp:Label ID="LabPaidVal" runat="server" ForeColor="Black"></asp:Label>
-                                                <br />
-                                                <br />
-                                                <asp:Label ID="LabRemain" CssClass="Lab-format" runat="server">Remain</asp:Label>
-                                                <span style="margin-left: 1em; color: black" />:<span style="margin-left: 1em" />
-                                                <asp:Label ID="LabRemainVal" runat="server" ForeColor="Black"> </asp:Label>
-                                                <br />
-                                                <br />
-                                            </asp:Panel>
-                                        </td>
-                                    </tr>
-                                </table>
+                            <div id="Div2" runat="server">
+                                <asp:GridView ID="expHedList" class="cashList-Frm" ReadOnly="false" runat="server" Width="100%" CellPadding="6" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellSpacing="3">
+                                    <AlternatingRowStyle Wrap="False" />
+                                    <EmptyDataRowStyle BackColor="White" BorderStyle="Dotted" />
+                                    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+                                    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+                                    <RowStyle BackColor="White" ForeColor="#330099" Height="10px" />
+                                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+                                    <SortedAscendingCellStyle BackColor="#FEFCEB" />
+                                    <SortedAscendingHeaderStyle BackColor="#AF0101" />
+                                    <SortedDescendingCellStyle BackColor="#F6F0C0" />
+                                    <SortedDescendingHeaderStyle BackColor="#7E0000" />
+                                </asp:GridView>
                             </div>
-                            <asp:Label ID="ShAll" runat="server" Style="float: right"><a href="SMS016_StudentCashList.aspx">Show All Cash List</a></asp:Label>--%>
+                            <div style="float:right">
+                                <asp:Button ID="viewDetail" Text="Detail" Color="Black" ForeColor="#333333" runat="server" OnClick="viewDetail_Click" />
+                                <asp:Button ID="update" Text="Update" Color="Black" ForeColor="#333333" runat="server" OnClick="update_Click" />
+                                <asp:Button ID="delete" Text="Delete" Color="Black" ForeColor="#333333" runat="server" OnClick="delete_Click" />
+                            </div>
                         </form>
                         <br />
                     </div>
                 </div>
-            </div>
         </div>
+    </div>
     </div>
 </body>
 </html>

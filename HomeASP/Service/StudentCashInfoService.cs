@@ -108,13 +108,13 @@ namespace HomeASP.Service
 
             return stuDr;
         }
-        public DsPSMS.ST_STUDENT_DATARow getStuName(string edu_year, string stu_id)
+        public DsPSMS.ST_STUDENT_DATARow getStuName(DsPSMS.ST_STUDENT_DATARow dr)
         {
 
             try
             {
                 db.Open();
-                stuDr = stuCashDb.selectStuName(edu_year,stu_id);
+                stuDr = stuCashDb.selectStuName(dr);
                 msg = "Have data";
             }
             catch
