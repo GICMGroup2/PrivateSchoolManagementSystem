@@ -249,5 +249,29 @@ namespace HomeASP.Service
              resultData = timedb.selectTeacherByid(id);
              return resultData;
          }
+
+         public DataSet.DsPSMS.ST_TIMETABLEDataTable getTimetableByidanddate(int id,string date)
+         {
+             DataSet.DsPSMS.ST_TIMETABLEDataTable resultData = timedb.selectTimetableBydateandid(id,date);
+             return resultData;
+         }
+
+         public DataSet.DsPSMS.ST_TIMETABLEDataTable getTimetableByteacherid(int id)
+         {
+             DataSet.DsPSMS.ST_TIMETABLEDataTable resultData = timedb.selectTimetableByteacherid(id);
+             return resultData;
+         }
+
+         public DataSet.DsPSMS.ST_TIMETABLEDataTable getTimetableBydate(string date)
+         {
+             DataSet.DsPSMS.ST_TIMETABLEDataTable resultData = timedb.selectTimetableBydate(date);
+             return resultData;
+         }
+
+         public DataSet.DsPSMS.ST_TIMETABLEDataTable getTimetableBygradeid(int id)
+         {
+             DataSet.DsPSMS.ST_TIMETABLEDataTable resultData = timedb.selectTimetableBygradeid(id);
+             return resultData;
+         }
     }
 }
