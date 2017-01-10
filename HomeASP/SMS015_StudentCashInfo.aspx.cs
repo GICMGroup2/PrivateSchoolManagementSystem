@@ -41,7 +41,7 @@ namespace HomeASP
                 {
                     CoboYear.Text = (string)(Session["EDU_YEAR"] ?? "  ");
                     stDr.EDU_YEAR = CoboYear.Text;
-                    Session["EDU_YEAR"] = null;
+                    Session.Remove("EDU_YEAR");
                 }
                 if (Session["STUDENT_ID"] != null)
                 {
@@ -49,17 +49,17 @@ namespace HomeASP
                     stDr.STUDENT_ID = TxtStudID.Text;
                     stDr = stuCashService.getStuName(stDr);
                     TxtStuName.Text = stDr.STUDENT_NAME;
-                    grdDr = stuCashService.getGradeName(stDr.GRADE_ID);
-                   // CoboGrade.Text = grdDr.GRADE_NAME;
+                    grdDr.GRADE_ID = stDr.GRADE_ID;
+                    grdDt = grdSubService.selectGradeByID(grdDr, out msg);
                     CoboGrade.SelectedItem.Text = stDr.GRADE_ID;
                    
                     CoboSelect_Change(sender,e);
-                    Session["STUDENT_ID"] = null;
+                    Session.Remove("STUDENT_ID");
                 }
                 if (Session["CASH_DATE"] != null)
                 {
                     cashDate.Text = (string)(Session["CASH_DATE"] ?? "  ");
-                    Session["CASH_DATE"] = null;
+                    Session.Remove("CASH_DATE");
                 }
 
                 // binding grade to combo box

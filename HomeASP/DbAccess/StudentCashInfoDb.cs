@@ -5,6 +5,7 @@ using System.Web;
 using HomeASP.DbAccess;
 using System.Data.SqlClient;
 using HomeASP.DataSet;
+using System.Data;
 
 namespace HomeASP.DbAccess
 {
@@ -16,19 +17,7 @@ namespace HomeASP.DbAccess
         DsPSMS.ST_STUDENT_DATADataTable stuDt = new DsPSMS.ST_STUDENT_DATADataTable();
         DsPSMS.ST_GRADE_MSTDataTable grdDt = new DsPSMS.ST_GRADE_MSTDataTable();
         DsPSMS.ST_STUDENT_CASHDataTable stuCashDt = new DsPSMS.ST_STUDENT_CASHDataTable();
-
-        //select Cash Type from ST_STUDENT_DATA table
-        public DataSet.DsPSMS.ST_STUDENT_DATARow selectCashType(DataSet.DsPSMS.ST_STUDENT_DATARow dr)
-        {
-            Open();
-            query = "SELECT* FROM ST_STUDENT_DATA WHERE STUDENT_ID='" + dr.STUDENT_ID + "' AND EDU_YEAR='" + dr.EDU_YEAR + "' AND STUDENT_NAME='" + dr.STUDENT_NAME + "'AND GRADE_ID='" + dr.GRADE_ID + "'";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(stuDt);
-            Close();
-            return stuDt[0];
-        }
-
+      
         //insert student's cash information into ST_STUDENT_CASH table
         public int insertStuCash(DataSet.DsPSMS.ST_STUDENT_CASHRow dr)
         {
@@ -58,9 +47,23 @@ namespace HomeASP.DbAccess
             return result;
         }
 
-        //select Cash information from ST_STUDENT_CASH table
-        public DataSet.DsPSMS.ST_STUDENT_CASHDataTable selectCashData(DataSet.DsPSMS.ST_STUDENT_CASHRow dr)
+        //select all cash information from ST_STUDENT_CASH table
+        public DataSet.DsPSMS.ST_STUDENT_CASHDataTable selectCashAllData()
         {
+            DsPSMS.ST_STUDENT_CASHDataTable stuCashDt = new DsPSMS.ST_STUDENT_CASHDataTable();
+            Open();
+            query = "SELECT* FROM ST_STUDENT_CASH ";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(stuCashDt);
+            Close();
+            return stuCashDt;
+        }
+
+        //select Cash information from ST_STUDENT_CASH table
+        public DataSet.DsPSMS.ST_STUDENT_CASHDataTable selectCashDataByIdYear(DataSet.DsPSMS.ST_STUDENT_CASHRow dr)
+        {
+            DsPSMS.ST_STUDENT_CASHDataTable stuCashDt = new DsPSMS.ST_STUDENT_CASHDataTable();
             Open();
             query = "SELECT* FROM ST_STUDENT_CASH WHERE STUDENT_ID='" + dr.STUDENT_ID + "' AND EDU_YEAR='" + dr.EDU_YEAR + "'";
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -70,16 +73,29 @@ namespace HomeASP.DbAccess
             return stuCashDt;
         }
 
-        //select all cash information from ST_STUDENT_CASH table
-        public DataSet.DsPSMS.ST_STUDENT_CASHDataTable selectCashAllData()
+        //select Cash Type from ST_STUDENT_DATA table
+        public DataSet.DsPSMS.ST_STUDENT_DATARow selectCashType(DataSet.DsPSMS.ST_STUDENT_DATARow dr)
         {
+            DsPSMS.ST_STUDENT_CASHDataTable stuCashDt = new DsPSMS.ST_STUDENT_CASHDataTable();
             Open();
-            query = "SELECT* FROM ST_STUDENT_CASH ";
+            query = "SELECT* FROM ST_STUDENT_DATA WHERE STUDENT_ID='" + dr.STUDENT_ID + "' AND EDU_YEAR='" + dr.EDU_YEAR + "' AND STUDENT_NAME='" + dr.STUDENT_NAME + "'AND GRADE_ID='" + dr.GRADE_ID + "'";
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(stuCashDt);
+            da.Fill(stuDt);
             Close();
-            return stuCashDt;
+            return stuDt[0];
         }
+        // select Student's name from ST_STUDENT_DATA table by STUDENT_ID and EDU_YEAR
+        public DataSet.DsPSMS.ST_STUDENT_DATARow selectStuName(DataSet.DsPSMS.ST_STUDENT_DATARow dr)
+        {
+            Open();
+            query = "SELECT* FROM ST_STUDENT_DATA WHERE STUDENT_ID='" + dr.STUDENT_ID + "' AND EDU_YEAR='" + dr.EDU_YEAR + "'";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(stuDt);
+            Close();
+            return stuDt[0];
+        }
+
     }
 }

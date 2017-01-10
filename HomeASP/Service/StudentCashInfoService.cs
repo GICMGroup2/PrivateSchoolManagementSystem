@@ -13,7 +13,6 @@ namespace HomeASP.Service
         dbAccess db = new dbAccess();
         StudentCashInfoDb stuCashDb = new StudentCashInfoDb();
         DsPSMS.ST_STUDENT_CASHDataTable stuCashDt = new DsPSMS.ST_STUDENT_CASHDataTable();
-        //DsPSMS.ST_STUDENT_CASHRow stuCashDr = new DsPSMS.ST_STUDENT_CASHDataTable().NewST_STUDENT_CASHRow();
         DsPSMS.ST_STUDENT_DATARow stuDr = new DsPSMS.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
         DsPSMS.ST_GRADE_MSTRow grDr = new DsPSMS.ST_GRADE_MSTDataTable().NewST_GRADE_MSTRow();
 
@@ -45,27 +44,6 @@ namespace HomeASP.Service
             return isOk;
         }
 
-        public DataSet.DsPSMS.ST_STUDENT_CASHDataTable getCashData(DataSet.DsPSMS.ST_STUDENT_CASHRow stuCashDr, out string msg)
-        {
-            try
-            {
-                db.Open();
-                stuCashDt = stuCashDb.selectCashData(stuCashDr);
-                msg = "Have data";
-            }
-            catch
-            {
-                msg = "error occurs when selecting cash data";
-                return null;
-            }
-            finally
-            {
-                db.Close();
-            }
-
-            return stuCashDt;
-        }
-
         public DataSet.DsPSMS.ST_STUDENT_CASHDataTable getCashAllData()
         {
             try
@@ -76,7 +54,28 @@ namespace HomeASP.Service
             }
             catch
             {
-               // msg = "error occurs when selecting cash data";
+                // msg = "error occurs when selecting cash data";
+                return null;
+            }
+            finally
+            {
+                db.Close();
+            }
+
+            return stuCashDt;
+        }
+
+        public DataSet.DsPSMS.ST_STUDENT_CASHDataTable getCashData(DataSet.DsPSMS.ST_STUDENT_CASHRow stuCashDr, out string msg)
+        {
+            try
+            {
+                db.Open();
+                stuCashDt = stuCashDb.selectCashDataByIdYear(stuCashDr);
+                msg = "Have data";
+            }
+            catch
+            {
+                msg = "error occurs when selecting cash data";
                 return null;
             }
             finally
@@ -129,28 +128,5 @@ namespace HomeASP.Service
 
             return stuDr;
         }
-
-        public DsPSMS.ST_GRADE_MSTRow getGradeName(string grade_id)
-        {
-
-            try
-            {
-                db.Open();
-                grDr = stuCashDb.selectGradeName(grade_id);
-                msg = "Have data";
-            }
-            catch
-            {
-                msg = "error occurs when selecting cash type";
-                return null;
-            }
-            finally
-            {
-                db.Close();
-            }
-
-            return grDr;
-        }
-
     }
 }
