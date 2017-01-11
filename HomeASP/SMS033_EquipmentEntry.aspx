@@ -14,7 +14,16 @@
     <link rel="stylesheet" href="styles/style.css" type="text/css" />
     <link rel="stylesheet" href="styles/booking.css" type="text/css" />
     <link rel="stylesheet" href="styles/BgImage.css" type="text/css" />
+    <link rel="stylesheet" href="http://localhost:59463/code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+    <script type="text/javascript">
+        $(function () {
+            $(".datepicker").datepicker();
+        });
+    </script>
 </head>
 
 <body>
@@ -113,61 +122,95 @@
                 </ul>
 
                 <div id="page-separate" style="background-color: #b1f2eb">
-                    <div id="bg-Frm">
+                    <div id="no-padding">
                         <form id="cashFrm" runat="server">
-                            <div style="float: left">
-                                <table id="cashTbl" runat="server">
+                            <div style="float: left; padding: 20px 20px 20px 20px">
+                                <table id="cashTbl" style="padding: 20px 20px 20px 20px" runat="server">
                                     <tr class="spaceUnder">
+                                        <td>
+                                            <asp:Label ID="Label3" CssClass="Lab-format" runat="server">Year*</asp:Label></td>
+                                        <td><span style="margin-left: 2em">:</span></td>
+                                        <td>
+                                            <asp:DropDownList ID="CoboYear1" CssClass="Txtbox-format" runat="server" AutoPostBack="true" Width="226px">
+                                                <asp:ListItem></asp:ListItem>
+                                                <asp:ListItem>2010-2011</asp:ListItem>
+                                                <asp:ListItem>2011-2012</asp:ListItem>
+                                                <asp:ListItem>2012-2013</asp:ListItem>
+                                                <asp:ListItem>2013-2014</asp:ListItem>
+                                                <asp:ListItem>2014-2015</asp:ListItem>
+                                                <asp:ListItem>2015-2016</asp:ListItem>
+                                                <asp:ListItem>2016-2017</asp:ListItem>
+                                                <asp:ListItem>2017-2018</asp:ListItem>
+                                                <asp:ListItem>2018-2019</asp:ListItem>
+                                                <asp:ListItem>2019-2020</asp:ListItem>
+                                            </asp:DropDownList></td>
+                                        <td><span style="margin-left: 2em"></span></td>
+                                        <td>
+                                            <asp:Label ID="LabDate" CssClass="Lab-format" runat="server">Date*</asp:Label></td>
+                                        <td>
+                                            <asp:TextBox CssClass="datepicker" ID="EqpDate" Style="color: black" runat="server" /></td>
+                                    </tr>
+                                    <tr class="spaceUnder">
+                                        <td>
+                                            <asp:Label ID="LabEqpName" CssClass="Lab-format" runat="server">Equipment Name</asp:Label></td>
+                                        <td><span style="margin-left: 2em">:</span></td>
+                                        <td>
+                                            <asp:TextBox ID="TxtEqpName" CssClass="Txtbox-format" Style="color: black" runat="server" Width="227px" /></td>
+                                        <td><span style="margin-left: 2em"></span></td>
+                                        <td>
+                                            <asp:Label ID="LabQty" CssClass="Lab-format" runat="server">Quantity</asp:Label></td>
+                                        <td>
+                                            <asp:TextBox ID="TxtQty" CssClass="Txtbox-format" runat="server" ForeColor="Black" Width="247px"></asp:TextBox></td>
+                                    </tr>
+                                    <tr class="spaceUnder">
+                                        <td>
+                                            <asp:Label ID="LabType" CssClass="Lab-format" runat="server">Type</asp:Label></td>
+                                        <td><span style="margin-left: 2em">:</span></td>
+                                        <td>
+                                            <asp:TextBox ID="TxtType" CssClass="Txtbox-format" Style="color: black" runat="server" Width="227px" /></td>
+                                        <td><span style="margin-left: 2em"></span></td>
+                                        <td>
+                                            <asp:Label ID="LabRemark" CssClass="Lab-format" runat="server">Remark</asp:Label></td>
+                                        <td>
+                                            <asp:TextBox ID="TxtRemark" CssClass="Txtbox-format" runat="server" ForeColor="Black" Width="247px"></asp:TextBox></td>
                                     </tr>
                                 </table>
+                                <div>
+                                    <asp:Button ID="ButSave" Text="Save" runat="server" Style="text-align: center; border-radius: 3px 3px; margin: 4px 100px 2px 4px; float: right" OnClick="btnSave_Click" />
+                                </div>
                             </div>
-                            <%--<table id="cashTb2" runat="server">
-                                <tr class="spaceUnder">
-                                    <td>
 
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </table>--%>
-                            <div style="float: right">
+                            <div id="dd" style="float: right; padding: 5px 5px 0px 0px; margin: 0px 0px 0px 0px; ">
+                                <asp:Panel ID="EqmMstEntPannel" runat="server" CssClass="mst-entry-format" GroupingText="Entry" Visible="false">
+                                    <asp:Label ID="LabEquipId" CssClass="Lab-format" runat="server">ID*</asp:Label>
+                                    <span style="margin-left: 1em; color: black" />:<span style="margin-left: 1em" />
+                                    <asp:TextBox ID="TxtEquipID" CssClass="Txtbox-format" runat="server" ForeColor="Black"></asp:TextBox>
+                                    <br />
+                                    <br />
+                                    <asp:Label ID="LabEquipName" CssClass="Lab-format" runat="server">Name*</asp:Label>
+                                    <span style="margin-left: 2em"></span>
+                                    <asp:TextBox ID="TxtEquipName" CssClass="Txtbox-format" runat="server"></asp:TextBox>
+                                    <br />
+                                    <br />
+                                    <asp:Label ID="LabYear" CssClass="Lab-format" runat="server">Year*</asp:Label>
+                                    <span style="margin-left: 2em"></span>
+                                    <asp:DropDownList ID="CoboYear" CssClass="Txtbox-format" runat="server" AutoPostBack="true">
+                                        <asp:ListItem></asp:ListItem>
+                                        <asp:ListItem>2010-2011</asp:ListItem>
+                                        <asp:ListItem>2011-2012</asp:ListItem>
+                                        <asp:ListItem>2012-2013</asp:ListItem>
+                                        <asp:ListItem>2013-2014</asp:ListItem>
+                                        <asp:ListItem>2014-2015</asp:ListItem>
+                                        <asp:ListItem>2015-2016</asp:ListItem>
+                                        <asp:ListItem>2016-2017</asp:ListItem>
+                                        <asp:ListItem>2017-2018</asp:ListItem>
+                                        <asp:ListItem>2018-2019</asp:ListItem>
+                                        <asp:ListItem>2019-2020</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:Button ID="BtnEquipSave" Text="Save" runat="server" Style="text-align: center; border-radius: 3px 3px; margin: 4px 100px 2px 4px; float: right" OnClick="save_Click" />
+                                </asp:Panel>
                             </div>
-                            <div style="float:right; padding:0px 0px 0px 0px;margin:0px 0px 0px 0px">
-                                <%--<table>
-                                    <tr>
-                                        <td style="float:right">--%>
-                                            <asp:Panel ID="EqmMstEntPannel" runat="server" CssClass="mst-entry-format" GroupingText="Entry">
-                                                <asp:Label ID="LabEquipId" CssClass="Lab-format" runat="server">ID*</asp:Label>
-                                                <span style="margin-left: 1em; color: black" />:<span style="margin-left: 1em" />
-                                                <asp:TextBox ID="TxtEquipID" CssClass="Txtbox-format" runat="server" ForeColor="Black"></asp:TextBox>
-                                                <br />
-                                                <br />
-                                                <asp:Label ID="LabEquipName" CssClass="Lab-format" runat="server">Name*</asp:Label>
-                                                <span style="margin-left: 2em"></span>
-                                                <asp:TextBox ID="TxtEquipName" CssClass="Txtbox-format" runat="server"></asp:TextBox>
-                                                <br />
-                                                <br />
-                                                <asp:Label ID="LabYear" CssClass="Lab-format" runat="server">Year*</asp:Label>
-                                                <span style="margin-left: 2em"></span>
-                                                <asp:DropDownList ID="CoboYear" CssClass="Txtbox-format" runat="server" AutoPostBack="true">
-                                                    <asp:ListItem></asp:ListItem>
-                                                    <asp:ListItem>2010-2011</asp:ListItem>
-                                                    <asp:ListItem>2011-2012</asp:ListItem>
-                                                    <asp:ListItem>2012-2013</asp:ListItem>
-                                                    <asp:ListItem>2013-2014</asp:ListItem>
-                                                    <asp:ListItem>2014-2015</asp:ListItem>
-                                                    <asp:ListItem>2015-2016</asp:ListItem>
-                                                    <asp:ListItem>2016-2017</asp:ListItem>
-                                                    <asp:ListItem>2017-2018</asp:ListItem>
-                                                    <asp:ListItem>2018-2019</asp:ListItem>
-                                                    <asp:ListItem>2019-2020</asp:ListItem>
-                                                </asp:DropDownList>
-                                                <asp:Button ID="BtnEquipSave" Text="Save" runat="server" Style="text-align: center; border-radius: 3px 3px; margin: 4px 100px 2px 4px;" OnClick="save_Click" />
-                                            </asp:Panel>
-                                        <%--</td>
-                                    </tr>
-                                </table>--%>
-                            </div>
-                            <asp:Label ID="ShAll" runat="server" Style="float: right"><a href="SMS016_StudentCashList.aspx">Show All Cash List</a></asp:Label>
+                            <%--<asp:Label ID="ShAll" runat="server" Style="float: right"><a href="SMS016_StudentCashList.aspx">Show All Cash List</a></asp:Label>--%>
                         </form>
                         <br />
                     </div>
