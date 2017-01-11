@@ -40,6 +40,34 @@ namespace HomeASP.Service
             return isOk;
         }
 
+        public bool SaveEquipmentData(DsPSMS.ST_EQUIPMENT_DATARow EqiDataDr, out string msg)
+        {
+            bool isOk = true;
+
+            if (EqiDataDr == null)
+            {
+                msg = "data is empty ";
+                return false;
+            }
+            try
+            {
+                Open();
+                int result = equipDb.insertEquipData(EqiDataDr);
+                msg = "insert complete";
+            }
+            catch
+            {
+                msg = "error occurs when inserting data Student Cash Information";
+                return false;
+            }
+            finally
+            {
+                Close();
+            }
+
+            return isOk;
+        }
+
         public DataSet.DsPSMS.ST_EQUIPMENT_MSTDataTable getAllEquipMST()
         {
             DsPSMS.ST_EQUIPMENT_MSTDataTable EqMSTDt = new DsPSMS.ST_EQUIPMENT_MSTDataTable();
