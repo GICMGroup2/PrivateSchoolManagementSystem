@@ -39,6 +39,34 @@ namespace HomeASP.DbAccess
             return result;
         }
 
+        //insert Equipment Data  into ST_EQUIPMENT_DATA table
+        public int insertEquipData(DsPSMS.ST_EQUIPMENT_DATARow dr)
+        {
+            if (dr == null)
+                return -1;
+
+            Open();
+            query = "INSERT INTO ST_EQUIPMENT_DATA (EDU_YEAR, EQUIPMENT_ID, DATE, QUANTITY, TYPE, REMARK, CRT_DT_TM, CRT_USER_ID, UPD_DT_TM, UPD_USER_ID, DEL_FLG)";
+
+            data += " '" + dr.EDU_YEAR + "'";
+            data += ", '" + dr.EQUIPMENT_ID + "'";
+            data += ", '" + dr.DATE + "'";
+            data += ", '" + dr.QUANTITY + "'";
+            data += ", '" + dr.TYPE + "'";
+            data += ", '" + dr.REMARK + "'";
+            data += ", '" + dr.CRT_DT_TM + "'";
+            data += ", '" + dr.CRT_USER_ID + "'";
+            data += ", '" + dr.UPD_DT_TM + "'";
+            data += ", '" + dr.UPD_USER_ID + "'";
+            data += ", " + 0;
+
+            query += " VALUES (" + data + ");";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            result = cmd.ExecuteNonQuery();
+            Close();
+            return result;
+        }
+
         // select all Equipment data from ST_EQUIPMENT_MST
         public DsPSMS.ST_EQUIPMENT_MSTDataTable selectAllEquipMSTData()
         {
