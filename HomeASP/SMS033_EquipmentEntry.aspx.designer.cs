@@ -166,13 +166,13 @@ namespace HomeASP {
         protected global::System.Web.UI.WebControls.Label LabEqpName;
         
         /// <summary>
-        /// TxtEqpName control.
+        /// CoboEquipName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtEqpName;
+        protected global::System.Web.UI.WebControls.DropDownList CoboEquipName;
         
         /// <summary>
         /// LabQty control.
@@ -238,6 +238,15 @@ namespace HomeASP {
         protected global::System.Web.UI.WebControls.Button ButSave;
         
         /// <summary>
+        /// BtnConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnConfirm;
+        
+        /// <summary>
         /// EqmMstEntPannel control.
         /// </summary>
         /// <remarks>
@@ -274,13 +283,13 @@ namespace HomeASP {
         protected global::System.Web.UI.WebControls.Label LabEquipName;
         
         /// <summary>
-        /// TxtEquipName control.
+        /// TxtEqpName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtEquipName;
+        protected global::System.Web.UI.WebControls.TextBox TxtEqpName;
         
         /// <summary>
         /// LabYear control.
@@ -308,5 +317,41 @@ namespace HomeASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnEquipSave;
+        
+        /// <summary>
+        /// Div2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
+        
+        /// <summary>
+        /// EqpList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView EqpList;
+        
+        /// <summary>
+        /// BtnUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnUpdate;
+        
+        /// <summary>
+        /// BtnDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnDelete;
     }
 }

@@ -131,7 +131,7 @@
                                             <asp:Label ID="Label3" CssClass="Lab-format" runat="server">Year*</asp:Label></td>
                                         <td><span style="margin-left: 2em">:</span></td>
                                         <td>
-                                            <asp:DropDownList ID="CoboYear1" CssClass="Txtbox-format" runat="server" AutoPostBack="true" Width="226px">
+                                            <asp:DropDownList ID="CoboYear1" CssClass="Txtbox-format" runat="server" AutoPostBack="true" Width="198px">
                                                 <asp:ListItem></asp:ListItem>
                                                 <asp:ListItem>2010-2011</asp:ListItem>
                                                 <asp:ListItem>2011-2012</asp:ListItem>
@@ -148,40 +148,44 @@
                                         <td>
                                             <asp:Label ID="LabDate" CssClass="Lab-format" runat="server">Date*</asp:Label></td>
                                         <td>
-                                            <asp:TextBox CssClass="datepicker" ID="EqpDate" Style="color: black" runat="server" /></td>
+                                            <asp:TextBox CssClass="datepicker" ID="EqpDate" Style="color: black" runat="server" Width="140px" /></td>
                                     </tr>
                                     <tr class="spaceUnder">
                                         <td>
                                             <asp:Label ID="LabEqpName" CssClass="Lab-format" runat="server">Equipment Name</asp:Label></td>
                                         <td><span style="margin-left: 2em">:</span></td>
                                         <td>
-                                            <asp:TextBox ID="TxtEqpName" CssClass="Txtbox-format" Style="color: black" runat="server" Width="227px" /></td>
+                                            <asp:DropDownList ID="CoboEquipName" CssClass="Txtbox-format" AutoPostBack="true" AppendDataBoundItems="true" runat="server">
+                                                
+                                            </asp:DropDownList>
+                                        </td>
                                         <td><span style="margin-left: 2em"></span></td>
                                         <td>
                                             <asp:Label ID="LabQty" CssClass="Lab-format" runat="server">Quantity</asp:Label></td>
                                         <td>
-                                            <asp:TextBox ID="TxtQty" CssClass="Txtbox-format" runat="server" ForeColor="Black" Width="247px"></asp:TextBox></td>
+                                            <asp:TextBox ID="TxtQty" CssClass="Txtbox-format" runat="server" ForeColor="Black" Width="200px"></asp:TextBox></td>
                                     </tr>
                                     <tr class="spaceUnder">
                                         <td>
                                             <asp:Label ID="LabType" CssClass="Lab-format" runat="server">Type</asp:Label></td>
                                         <td><span style="margin-left: 2em">:</span></td>
                                         <td>
-                                            <asp:TextBox ID="TxtType" CssClass="Txtbox-format" Style="color: black" runat="server" Width="227px" /></td>
+                                            <asp:TextBox ID="TxtType" CssClass="Txtbox-format" Style="color: black" runat="server" Width="198px" /></td>
                                         <td><span style="margin-left: 2em"></span></td>
                                         <td>
                                             <asp:Label ID="LabRemark" CssClass="Lab-format" runat="server">Remark</asp:Label></td>
                                         <td>
-                                            <asp:TextBox ID="TxtRemark" CssClass="Txtbox-format" runat="server" ForeColor="Black" Width="247px"></asp:TextBox></td>
+                                            <asp:TextBox ID="TxtRemark" CssClass="Txtbox-format" runat="server" ForeColor="Black" Width="199px"></asp:TextBox></td>
                                     </tr>
                                 </table>
                                 <div>
-                                    <asp:Button ID="ButSave" Text="Save" runat="server" Style="text-align: center; border-radius: 3px 3px; margin: 4px 100px 2px 4px; float: right" OnClick="btnSave_Click" />
+                                    <asp:Button ID="ButSave" Text="Save" runat="server" Style="text-align: center; color: black; border-radius: 3px 3px; margin: 4px 100px 2px 4px; float: right" OnClick="btnSave_Click" />
+                                    <asp:Button ID="BtnConfirm" runat="server" Text="Confirm" Style="text-align: center; color: black; border-radius: 3px 3px; margin: 4px 100px 2px 4px; float: right; float: right" OnClick="BtnConfirm_Click" />
                                 </div>
                             </div>
 
-                            <div id="dd" style="float: right; padding: 5px 5px 0px 0px; margin: 0px 0px 0px 0px; ">
-                                <asp:Panel ID="EqmMstEntPannel" runat="server" CssClass="mst-entry-format" GroupingText="Entry" Visible="false">
+                            <div id="dd" style="float: right; padding: 5px 5px 0px 0px; margin: 0px 0px 0px 0px;">
+                                <asp:Panel ID="EqmMstEntPannel" runat="server" CssClass="mst-entry-format" GroupingText="Equipment Name Entry" Visible="true">
                                     <asp:Label ID="LabEquipId" CssClass="Lab-format" runat="server">ID*</asp:Label>
                                     <span style="margin-left: 1em; color: black" />:<span style="margin-left: 1em" />
                                     <asp:TextBox ID="TxtEquipID" CssClass="Txtbox-format" runat="server" ForeColor="Black"></asp:TextBox>
@@ -189,7 +193,7 @@
                                     <br />
                                     <asp:Label ID="LabEquipName" CssClass="Lab-format" runat="server">Name*</asp:Label>
                                     <span style="margin-left: 2em"></span>
-                                    <asp:TextBox ID="TxtEquipName" CssClass="Txtbox-format" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="TxtEqpName" CssClass="Txtbox-format" Style="color: black" runat="server" Width="198px" /></td>
                                     <br />
                                     <br />
                                     <asp:Label ID="LabYear" CssClass="Lab-format" runat="server">Year*</asp:Label>
@@ -207,10 +211,29 @@
                                         <asp:ListItem>2018-2019</asp:ListItem>
                                         <asp:ListItem>2019-2020</asp:ListItem>
                                     </asp:DropDownList>
-                                    <asp:Button ID="BtnEquipSave" Text="Save" runat="server" Style="text-align: center; border-radius: 3px 3px; margin: 4px 100px 2px 4px; float: right" OnClick="save_Click" />
+                                    <asp:Button ID="BtnEquipSave" Text="Save" runat="server" Style="text-align: center; border-radius: 3px 3px; margin: 4px 50px 2px 4px; float: right" OnClick="save_Click" />
                                 </asp:Panel>
                             </div>
-                            <%--<asp:Label ID="ShAll" runat="server" Style="float: right"><a href="SMS016_StudentCashList.aspx">Show All Cash List</a></asp:Label>--%>
+                            <div id="Div2" runat="server" style="padding:10px 10px 10px 10px">
+
+                                <asp:GridView ID="EqpList" class="cashList-Frm" Width="100%" runat="server" CellPadding="4" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellSpacing="3">
+                                    <AlternatingRowStyle Wrap="False" />
+                                    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+                                    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+                                    <RowStyle BackColor="White" ForeColor="#330099" />
+                                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+                                    <SortedAscendingCellStyle BackColor="#FEFCEB" />
+                                    <SortedAscendingHeaderStyle BackColor="#AF0101" />
+                                    <SortedDescendingCellStyle BackColor="#F6F0C0" />
+                                    <SortedDescendingHeaderStyle BackColor="#7E0000" />
+                                </asp:GridView>
+
+                            </div>
+                            <div id="btnDiv" style="float:right; padding: 10px 70px 0px 0px;">
+                                <asp:button ID="BtnUpdate" Text="Update" BackColor="White" ForeColor="Black" runat="server" OnClick="Update_Click"></asp:button>&nbsp&nbsp
+                                <asp:button ID="BtnDelete" Text="Delete" BackColor="White" ForeColor="Black" runat="server" OnClick="Delete_Click"></asp:button>
+                            </div>
                         </form>
                         <br />
                     </div>
