@@ -101,7 +101,7 @@ namespace HomeASP
             {
                 gradeList.DataSource = resultDt;
                 gradeList.DataTextField = "GRADE_NAME";
-                gradeList.DataValueField = "GRADE_NAME";
+                gradeList.DataValueField = "GRADE_ID";
                 gradeList.DataBind();
                 gradeList.Items.Insert(0, "Select Grade");
             }
