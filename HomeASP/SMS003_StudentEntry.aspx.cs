@@ -11,23 +11,6 @@ namespace HomeASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            imgSchool.ImageUrl = "~/Images/school.png";
-            stdInfo.ImageUrl = "~/Images/student.png";
-            attendanceInfo.ImageUrl = "~/Images/attendance.jpg";
-            examInfo.ImageUrl = "~/Images/exam.png";
-            teacherInfo.ImageUrl = "~/Images/teacher.png";
-            system.ImageUrl = "~/Images/system.jpg";
-
-
-        }
-
-        protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
     }
