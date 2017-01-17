@@ -13,12 +13,13 @@ namespace HomeASP
 {
     public partial class SMS029 : System.Web.UI.Page
     {
-       
+
         DsPSMS.ST_EXP_DETAILRow expDetDr = new DsPSMS.ST_EXP_DETAILDataTable().NewST_EXP_DETAILRow();
         ExpanseService expService = new ExpanseService();
         string msg = "";
         string subTitle;
         string amount;
+        string userId = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,7 +32,10 @@ namespace HomeASP
             system.ImageUrl = "~/Images/system.jpg";
             logoImage.ImageUrl = "~/Images/logo1.png";
 
-
+            if (Session["USER_ID"] != null)
+            {
+                userId = (string)(Session["USER_ID"] ?? "  ");
+            }
             if (Session["EXP_ID"] != null)
             {
                 LblExpIdVal.Text = (string)(Session["EXP_ID"] ?? "  ");
@@ -58,24 +62,38 @@ namespace HomeASP
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-         
+
             expDetDr.EXP_ID = Convert.ToInt32(LblExpIdVal.Text);
-            expDetDr.EXP_SUB_TITLE = TxtExpSubTitle.Text;
-            expDetDr.AMOUNT = TxtAmt.Text;
-            expDetDr.CRT_DT_TM = DateTime.Now;
-            expDetDr.CRT_USER_ID = "";
-            expDetDr.UPD_DT_TM = "";
-            expDetDr.UPD_USER_ID = "";
-            expDetDr.DEL_FLG = 0;
+            if (TxtExpSubTitle.Text.Trim().Length != 0)
+            {
+                expDetDr.EXP_SUB_TITLE = TxtExpSubTitle.Text;
+                if (TxtAmt.Text.Trim().Length != 0)
+                {
+                    expDetDr.AMOUNT = TxtAmt.Text;
+                    expDetDr.CRT_DT_TM = DateTime.Now;
+                    expDetDr.CRT_USER_ID = this.userId;
+                    expDetDr.UPD_DT_TM = DateTime.Now;
+                    expDetDr.UPD_USER_ID = "";
+                    expDetDr.DEL_FLG = 0;
 
-            expService.SaveExpDetInfo(expDetDr, out msg);
+                    expService.SaveExpDetInfo(expDetDr, out msg);
 
-            DataTable ds = new DataTable();
-            ds = null;
-            expDetList.DataSource = ds;
-            expDetList.DataBind();
+                    DataTable ds = new DataTable();
+                    ds = null;
+                    expDetList.DataSource = ds;
+                    expDetList.DataBind();
 
-            showExpHedGv();
+                    showExpHedGv();
+                }
+                else
+                {
+                    errAmm.Text = "Please Enter Ammount";
+                }
+            }
+            else
+            {
+                errTT.Text = "Please Enter the Expanse Sub Title";
+            }
         }
 
         protected void viewDetail_Click(object sender, EventArgs e)
@@ -88,14 +106,17 @@ namespace HomeASP
             DsPSMS.ST_EXP_DETAILDataTable expDetDt = new DsPSMS.ST_EXP_DETAILDataTable();
 
             int expId = Convert.ToInt32(LblExpIdVal.Text);
-            expDetDt = expService.getExpDetData(expId);
-            //expDetDt.Columns.Remove(expDetDt.Columns[0]);
-            expDetDt.Columns.Remove(expDetDt.Columns[4]);
-            expDetDt.Columns.Remove(expDetDt.Columns[4]);
-            expDetDt.Columns.Remove(expDetDt.Columns[4]);
-            expDetDt.Columns.Remove(expDetDt.Columns[4]);
-            expDetList.DataSource = expDetDt;
-            expDetList.DataBind();
+            expDetDt = expService.getExpDetDataById(expId, out msg);
+            if (expDetDt != null)
+            {
+                //expDetDt.Columns.Remove(expDetDt.Columns[0]);
+                expDetDt.Columns.Remove(expDetDt.Columns[4]);
+                expDetDt.Columns.Remove(expDetDt.Columns[4]);
+                expDetDt.Columns.Remove(expDetDt.Columns[4]);
+                expDetDt.Columns.Remove(expDetDt.Columns[4]);
+                expDetList.DataSource = expDetDt;
+                expDetList.DataBind();
+            }
 
         }
 
@@ -103,7 +124,7 @@ namespace HomeASP
         {
             if (expDetList.SelectedIndex < 0)
             {
-
+                errGdd.Text = "Please select the record";
             }
             else
             {
@@ -111,7 +132,7 @@ namespace HomeASP
                 expDetDr.EXP_SUB_TITLE = expDetList.SelectedRow.Cells[1].Text;
                 expDetDr.AMOUNT = expDetList.SelectedRow.Cells[2].Text;
                 expDetDr.CRT_DT_TM = Convert.ToDateTime(expDetList.SelectedRow.Cells[3].Text);
-                expService.deleteExpDet(expDetDr);
+                expService.deleteExpDet(expDetDr, out msg);
 
                 DataTable ds = new DataTable();
                 ds = null;
@@ -127,7 +148,7 @@ namespace HomeASP
             BtnPay.Enabled = false;
             if (expDetList.SelectedIndex < 0)
             {
-
+                errGdd.Text = "Please select the record";
             }
             else
             {
@@ -139,10 +160,12 @@ namespace HomeASP
 
         protected void BtnConfirm_Click(object sender, EventArgs e)
         {
-            expDetDr.EXP_ID =Convert.ToInt32(LblExpIdVal.Text);
+            expDetDr.EXP_ID = Convert.ToInt32(LblExpIdVal.Text);
             expDetDr.EXP_SUB_TITLE = TxtExpSubTitle.Text;
             expDetDr.AMOUNT = TxtAmt.Text;
             expDetDr.CRT_DT_TM = Convert.ToDateTime(expDetList.SelectedRow.Cells[3].Text);
+            expDetDr.CRT_DT_TM = DateTime.Now;
+            expDetDr.CRT_USER_ID = this.userId;
             expService.updateExpDetInfo(expDetDr, out msg);
             showExpHedGv();
 

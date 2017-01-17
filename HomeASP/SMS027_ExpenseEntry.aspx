@@ -128,7 +128,7 @@
                         <form id="cashFrm" runat="server">
                             <div style="float: left">
                                 <table id="cashTbl" runat="server">
-                                    <tr class="spaceUnder">
+                                    <tr>
                                         <td>
                                             <asp:Label ID="LabYear" CssClass="Lab-format" runat="server">Year*</asp:Label></td>
                                         <td><span style="margin-left: 2em"></span></td>
@@ -152,7 +152,19 @@
                                         <td>
                                             <asp:TextBox CssClass="datepicker" ID="cashDate" Style="color: black" runat="server" /></td>
                                     </tr>
-                                    <tr class="spaceUnder">
+                                    <tr>
+                                        <td>
+                                            <asp:Label ID="Label1" CssClass="Lab-format" runat="server"></asp:Label></td>
+                                        <td><span style="margin-left: 2em"></span></td>
+                                        <td>
+                                           <asp:Label ID="erryear" CssClass="errmsg-format" runat="server"></asp:Label></td>
+                                        <td><span style="margin-left: 2em"></span></td>
+                                        <td>
+                                            <asp:Label ID="Label2" CssClass="Lab-format" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="errDatee" CssClass="errmsg-format" runat="server"></asp:Label></td>
+                                    </tr>
+                                    <tr>
                                         <td>
                                             <asp:Label ID="LabExpTitle" CssClass="Lab-format" runat="server">Expance Title </asp:Label></td>
                                         <td><span style="margin-left: 2em"></span></td>
@@ -163,6 +175,18 @@
                                             <asp:Label ID="LabRe" CssClass="Lab-format" runat="server">Remark</asp:Label></td>
                                         <td>
                                             <asp:TextBox ID="TxtRe" CssClass="Txtbox-format" runat="server"></asp:TextBox></td>
+                                    </tr>
+                                    <tr class="spaceUnder">
+                                        <td>
+                                            <asp:Label ID="Label3" CssClass="Lab-format" runat="server">Expance Title </asp:Label></td>
+                                        <td><span style="margin-left: 2em"></span></td>
+                                        <td>
+                                            <asp:Label ID="errTitle" CssClass="errmsg-format" runat="server"></asp:Label></td>
+                                        <td><span style="margin-left: 2em"></span></td>
+                                        <td>
+                                            <asp:Label ID="Label4" CssClass="Lab-format" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="Label5" CssClass="errmsg-format" runat="server"></asp:Label></td>
                                     </tr>
 
                                 </table>
@@ -186,6 +210,7 @@
                                     <SortedDescendingHeaderStyle BackColor="#7E0000" />
                                 </asp:GridView>
                             </div>
+                            <div><asp:label id="errEgd" style="font-size:medium;color:red" runat="server"></asp:label></div>
                             <div style="float:right">
                                 <asp:Button ID="viewDetail" Text="Detail" Color="Black" ForeColor="#333333" runat="server" OnClick="viewDetail_Click" />
                                 <asp:Button ID="update" Text="Update" Color="Black" ForeColor="#333333" runat="server" OnClick="update_Click" />

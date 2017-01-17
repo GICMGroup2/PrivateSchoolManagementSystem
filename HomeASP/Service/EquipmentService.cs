@@ -12,11 +12,11 @@ namespace HomeASP.Service
     {
         EquipmentDb equipDb = new EquipmentDb();
 
-        public bool SaveEquipmentMST(DsPSMS.ST_EQUIPMENT_MSTRow EqiMstDr, out string msg)
+        public bool SaveEquipmentMST(DsPSMS.ST_EQUIPMENT_MSTRow dr, out string msg)
         {
             bool isOk = true;
 
-            if (EqiMstDr == null)
+            if (dr == null)
             {
                 msg = "data is empty ";
                 return false;
@@ -24,7 +24,7 @@ namespace HomeASP.Service
             try
             {
                     Open();
-                int result = equipDb.insertEquipMST(EqiMstDr);
+                int result = equipDb.insertEquipMST(dr);
                 msg = "insert complete";
             }
             catch
@@ -40,11 +40,11 @@ namespace HomeASP.Service
             return isOk;
         }
 
-        public bool SaveEquipmentData(DsPSMS.ST_EQUIPMENT_DATARow EqiDataDr, out string msg)
+        public bool SaveEquipmentData(DsPSMS.ST_EQUIPMENT_DATARow dr, out string msg)
         {
             bool isOk = true;
 
-            if (EqiDataDr == null)
+            if (dr == null)
             {
                 msg = "data is empty ";
                 return false;
@@ -52,7 +52,7 @@ namespace HomeASP.Service
             try
             {
                 Open();
-                int result = equipDb.insertEquipData(EqiDataDr);
+                int result = equipDb.insertEquipData(dr);
                 msg = "insert complete";
             }
             catch
@@ -68,19 +68,19 @@ namespace HomeASP.Service
             return isOk;
         }
 
-        public DataSet.DsPSMS.ST_EQUIPMENT_MSTDataTable getAllEquipMST()
+        public DataSet.DsPSMS.ST_EQUIPMENT_MSTDataTable getAllEquipMST(out string msg)
         {
             DsPSMS.ST_EQUIPMENT_MSTDataTable EqMSTDt = new DsPSMS.ST_EQUIPMENT_MSTDataTable();
 
             try
             {
                 Open();
-                EqMSTDt = equipDb.selectAllEquipMSTData();
-                //msg = "Have data";
+                EqMSTDt = equipDb.selectAllEquipMSt();
+                msg = "Have data";
             }
             catch
             {
-                // msg = "error occurs when selecting cash data";
+                 msg = "error occurs when selecting the equipment master";
                 return null;
             }
             finally
@@ -91,7 +91,7 @@ namespace HomeASP.Service
             return EqMSTDt;
         }
 
-        public DataSet.DsPSMS.ST_EQUIPMENT_MSTRow getEquipDataById(int id)
+        public DataSet.DsPSMS.ST_EQUIPMENT_MSTRow getEquipDataById(int id, out string msg)
         {
             DsPSMS.ST_EQUIPMENT_MSTDataTable EqMstDt = new DsPSMS.ST_EQUIPMENT_MSTDataTable();
 
@@ -99,11 +99,11 @@ namespace HomeASP.Service
             {
                 Open();
                 EqMstDt = equipDb.selectEquipDataById(id);
-                //msg = "Have data";
+                msg = "Have data";
             }
             catch
             {
-                // msg = "error occurs when selecting cash data";
+                 msg = "error occurs when selecting the equipment data";
                 return null;
             }
             finally
@@ -114,7 +114,7 @@ namespace HomeASP.Service
             return EqMstDt[0];
         }
 
-        public DataSet.DsPSMS.ST_EQUIPMENT_DATADataTable getAllEquipData()
+        public DataSet.DsPSMS.ST_EQUIPMENT_DATADataTable getAllEquipData(out string msg)
         {
             DsPSMS.ST_EQUIPMENT_DATADataTable EqDataDt = new DsPSMS.ST_EQUIPMENT_DATADataTable();
 
@@ -122,11 +122,11 @@ namespace HomeASP.Service
             {
                 Open();
                 EqDataDt = equipDb.selectAllEquipData();
-                //msg = "Have data";
+                msg = "Have data";
             }
             catch
             {
-                // msg = "error occurs when selecting cash data";
+                 msg = "error occurs when selecting the all equipment data";
                 return null;
             }
             finally
@@ -137,11 +137,11 @@ namespace HomeASP.Service
             return EqDataDt;
         }
 
-        public bool editEquipmentMST(DsPSMS.ST_EQUIPMENT_MSTRow EqiMstDr, out string msg)
+        public bool editEquipmentMST(DsPSMS.ST_EQUIPMENT_MSTRow dr, out string msg)
         {
             bool isOk = true;
 
-            if (EqiMstDr == null)
+            if (dr == null)
             {
                 msg = "data is empty ";
                 return false;
@@ -149,12 +149,12 @@ namespace HomeASP.Service
             try
             {
                 Open();
-                int result = equipDb.updateEquipMST(EqiMstDr);
-                msg = "insert complete";
+                int result = equipDb.updateEquipMST(dr);
+                msg = "Edited";
             }
             catch
             {
-                msg = "error occurs when inserting data Student Cash Information";
+                msg = "error occurs when editing the Equipment master";
                 return false;
             }
             finally
@@ -165,11 +165,11 @@ namespace HomeASP.Service
             return isOk;
         }
 
-        public bool editEquipmentData(DsPSMS.ST_EQUIPMENT_DATARow EqiDataDr, out string msg)
+        public bool editEquipmentData(DsPSMS.ST_EQUIPMENT_DATARow dr, out string msg)
         {
             bool isOk = true;
 
-            if (EqiDataDr == null)
+            if (dr == null)
             {
                 msg = "data is empty ";
                 return false;
@@ -177,12 +177,12 @@ namespace HomeASP.Service
             try
             {
                 Open();
-                int result = equipDb.updateEquipData(EqiDataDr);
-                msg = "insert complete";
+                int result = equipDb.updateEquipData(dr);
+                msg = "Edited";
             }
             catch
             {
-                msg = "error occurs when inserting data Student Cash Information";
+                msg = "error occurs when Editing the Equipment data ";
                 return false;
             }
             finally
@@ -193,11 +193,11 @@ namespace HomeASP.Service
             return isOk;
         }
 
-        public bool removeEquipmentMST(DsPSMS.ST_EQUIPMENT_MSTRow EqiMstDr, out string msg)
+        public bool removeEquipmentMST(DsPSMS.ST_EQUIPMENT_MSTRow dr, out string msg)
         {
             bool isOk = true;
 
-            if (EqiMstDr == null)
+            if (dr == null)
             {
                 msg = "data is empty ";
                 return false;
@@ -205,12 +205,12 @@ namespace HomeASP.Service
             try
             {
                 Open();
-                int result = equipDb.deleteEquipMST(EqiMstDr);
-                msg = "insert complete";
+                int result = equipDb.deleteEquipMST(dr);
+                msg = "deleted";
             }
             catch
             {
-                msg = "error occurs when inserting data Student Cash Information";
+                msg = "error occurs when deleting equipment master";
                 return false;
             }
             finally
@@ -221,11 +221,11 @@ namespace HomeASP.Service
             return isOk;
         }
 
-        public bool removeEquipmentData(DsPSMS.ST_EQUIPMENT_DATARow EqiMstDr, out string msg)
+        public bool removeEquipmentData(DsPSMS.ST_EQUIPMENT_DATARow dr, out string msg)
         {
             bool isOk = true;
 
-            if (EqiMstDr == null)
+            if (dr == null)
             {
                 msg = "data is empty ";
                 return false;
@@ -233,12 +233,12 @@ namespace HomeASP.Service
             try
             {
                 Open();
-                int result = equipDb.deleteEquipData(EqiMstDr);
-                msg = "insert complete";
+                int result = equipDb.deleteEquipData(dr);
+                msg = "Deleted";
             }
             catch
             {
-                msg = "error occurs when inserting data Student Cash Information";
+                msg = "error occurs when deleting the Equipment Data";
                 return false;
             }
             finally

@@ -149,7 +149,7 @@
                                         <td>
                                             <asp:Label ID="LblExpIdVal" Style="color: black" runat="server" /></td>
                                     </tr>
-                                    <tr class="spaceUnder">
+                                    <tr>
                                         <td>
                                             <asp:Label ID="LabExpSubTitle" CssClass="Lab-format" runat="server">Expance Sub Title </asp:Label></td>
                                         <td><span style="margin-left: 2em"></span></td>
@@ -160,6 +160,18 @@
                                             <asp:Label ID="LabAmt" CssClass="Lab-format" runat="server">Amount</asp:Label></td>
                                         <td>
                                             <asp:TextBox ID="TxtAmt" CssClass="Txtbox-format" runat="server"></asp:TextBox></td>
+                                    </tr>
+                                    <tr class="spaceUnder">
+                                        <td>
+                                            <asp:Label ID="Label1" CssClass="Lab-format" runat="server"></asp:Label></td>
+                                        <td><span style="margin-left: 2em"></span></td>
+                                        <td>
+                                            <asp:Label ID="errTT" CssClass="errmsg-format" runat="server" ></asp:Label></td>
+                                        <td><span style="margin-left: 2em"></span></td>
+                                        <td>
+                                            <asp:Label ID="Label2" CssClass="Lab-format" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="errAmm" CssClass="errmsg-format" runat="server" ></asp:Label></td>
                                     </tr>
 
                                 </table>
@@ -183,6 +195,7 @@
                                     <SortedDescendingHeaderStyle BackColor="#7E0000" />
                                 </asp:GridView>
                             </div>
+                            <div style="float:left"><asp:Label ID="errGdd" Font-Size="Medium" ForeColor="Red" runat="server"></asp:Label></div>
                             <div style="float:right">
                                 <asp:Button ID="viewDetail" Text="Detail" Color="Black" ForeColor="#333333" runat="server" OnClick="viewDetail_Click" />&nbsp&nbsp&nbsp&nbsp
                                 <asp:Button ID="update" Text="Update" Color="Black" ForeColor="#333333" runat="server" OnClick="update_Click" />&nbsp&nbsp&nbsp&nbsp

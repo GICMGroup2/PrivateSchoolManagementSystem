@@ -156,7 +156,9 @@
                                 </tr>
                               </table>
                             </div>
-                            <div> <asp:Button ID="btnSearch" Text="Search" Color="Black" ForeColor="#333333" runat="server" OnClick="search_Click"  /></div>
+                            <br />
+                            <br />
+                            <div style="float:left"><asp:Label ID="errSeach" ForeColor="Red" Font-Size="Medium" style="float:left" runat ="server"></asp:Label> <asp:Button ID="btnSearch" Text="Search" Color="Black" ForeColor="#333333" style="float:right" runat="server" OnClick="search_Click"  /></div>
                             <div runat="server" >
                                 <asp:GridView ID="cashList" class="cashList-Frm" Width="100%"  runat="server" CellPadding="4" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellSpacing="3">
                                     <AlternatingRowStyle Wrap="False" />
@@ -170,6 +172,9 @@
                                     <SortedDescendingCellStyle BackColor="#F6F0C0" />
                                     <SortedDescendingHeaderStyle BackColor="#7E0000" />
                                 </asp:GridView>
+                                <br />
+                                <br />
+                                <asp:Label ID="errGrid" ForeColor="Red" Font-Size="Medium" runat ="server"></asp:Label>
                             </div>
                             <div><asp:Button ID="viewDetail" Text="Detail" Color="Black" ForeColor="#333333" runat="server" OnClick="viewDetail_Click" />
                             </div>

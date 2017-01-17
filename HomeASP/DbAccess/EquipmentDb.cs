@@ -68,7 +68,7 @@ namespace HomeASP.DbAccess
         }
 
         // select all Equipment data from ST_EQUIPMENT_MST
-        public DsPSMS.ST_EQUIPMENT_MSTDataTable selectAllEquipMSTData()
+        public DsPSMS.ST_EQUIPMENT_MSTDataTable selectAllEquipMSt()
         {
             DsPSMS.ST_EQUIPMENT_MSTDataTable stuEquipMSTDt = new DsPSMS.ST_EQUIPMENT_MSTDataTable();
             Open();
@@ -103,7 +103,6 @@ namespace HomeASP.DbAccess
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(stuEquipMstDt);
             Close();
-            string tst = stuEquipMstDt[0].EQUIPMENT_NAME;
             return stuEquipMstDt;
         }
         

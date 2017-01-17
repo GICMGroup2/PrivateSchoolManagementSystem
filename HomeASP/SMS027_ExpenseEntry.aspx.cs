@@ -13,6 +13,7 @@ namespace HomeASP
     public partial class SMS027 : System.Web.UI.Page
     {
         string msg = "";
+        string userId = "";
         DsPSMS.ST_EXP_HEDDataTable ExpHedDt = new DsPSMS.ST_EXP_HEDDataTable();
         DsPSMS.ST_EXP_HEDRow expHedDr = new DsPSMS.ST_EXP_HEDDataTable().NewST_EXP_HEDRow();
         ExpanseService expService = new ExpanseService();
@@ -29,6 +30,10 @@ namespace HomeASP
             logoImage.ImageUrl = "~/Images/logo1.png";
 
             showExpHedGv();
+            if (Session["USER_ID"] != null)
+            {
+                userId = (string)(Session["USER_ID"] ?? "  ");
+            }
         }
 
         protected override void Render(System.Web.UI.HtmlTextWriter textWriter)
@@ -50,18 +55,39 @@ namespace HomeASP
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            expHedDr.EDU_YEAR = CoboYear.Text;
-            expHedDr.EXP_TITLE = TxtExpTitle.Text;
-            expHedDr.EXP_DATE = cashDate.Text;
-            expHedDr.REMARK = TxtRe.Text;
-            expHedDr.CRT_DT_TM = DateTime.Now;
-            expHedDr.CRT_USER_ID = "";
-            expHedDr.UPD_DT_TM = "";
-            expHedDr.UPD_USER_ID = "";
-            expHedDr.DEL_FLG = 0;
+            if (CoboYear.Text.Trim().Length != 0)
+            {
+                expHedDr.EDU_YEAR = CoboYear.Text;
+                if (TxtExpTitle.Text.Trim().Length != 0)
+                {
+                    expHedDr.EXP_TITLE = TxtExpTitle.Text;
+                    if (cashDate.Text.Trim().Length != 0)
+                    {
+                        expHedDr.EXP_DATE = cashDate.Text;
+                        expHedDr.REMARK = TxtRe.Text;
+                        expHedDr.CRT_DT_TM = DateTime.Now;
+                        expHedDr.CRT_USER_ID = this.userId;
+                        expHedDr.UPD_DT_TM = DateTime.Now;
+                        expHedDr.UPD_USER_ID = "";
+                        expHedDr.DEL_FLG = 0;
 
-            expService.SaveExpInfo(expHedDr, out msg);
-            showExpHedGv();
+                        expService.SaveExpHedInfo(expHedDr, out msg);
+                        showExpHedGv();
+                    }
+                    else
+                    {
+                        errDatee.Text = "Please choose the date";
+                    }
+                }
+                else
+                {
+                    errTitle.Text = "please enter expense title";
+                }
+            }
+            else
+            {
+                erryear.Text = "please choose the year";
+            }
         }
 
         protected void viewDetail_Click(object sender, EventArgs e)
@@ -73,14 +99,17 @@ namespace HomeASP
 
         protected void showExpHedGv()
         {
-            ExpHedDt = expService.getExpHedAllData();
-            //ExpHedDt.Columns.Remove(ExpHedDt.Columns[0]);
-            ExpHedDt.Columns.Remove(ExpHedDt.Columns[6]);
-            ExpHedDt.Columns.Remove(ExpHedDt.Columns[6]);
-            ExpHedDt.Columns.Remove(ExpHedDt.Columns[6]);
-            ExpHedDt.Columns.Remove(ExpHedDt.Columns[6]);
-            expHedList.DataSource = ExpHedDt;
-            expHedList.DataBind();
+            ExpHedDt = expService.getExpHedAllData(out msg);
+            if (ExpHedDt != null && ExpHedDt.Rows.Count != 0)
+            {
+                //ExpHedDt.Columns.Remove(ExpHedDt.Columns[0]);
+                ExpHedDt.Columns.Remove(ExpHedDt.Columns[6]);
+                ExpHedDt.Columns.Remove(ExpHedDt.Columns[6]);
+                ExpHedDt.Columns.Remove(ExpHedDt.Columns[6]);
+                ExpHedDt.Columns.Remove(ExpHedDt.Columns[6]);
+                expHedList.DataSource = ExpHedDt;
+                expHedList.DataBind();
+            }
         }
 
         protected void update_Click(object sender, EventArgs e)
@@ -88,7 +117,7 @@ namespace HomeASP
             BtnPay.Enabled = false;
             if (expHedList.SelectedIndex < 0)
             {
-                
+                errEgd.Text = "Please select a record that you want to edit";
             }
             else
             {
@@ -107,8 +136,10 @@ namespace HomeASP
             expHedDr.EXP_TITLE = TxtExpTitle.Text;
             expHedDr.EXP_DATE = cashDate.Text;
             expHedDr.REMARK = TxtRe.Text;
-            
-            expService.updateExpInfo(expHedDr, out msg);
+            expHedDr.UPD_DT_TM = DateTime.Now;
+            expHedDr.UPD_USER_ID = this.userId;
+            // to write for confirm message
+            expService.updateExpHedInfo(expHedDr, out msg);
             showExpHedGv();
 
             BtnPay.Enabled = true;
@@ -121,7 +152,8 @@ namespace HomeASP
         {
             expHedDr.EXP_ID = Convert.ToInt16(expHedList.SelectedRow.Cells[1].Text);
             expHedDr.CRT_DT_TM = Convert.ToDateTime(expHedList.SelectedRow.Cells[5].Text);
-            expService.deleteExpHed(expHedDr);
+            // to write for confirm message
+            expService.deleteExpHed(expHedDr, out msg);
         }
     }
 }

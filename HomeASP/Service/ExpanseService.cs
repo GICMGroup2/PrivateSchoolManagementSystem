@@ -8,220 +8,216 @@ using HomeASP.DbAccess;
 
 namespace HomeASP.Service
 {
-    public class ExpanseService
+    public class ExpanseService :dbAccess
     {
-        dbAccess db = new dbAccess();
         ExpanseDb expDb = new ExpanseDb();
-        DsPSMS.ST_EXP_HEDDataTable expHedDt = new DsPSMS.ST_EXP_HEDDataTable();
-        DsPSMS.ST_EXP_HEDRow expHedDr = new DsPSMS.ST_EXP_HEDDataTable().NewST_EXP_HEDRow();
-        DsPSMS.ST_EXP_DETAILDataTable expDetDt = new DsPSMS.ST_EXP_DETAILDataTable();
-        DsPSMS.ST_EXP_DETAILRow expDetDr = new DsPSMS.ST_EXP_DETAILDataTable().NewST_EXP_DETAILRow(); 
-
-        public bool SaveExpInfo(DsPSMS.ST_EXP_HEDRow expDr, out string msg)
+        
+        public bool SaveExpHedInfo(DsPSMS.ST_EXP_HEDRow dr, out string msg)
         {
             bool isOk = true;
 
-            if (expDr == null)
+            if (dr == null)
             {
                 msg = "data is empty ";
                 return false;
             }
             try
             {
-                db.Open();
-                int result = expDb.insertExpanseHed(expDr);
-                msg = "insert complete";
+                Open();
+                int result = expDb.insertExpanseHed(dr);
+                msg = "Inserted";
             }
             catch
             {
-                msg = "error occurs when inserting data Student Cash Information";
+                msg = "error occurs when inserting the expanse head data";
                 return false;
             }
             finally
             {
-                db.Close();
+                Close();
             }
 
             return isOk;
         }
 
-        public DataSet.DsPSMS.ST_EXP_HEDDataTable getExpHedAllData()
+        public bool SaveExpDetInfo(DsPSMS.ST_EXP_DETAILRow dr, out string msg)
         {
+            bool isOk = true;
+
+            if (dr == null)
+            {
+                msg = "data is empty ";
+                return false;
+            }
             try
             {
-                db.Open();
-                expHedDt = expDb.selectExpHedAllData();
-                //msg = "Have data";
+                Open();
+                int result = expDb.insertExpanseDet(dr);
+                msg = "Inserted";
             }
             catch
             {
-                // msg = "error occurs when selecting cash data";
+                msg = "error occurs when inserting the expanse detail data";
+                return false;
+            }
+            finally
+            {
+                Close();
+            }
+
+            return isOk;
+        }
+
+        public DataSet.DsPSMS.ST_EXP_HEDDataTable getExpHedAllData(out string msg)
+        {
+            DsPSMS.ST_EXP_HEDDataTable expHedDt = new DsPSMS.ST_EXP_HEDDataTable();
+            try
+            {
+                Open();
+                expHedDt = expDb.selectExpHedAllData();
+                msg = "Have data";
+            }
+            catch
+            {
+                msg = "error occurs when selecting the Expanse Head";
                 return null;
             }
             finally
             {
-                db.Close();
+                Close();
             }
 
             return expHedDt;
         }
 
-        public bool updateExpInfo(DsPSMS.ST_EXP_HEDRow expDr, out string msg)
-        {
-            bool isOk = true;
-
-            if (expDr == null)
-            {
-                msg = "data is empty ";
-                return false;
-            }
-            try
-            {
-                db.Open();
-                int result = expDb.updateExpanseHed(expDr);
-                msg = "insert complete";
-            }
-            catch
-            {
-                msg = "error occurs when inserting data Student Cash Information";
-                return false;
-            }
-            finally
-            {
-                db.Close();
-            }
-
-            return isOk;
-        }
-
-        public bool deleteExpHed(DsPSMS.ST_EXP_HEDRow expDr)
-        {
-            bool isOk = true;
-            if (expDr == null)
-            {
-               // msg = "data is empty ";
-                return false;
-            }
-            try
-            {
-               db.Open();
-               expDb.deleteExpHed(expDr);
-               // msg = "delete complete";
-            }
-            catch
-            {
-               // msg = "error has occure when delete data";
-                return false;
-            }
-            finally
-            {
-                db.Close();
-            }
-
-            return isOk;
-        }
-
-        public bool SaveExpDetInfo(DsPSMS.ST_EXP_DETAILRow expDr, out string msg)
-        {
-            bool isOk = true;
-
-            if (expDr == null)
-            {
-                msg = "data is empty ";
-                return false;
-            }
-            try
-            {
-                db.Open();
-                int result = expDb.insertExpanseDet(expDr);
-                msg = "insert complete";
-            }
-            catch
-            {
-                msg = "error occurs when inserting data Student Cash Information";
-                return false;
-            }
-            finally
-            {
-                db.Close();
-            }
-
-            return isOk;
-        }
-
-        public DataSet.DsPSMS.ST_EXP_DETAILDataTable getExpDetData(int expId)
+        public DataSet.DsPSMS.ST_EXP_DETAILDataTable getExpDetDataById(int expId,out string msg)
         {
             DsPSMS.ST_EXP_DETAILDataTable expDetDt = new DsPSMS.ST_EXP_DETAILDataTable();
             try
             {
-                db.Open();
-                expDetDt = expDb.selectExpDetData(expId);
+                Open();
+                expDetDt = expDb.selectExpDetDataById(expId);
                 int ttt = expDetDt.Rows.Count;
-                //msg = "Have data";
+                msg = "Have data";
             }
             catch
             {
-                // msg = "error occurs when selecting cash data";
+                msg = "error occurs when selecting the Expanse data";
                 return null;
             }
             finally
             {
-                db.Close();
+                Close();
             }
 
             return expDetDt;
         }
 
-        public bool updateExpDetInfo(DsPSMS.ST_EXP_DETAILRow expDr, out string msg)
+        public bool updateExpHedInfo(DsPSMS.ST_EXP_HEDRow dr, out string msg)
         {
             bool isOk = true;
 
-            if (expDr == null)
+            if (dr == null)
             {
                 msg = "data is empty ";
                 return false;
             }
             try
             {
-                db.Open();
-                int result = expDb.updateExpanseDet(expDr);
-                msg = "insert complete";
+                Open();
+                int result = expDb.updateExpanseHed(dr);
+                msg = "Edited";
             }
             catch
             {
-                msg = "error occurs when inserting data Student Cash Information";
+                msg = "error occurs when editing the expanse head data";
                 return false;
             }
             finally
             {
-                db.Close();
+                Close();
             }
 
             return isOk;
         }
 
-        public bool deleteExpDet(DsPSMS.ST_EXP_DETAILRow expDr)
+        public bool updateExpDetInfo(DsPSMS.ST_EXP_DETAILRow dr, out string msg)
         {
             bool isOk = true;
-            if (expDr == null)
+
+            if (dr == null)
             {
-                // msg = "data is empty ";
+                msg = "data is empty ";
                 return false;
             }
             try
             {
-                db.Open();
-                expDb.deleteExpDet(expDr);
-                // msg = "delete complete";
+                Open();
+                int result = expDb.updateExpanseDet(dr);
+                msg = "Edited";
             }
             catch
             {
-                // msg = "error has occure when delete data";
+                msg = "error occurs when editing the expanse detail data";
                 return false;
             }
             finally
             {
-                db.Close();
+                Close();
+            }
+
+            return isOk;
+        }
+
+        public bool deleteExpHed(DsPSMS.ST_EXP_HEDRow dr, out string msg)
+        {
+            bool isOk = true;
+            if (dr == null)
+            {
+                msg = "data is empty ";
+                return false;
+            }
+            try
+            {
+               Open();
+               expDb.deleteExpHed(dr);
+               msg = "Deleted";
+            }
+            catch
+            {
+                msg = "error has occure when delete data";
+                return false;
+            }
+            finally
+            {
+                Close();
+            }
+
+            return isOk;
+        }
+
+        public bool deleteExpDet(DsPSMS.ST_EXP_DETAILRow dr, out string msg)
+        {
+            bool isOk = true;
+            if (dr == null)
+            {
+                msg = "data is empty ";
+                return false;
+            }
+            try
+            {
+                Open();
+                expDb.deleteExpDet(dr);
+                msg = "Deleted";
+            }
+            catch
+            {
+                msg = "error has occure when delete data";
+                return false;
+            }
+            finally
+            {
+                Close();
             }
 
             return isOk;
