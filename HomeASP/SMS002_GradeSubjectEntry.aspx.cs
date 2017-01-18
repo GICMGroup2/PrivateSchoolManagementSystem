@@ -405,6 +405,11 @@ namespace HomeASP
                     subjectName = subjectName.Substring(0, subjectName.Length - 1);
 
                     row.SUBJECT_ID_LIST = subjectName;
+
+                    DataSet.DsPSMS.ST_GRADE_MSTRow grade = new DataSet.DsPSMS.ST_GRADE_MSTDataTable().NewST_GRADE_MSTRow();
+                    grade.GRADE_ID = row.GRADE_ID;
+                    DataSet.DsPSMS.ST_GRADE_MSTDataTable result = service.selectGradeByID(grade, out msg);
+                    row.GRADE_ID = result.Rows[0]["GRADE_NAME"].ToString();
                 }                
                 gradeSubjectGridView.DataSource = resultDt;
                 gradeSubjectGridView.DataBind();
