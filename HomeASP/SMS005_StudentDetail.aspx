@@ -13,6 +13,45 @@
     <script type="text/javascript">
 
     </script>
+
+    <style type="text/css">
+        #bookingForm
+        {
+            height: 769px;
+            width: 797px;
+            margin-right: 0px;
+            margin-top: 0px;
+            margin-bottom: 95px;
+            margin-left: 0px;
+        }
+
+        #tablepadding
+        { padding-top:2px;
+          padding-bottom:1px;
+          margin-left:10px;
+          margin-right:5px;
+        }
+        
+        #stupageinner {
+    width:100%;
+    margin:5px 7px 7px 0px;
+    background-color:#1A7EBA!important;
+    padding:100px 150px;
+    min-height:520px;
+    min-width:800px;
+}   
+   #stupagewrapper {
+   
+    min-height: 600px;
+    background:#F3F3F3;
+    margin: 0px 0px 0px 170px;
+   
+}    
+        .auto-style1
+        {
+            width: 225px;
+        }
+        </style>
 </head>
 
 <body>
@@ -72,8 +111,8 @@
             <br class="clear" />
         </div>
     </div>
-    <div id="Div1" class="wrapper col1" runat="server" height="561px">
-        <div style="width: 150px; height: 560px; color: #FFFFFF; background-color: #1A7EBA; padding: 0px; border-spacing: 0px;">
+    <div id="Div1" class="wrapper col1" runat="server">
+        <div style="width: 1109px; height: 560px; color: #FFFFFF; background-color: #1A7EBA; padding: 0px; border-spacing: 0px;">
             <br />
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
@@ -87,13 +126,99 @@
                     <a href="index.html">Exit</a>
                 </li>
                 </ul>
-                    <div id="page-wrapper">
-                        <div id="page-inner">
-                            <form id="bookingForm" class="booking-form">
-                              
+                    <div id="stupagewrapper">
+                        <div id="stupageinner">
+                            <form id="bookingForm" runat="server">
 
+                                &nbsp;<asp:Image ID="picturebox" runat="server" Height="133px" Width="142px" />
 
-                             </form>
+                                <br />
+                                
+                                <div style="width: 937px">
+                                                                  
+                                <table align="left" style="background-color:#302c2c; height: 493px; width: 450px; margin-right: 47px;">
+                                <tr> <td>&nbsp;&nbsp; <asp:Label ID="Label1" Text="ID" runat="server" /></td> 
+                                     <td><asp:Label ID="lblID" Text="Show ID" runat="server" /></td>
+                                </tr>  
+                                     
+                                <tr> <td>&nbsp;&nbsp; <asp:Label ID="Label2" Text="Name" runat="server" /></td> 
+                                     <td><asp:Label ID="lblName" Text="Show Name" runat="server" /></td>
+                                </tr> 
+
+                                <tr> <td>&nbsp;&nbsp; <asp:Label ID="Label3" Text="Roll No" runat="server" /></td> 
+                                     <td><asp:Label ID="lblRoll" Text="Show Roll" runat="server" /></td>
+                                </tr> 
+
+                                <tr> <td>&nbsp;&nbsp; <asp:Label ID="Label4" Text="Date of Birth" runat="server" /></td> 
+                                     <td><asp:Label ID="lbldob" Text="Show dob" runat="server" /></td>
+                                </tr> 
+                                                                   
+                                <tr> <td>&nbsp;&nbsp; <asp:Label ID="Label5" Text="NRC No" runat="server" /></td> 
+                                     <td><asp:Label ID="lblNrc" Text="Show NRC" runat="server" /></td>
+                                </tr> 
+
+                                <tr> <td>&nbsp;&nbsp; <asp:Label ID="Label6" Text="Grade" runat="server" /></td> 
+                                     <td><asp:Label ID="lblGrade" Text="Show Grade" runat="server" /></td>
+                                </tr> 
+
+                                <tr> <td>&nbsp;&nbsp; <asp:Label ID="Label7" Text="Class" runat="server" /></td> 
+                                     <td><asp:Label ID="lblClass" Text="Show Class" runat="server" /></td>
+                                </tr> 
+
+                                <tr>
+                                    <td>&nbsp;&nbsp; <asp:Label ID="Label8" Text="Phone No" runat="server"></asp:Label></td>
+                                    <td><asp:Label ID="lblPhone" Text="Show Phone" runat="server" /></td>
+                                </tr>
+                                </table>
+                                
+                                
+                                
+                                <table align="right" style="background-color:#302c2c; height: 494px; width: 443px; margin-right: 47px;">
+                                <tr> <td class="auto-style1">&nbsp;&nbsp; <asp:Label ID="Label9" Text="Father Name" runat="server" /></td> 
+                                     <td><asp:Label ID="lblFather" Text="Show Fname" runat="server" /></td>
+                                </tr> 
+
+                                    <tr> <td class="auto-style1">&nbsp;&nbsp; <asp:Label ID="Label10" Text="Mother Name" runat="server" /></td> 
+                                     <td><asp:Label ID="lblMother" Text="Show Mname" runat="server" /></td>
+                                </tr> 
+
+                                    <tr> <td class="auto-style1">&nbsp;&nbsp; <asp:Label ID="Label11" Text="Address" runat="server" /></td> 
+                                     <td><asp:Label ID="lblAddress" Text="Show Address" runat="server" /></td>
+                                </tr> 
+
+                                    <tr> <td class="auto-style1">&nbsp;&nbsp; <asp:Label ID="Label12" Text="Contact Phone" runat="server" /></td> 
+                                     <td><asp:Label ID="lblCphone" Text="Show Phone" runat="server" /></td>
+                                </tr> 
+
+                                    <tr> <td class="auto-style1">&nbsp;&nbsp; <asp:Label ID="Label13" Text="Email" runat="server" /></td> 
+                                     <td><asp:Label ID="lblEmail" Text="Show Email" runat="server" /></td>
+                                </tr> 
+
+                                    <tr> <td class="auto-style1">&nbsp;&nbsp; <asp:Label ID="Label14" Text="Password" runat="server" /></td> 
+                                     <td><asp:Label ID="lblPwd" Text="Show Pwd" runat="server" /></td>
+                                </tr> 
+
+                                    <tr> <td class="auto-style1">&nbsp;&nbsp; <asp:Label ID="Label15" Text="CashType" runat="server" /></td> 
+                                     <td><asp:Label ID="lblCashtype" Text="Show Ctype" runat="server" /></td>
+                                </tr> 
+
+                                    <tr> <td class="auto-style1">&nbsp;&nbsp; <asp:Label ID="Label16" Text="Cash Month" runat="server" /></td> 
+                                     <td><asp:Label ID="lblCashMonth" Text="Show Month" runat="server" /></td>
+                                </tr> 
+                                </table>
+                                </div>
+
+                                <br />
+                                <div align="center">
+                                
+                                
+                                <asp:Button ID="btnprevious" runat="server" Text="Previous" ForeColor="#FF0066" OnClick="btnprevious_Click" Width="101px" OnClientClick="window.open('SMS004_StudentList.aspx','OtherPage');" />
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btnedit" runat="server" Text="Edit" Width="101px" ForeColor="#FF0066" OnClick="btnedit_Click" OnClientClick="window.open('SMS003_StudentEntry.aspx','OtherPage');" />
+                                 &nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btnprint" runat="server" Text="Print" ForeColor="#FF0066" Width="101px" OnClick="btnprint_Click"/>
+                                </div>
+                            </form>
                         </div>
                     </div>
             </div>           
