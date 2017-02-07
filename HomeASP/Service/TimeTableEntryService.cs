@@ -85,6 +85,36 @@ namespace HomeASP.Service
              return result;
          }
 
+         public DataSet.DsPSMS.ST_ROOM_MSTDataTable getAllRoomData(out string msg)
+         {
+             DataSet.DsPSMS.ST_ROOM_MSTDataTable result = new DataSet.DsPSMS.ST_ROOM_MSTDataTable();
+             try
+             {
+                 timedb.Open();
+                 result = timedb.selectAllRoomData();
+                 if (result != null && result.Rows.Count > 0)
+                 {
+                     msg = result.Rows.Count + " user found";
+                 }
+
+                 else
+                 {
+                     result = null;
+                     msg = "user not found";
+                 }
+             }
+             catch
+             {
+                 msg = "error has occure when insert data";
+                 return null;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+             return result;
+         }
+
          public DataSet.DsPSMS.ST_TEACHER_DATADataTable getAllTeacherData(out string msg)
          {
              DataSet.DsPSMS.ST_TEACHER_DATADataTable result = new DataSet.DsPSMS.ST_TEACHER_DATADataTable();
@@ -133,6 +163,36 @@ namespace HomeASP.Service
              catch
              {
                  msg = "error occurs when inserting data to ST_TIMETABLE table";
+                 return false;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+
+             return isOk;
+         }
+
+         public bool saveTeacherGrade(DataSet.DsPSMS.ST_TEACHER_GRADERow dr, out string msg)
+         {
+             bool isOk = true;
+
+             if (dr == null)
+             {
+                 msg = "data is empty ";
+                 return false;
+             }
+             try
+             {
+                 timedb.Open();
+                 int result = timedb.insertTeacherGrade(dr);
+                 msg = "insert complete";
+                 
+                 
+             }
+             catch
+             {
+                 msg = "error occurs when inserting data to ST_TEACHER_GRADE table";
                  return false;
              }
              finally
@@ -271,6 +331,208 @@ namespace HomeASP.Service
          public DataSet.DsPSMS.ST_TIMETABLEDataTable getTimetableBygradeid(int id)
          {
              DataSet.DsPSMS.ST_TIMETABLEDataTable resultData = timedb.selectTimetableBygradeid(id);
+             return resultData;
+         }
+
+         public DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILRow getGradeSubjectBygradeid(int id)
+         {
+             DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILRow resultData = new DataSet.DsPSMS.ST_GRADE_SUBJECT_DETAILDataTable().NewST_GRADE_SUBJECT_DETAILRow();
+             resultData = timedb.selectGradeSubjectBygradeId(id);
+             return resultData;
+         }
+
+         public DataSet.DsPSMS.ST_SUBJECT_MSTDataTable getAllSubjectName(string subjectId, out string msg)
+         {
+             DataSet.DsPSMS.ST_SUBJECT_MSTDataTable result = new DataSet.DsPSMS.ST_SUBJECT_MSTDataTable();
+             try
+             {
+                 timedb.Open();
+                 result = timedb.getAllSubjectName(subjectId);
+                 if (result != null && result.Rows.Count > 0)
+                 {
+                     msg = result.Rows.Count + " user found";
+                 }
+                 else
+                 {
+                     result = null;
+                     msg = "user not found";
+                 }
+             }
+             catch
+             {
+                 msg = "error has occure when insert data";
+                 return null;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+             return result;
+         }
+
+         public DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable getAllTimetableHedData(out string msg)
+         {
+             DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable result = new DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable();
+             try
+             {
+                 timedb.Open();
+                 result = timedb.selectAllTimetableHed();
+                 if (result != null && result.Rows.Count > 0)
+                 {
+                     msg = result.Rows.Count + " user found";
+                 }
+
+                 else
+                 {
+                     result = null;
+                     msg = "user not found";
+                 }
+             }
+             catch
+             {
+                 msg = "error has occure when insert data";
+                 return null;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+             return result;
+         }
+
+         public bool saveTimetableHedData(DataSet.DsPSMS.ST_TIMETABLE_HEDRow dr, out string msg)
+         {
+             bool isOk = true;
+
+             if (dr == null)
+             {
+                 msg = "data is empty ";
+                 return false;
+             }
+             try
+             {
+                 timedb.Open();
+                 int result = timedb.insertTimetableHed(dr);
+                 msg = "insert complete";
+             }
+             catch
+             {
+                 msg = "error occurs when inserting data to ST_TIMETABLE_HED table";
+                 return false;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+
+             return isOk;
+         }
+
+         public DataSet.DsPSMS.ST_ROOM_MSTRow getClassByid(int id)
+         {
+             DataSet.DsPSMS.ST_ROOM_MSTRow resultData = new DataSet.DsPSMS.ST_ROOM_MSTDataTable().NewST_ROOM_MSTRow();
+             resultData = timedb.selectClassByid(id);
+             return resultData;
+         }
+
+         public DataSet.DsPSMS.ST_TIMETABLE_HEDRow getTimetableHedByid(int id)
+         {
+             DataSet.DsPSMS.ST_TIMETABLE_HEDRow resultData = new DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable().NewST_TIMETABLE_HEDRow();
+             resultData = timedb.selectTimetableHedByid(id);
+             return resultData;
+         }
+
+         public bool updateTimeTableHed(DataSet.DsPSMS.ST_TIMETABLE_HEDRow dr, int id, out string msg)
+         {
+             bool isOk = true;
+
+             if (dr == null)
+             {
+                 msg = "data is empty ";
+                 return false;
+             }
+             try
+             {
+                 timedb.Open();
+                 int result = timedb.updateTimeTableHed(dr, id);
+                 msg = "update complete";
+             }
+             catch
+             {
+                 msg = "error occurs when updating data to ST_TIMETABLE_HED table";
+                 return false;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+
+             return isOk;
+         }
+
+         public DataSet.DsPSMS.ST_SUBJECT_MSTDataTable getAllSubjectData(out string msg)
+         {
+             DataSet.DsPSMS.ST_SUBJECT_MSTDataTable result = new DataSet.DsPSMS.ST_SUBJECT_MSTDataTable();
+             try
+             {
+                 timedb.Open();
+                 result = timedb.selectAllSubjectData();
+                 
+                 if (result != null && result.Rows.Count > 0)
+                 {
+                     msg = result.Rows.Count + " user found";
+                 }
+
+                 else
+                 {
+                     result = null;
+                     msg = "user not found";
+                 }
+             }
+             catch
+             {
+                 msg = "error has occure when insert data";
+                 return null;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+             return result;
+         }
+
+         public bool saveTimetableDetailData(DataSet.DsPSMS.ST_TIMETABLE_DETAILRow dr, out string msg)
+         {
+             bool isOk = true;
+
+             if (dr == null)
+             {
+                 msg = "data is empty ";
+                 return false;
+             }
+             try
+             {
+                 timedb.Open();
+                 int result = timedb.insertTimetableDetail(dr);
+                 msg = "insert complete";
+             }
+             catch
+             {
+                 msg = "error occurs when inserting data to ST_TIMETABLE_DETAIL table";
+                 return false;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+
+             return isOk;
+         }
+
+         public DataSet.DsPSMS.ST_TIMETABLE_DETAILRow getTimetableDetailByid(int id)
+         {
+             DataSet.DsPSMS.ST_TIMETABLE_DETAILRow resultData = new DataSet.DsPSMS.ST_TIMETABLE_DETAILDataTable().NewST_TIMETABLE_DETAILRow();
+             resultData = timedb.selectTimetableDetailByid(id);
              return resultData;
          }
     }
