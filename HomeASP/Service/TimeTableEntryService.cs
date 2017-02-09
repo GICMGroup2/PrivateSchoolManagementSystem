@@ -535,5 +535,98 @@ namespace HomeASP.Service
              resultData = timedb.selectTimetableDetailByid(id);
              return resultData;
          }
+
+         public bool updateTimeTableDetail(DataSet.DsPSMS.ST_TIMETABLE_DETAILRow dr, int id, out string msg)
+         {
+             bool isOk = true;
+
+             if (dr == null)
+             {
+                 msg = "data is empty ";
+                 return false;
+             }
+             try
+             {
+                 timedb.Open();
+                 int result = timedb.updateTimeTableDetail(dr, id);
+                 msg = "update complete";
+             }
+             catch
+             {
+                 msg = "error occurs when updating data to ST_TIMETABLE_DETAIL table";
+                 return false;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+
+             return isOk;
+         }
+
+         public bool deleteTimeDetail(int id, out string msg)
+         {
+             bool isOk = true;
+
+             if (id == 0)
+             {
+                 msg = "data is empty ";
+                 return false;
+             }
+             try
+             {
+                 timedb.Open();
+                 int result = timedb.deleteTimeTableDetail(id);
+                 msg = "delete complete";
+             }
+             catch
+             {
+                 msg = "error occurs when deleting data to ST_TIMETABLEDETAIL table";
+                 return false;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+             return isOk;
+         }
+
+         public DataSet.DsPSMS.ST_TIMETABLE_DETAILDataTable getAllTimeDetailData(string id,out string msg)
+         {
+             DataSet.DsPSMS.ST_TIMETABLE_DETAILDataTable result = new DataSet.DsPSMS.ST_TIMETABLE_DETAILDataTable();
+
+             try
+             {
+                 timedb.Open();
+                 result = timedb.selectAllTimeDetail(id);
+                 if (result != null && result.Rows.Count > 0)
+                 {
+                     msg = result.Rows.Count + " user found";
+                 }
+
+                 else
+                 {
+                     result = null;
+                     msg = "user not found";
+                 }
+             }
+             catch
+             {
+                 msg = "error has occure when insert data";
+                 return null;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+             return result;
+         }
+
+         public DataSet.DsPSMS.ST_SUBJECT_MSTRow getSubjectByid(int id)
+         {
+             DataSet.DsPSMS.ST_SUBJECT_MSTRow resultData = new DataSet.DsPSMS.ST_SUBJECT_MSTDataTable().NewST_SUBJECT_MSTRow();
+             resultData = timedb.selectSubjectByid(id);
+             return resultData;
+         }
     }
 }
