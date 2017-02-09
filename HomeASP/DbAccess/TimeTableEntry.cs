@@ -252,7 +252,7 @@ namespace HomeASP.DbAccess
 
        public DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable selectAllTimetableHed()
        {
-           string query = "SELECT * FROM ST_TIMETABLE_HED ";
+           string query = "SELECT * FROM ST_TIMETABLE_HED WHERE DEL_FLG=0 ";
            SqlCommand cmd = new SqlCommand(query, conn);
            SqlDataAdapter da = new SqlDataAdapter(cmd);
            DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable dt = new DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable();
@@ -303,7 +303,7 @@ namespace HomeASP.DbAccess
            if (dr == null)
                return -1;
            int currentYear = DateTime.Now.Year;
-           string query = "INSERT INTO ST_TIMETABLE_DETAIL (EDU_YEAR, TIMETABLE_ID, TIMETABLE_TIME,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,DEL_FLG) VALUES (" + currentYear + ",'" + dr.TIMETABLE_ID + "','" + dr.TIMETABLE_TIME + "','" + dr.MONDAY +"','" + dr.TUESDAY +"','" + dr.WEDNESDAY + "','" + dr.THURSDAY+"','" + dr.FRIDAY +"'," + dr.DEL_FLG + ")";
+           string query = "INSERT INTO ST_TIMETABLE_DETAIL (TIMETABLE_ID, TIMETABLE_TIME,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,DEL_FLG) VALUES ('" + dr.TIMETABLE_ID + "','" + dr.TIMETABLE_TIME + "','" + dr.MONDAY +"','" + dr.TUESDAY +"','" + dr.WEDNESDAY + "','" + dr.THURSDAY+"','" + dr.FRIDAY +"'," + dr.DEL_FLG + ")";
            string sqlQuery = query;
            SqlCommand cmd = new SqlCommand(query, conn);
            result = cmd.ExecuteNonQuery();
@@ -332,6 +332,40 @@ namespace HomeASP.DbAccess
            SqlCommand cmd = new SqlCommand(query, conn);
            result = cmd.ExecuteNonQuery();
            return result;
+       }
+
+       public int deleteTimeTableDetail(int id)
+       {
+           int result;
+           if (id == 0)
+               return -1;
+           string query = "UPDATE ST_TIMETABLE_DETAIL SET DEL_FLG=1 WHERE ID =" + id;
+           string sqlQuery = query;
+           SqlCommand cmd = new SqlCommand(query, conn);
+           result = cmd.ExecuteNonQuery();
+           return result;
+       }
+
+       public DataSet.DsPSMS.ST_TIMETABLE_DETAILDataTable selectAllTimeDetail(string id)
+       {
+           string query = "SELECT * FROM ST_TIMETABLE_DETAIL WHERE DEL_FLG=0 AND TIMETABLE_ID="+id;
+           SqlCommand cmd = new SqlCommand(query, conn);
+           SqlDataAdapter da = new SqlDataAdapter(cmd);
+           DataSet.DsPSMS.ST_TIMETABLE_DETAILDataTable dt = new DataSet.DsPSMS.ST_TIMETABLE_DETAILDataTable();
+           da.Fill(dt);
+           return dt;
+       }
+
+       public DataSet.DsPSMS.ST_SUBJECT_MSTRow selectSubjectByid(int id)
+       {
+           //conn.Open();
+           string query = "SELECT * FROM ST_SUBJECT_MST WHERE SUBJECT_ID=" + id;
+           SqlCommand cmd = new SqlCommand(query, conn);
+           SqlDataAdapter da = new SqlDataAdapter(cmd);
+           DataSet.DsPSMS.ST_SUBJECT_MSTDataTable dt = new DataSet.DsPSMS.ST_SUBJECT_MSTDataTable();
+           da.Fill(dt);
+           //return single row
+           return dt[0];
        }
     }
 }
