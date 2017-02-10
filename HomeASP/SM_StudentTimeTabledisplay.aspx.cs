@@ -65,28 +65,32 @@ namespace HomeASP
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            int gradeId = int.Parse(ddlstugradelist.SelectedItem.Value);
-            int classId = int.Parse(ddlstuclasslist.SelectedItem.Value);
+            if (checkValidation())
+            {
+                //errSelectGrade.Visible = false;
+                //errSelectRoom.Visible = false;
+                int gradeId = int.Parse(ddlstugradelist.SelectedItem.Value);
+                int classId = int.Parse(ddlstuclasslist.SelectedItem.Value);
 
-            timetablehed = timeService.searchTimeHedBygradeclassid(gradeId,classId);
-            if (timetablehed != null)
-            {
-                DataSet.DsPSMS.ST_TEACHER_DATARow teacher = timeService.getTeacherByid(int.Parse(timetablehed.ROOM_TEACHER_ID));
-                if (teacher != null)
+                timetablehed = timeService.searchTimeHedBygradeclassid(gradeId, classId);
+                if (timetablehed != null)
                 {
-                    Panelteacher.Visible = true;
-                    lblroomteachname.Text = teacher.TEACHER_NAME;
+                    DataSet.DsPSMS.ST_TEACHER_DATARow teacher = timeService.getTeacherByid(int.Parse(timetablehed.ROOM_TEACHER_ID));
+                    if (teacher != null)
+                    {
+                        Panelteacher.Visible = true;
+                        lblroomteachname.Text = teacher.TEACHER_NAME;
+                    }
+                    DisplayTimetable(Convert.ToString(timetablehed.TIMETABLE_ID));
                 }
-                DisplayTimetable(Convert.ToString(timetablehed.TIMETABLE_ID));
-            }
-            else
-            {
-                Panelteacher.Visible = false;
-                gvStuTimetable.Visible = false;
-                lblNodata.Visible = true;
-                lblNodata.Text = "There is no data ";
-            }
-            
+                else
+                {
+                    Panelteacher.Visible = false;
+                    gvStuTimetable.Visible = false;
+                    lblNodata.Visible = true;
+                    lblNodata.Text = "There is no data ";
+                }
+            }   
         }
 
         protected void DisplayTimetable(string timeHedId)
@@ -161,8 +165,25 @@ namespace HomeASP
 
             if (ddlstugradelist.SelectedIndex == 0)
             {
-                
+                errSelectGrade.Visible = true;
+                chkFlag = false;
             }
+            else
+            {
+                errSelectGrade.Visible = false;
+            }
+
+            if (ddlstuclasslist.SelectedIndex == 0)
+            {
+                errSelectRoom.Visible = true;
+                chkFlag = false;
+            }
+            else
+            {
+                errSelectRoom.Visible = false;
+            }
+
+            return chkFlag;
         }
     }
 }

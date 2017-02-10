@@ -176,9 +176,9 @@ namespace HomeASP
             {
                 updateTimeHedId = int.Parse(timetablrHedId);
                 DataSet.DsPSMS.ST_TIMETABLE_HEDRow timetableHed = timeService.getTimetableHedByid(updateTimeHedId);
-                ddlentrygradelist.SelectedIndex = int.Parse(timetableHed.GRADE_ID);
-                ddlentryteacherlist.SelectedIndex = int.Parse(timetableHed.ROOM_TEACHER_ID);
-                ddlentryclasslist.SelectedIndex = int.Parse(timetableHed.ROOM_ID);
+                ddlentrygradelist.SelectedIndex = ddlentrygradelist.Items.IndexOf(ddlentrygradelist.Items.FindByValue(timetableHed.GRADE_ID));
+                ddlentryteacherlist.SelectedIndex = ddlentryteacherlist.Items.IndexOf(ddlentrygradelist.Items.FindByValue(timetableHed.ROOM_TEACHER_ID));
+                ddlentryclasslist.SelectedIndex = ddlentryclasslist.Items.IndexOf(ddlentrygradelist.Items.FindByValue(timetableHed.ROOM_ID));
                 btnRoomteaSave.Text = "UPDATE";
             }
         }

@@ -180,11 +180,11 @@ namespace HomeASP
             {
                 timeDetailId = int.Parse(detailId);
                 DataSet.DsPSMS.ST_TIMETABLE_DETAILRow timetableDetail= timeService.getTimetableDetailByid(timeDetailId);
-                ddlmonsublist.SelectedIndex = int.Parse(timetableDetail.MONDAY);
-                ddltuesublist.SelectedIndex = int.Parse(timetableDetail.TUESDAY);
-                ddlwedsublist.SelectedIndex = int.Parse(timetableDetail.WEDNESDAY);
-                ddlthusublist.SelectedIndex = int.Parse(timetableDetail.THURSDAY);
-                ddlfrisublist.SelectedIndex = int.Parse(timetableDetail.FRIDAY);
+                ddlmonsublist.SelectedIndex = ddlmonsublist.Items.IndexOf(ddlmonsublist.Items.FindByValue(timetableDetail.MONDAY));
+                ddltuesublist.SelectedIndex = ddltuesublist.Items.IndexOf(ddltuesublist.Items.FindByValue(timetableDetail.TUESDAY));
+                ddlwedsublist.SelectedIndex = ddlwedsublist.Items.IndexOf(ddlwedsublist.Items.FindByValue(timetableDetail.WEDNESDAY));
+                ddlthusublist.SelectedIndex = ddlthusublist.Items.IndexOf(ddlthusublist.Items.FindByValue(timetableDetail.THURSDAY));
+                ddlfrisublist.SelectedIndex = ddlfrisublist.Items.IndexOf(ddlthusublist.Items.FindByValue(timetableDetail.FRIDAY));
                 btntimedetailAdd.Text = "UPDATE";
             }
         }

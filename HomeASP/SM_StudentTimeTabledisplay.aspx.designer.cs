@@ -103,13 +103,22 @@ namespace HomeASP {
         protected global::System.Web.UI.HtmlControls.HtmlForm bookingForm;
         
         /// <summary>
-        /// Label1 control.
+        /// errSelectGrade control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label errSelectGrade;
+        
+        /// <summary>
+        /// errSelectRoom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errSelectRoom;
         
         /// <summary>
         /// ddlstugradelist control.

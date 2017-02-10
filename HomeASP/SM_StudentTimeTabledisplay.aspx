@@ -102,7 +102,9 @@
                 <div id="page-wrapper">
                     <div id="page-inner">
                         <form id="bookingForm" runat="server">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label1" runat="server" ForeColor="Red" Text="Please select Grade !"></asp:Label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="errSelectGrade" runat="server" ForeColor="Red" Text="Please select Grade !" Visible="False"></asp:Label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Label ID="errSelectRoom" runat="server" ForeColor="#FF3300" Text="Please select Room !" Visible="False"></asp:Label>
                             <br />
                             Grade&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="ddlstugradelist" runat="server" Height="25px" Width="160px" ForeColor="Black">
