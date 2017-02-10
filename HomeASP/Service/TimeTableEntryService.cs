@@ -532,7 +532,30 @@ namespace HomeASP.Service
          public DataSet.DsPSMS.ST_TIMETABLE_DETAILRow getTimetableDetailByid(int id)
          {
              DataSet.DsPSMS.ST_TIMETABLE_DETAILRow resultData = new DataSet.DsPSMS.ST_TIMETABLE_DETAILDataTable().NewST_TIMETABLE_DETAILRow();
-             resultData = timedb.selectTimetableDetailByid(id);
+             try
+             {
+                 timedb.Open();
+                 resultData = timedb.selectTimetableDetailByid(id);
+                 //if (resultData != null && resultData.Rows.Count > 0)
+                 //{
+                 //    //msg = resultData.Rows.Count + " user found";
+                 //}
+
+                 //else
+                 //{
+                 //    resultData = null;
+                 //    //msg = "user not found";
+                 //}
+             }
+             catch
+             {
+                 // msg = "error has occure when insert data";
+                 return null;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
              return resultData;
          }
 
@@ -626,6 +649,66 @@ namespace HomeASP.Service
          {
              DataSet.DsPSMS.ST_SUBJECT_MSTRow resultData = new DataSet.DsPSMS.ST_SUBJECT_MSTDataTable().NewST_SUBJECT_MSTRow();
              resultData = timedb.selectSubjectByid(id);
+             return resultData;
+         }
+
+         public DataSet.DsPSMS.ST_TIMETABLE_HEDRow searchTimeHedBygradeclassid(int gradeId,int classId)
+         {
+             DataSet.DsPSMS.ST_TIMETABLE_HEDRow resultData = new DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable().NewST_TIMETABLE_HEDRow();
+             try
+             {
+                 timedb.Open();
+                 resultData = timedb.selectTimeHedBygradeclass(gradeId, classId);
+                 if (resultData != null)
+                 {
+                     //msg = resultData.Rows.Count + " user found";
+                 }
+
+                 else
+                 {
+                     resultData = null;
+                     //msg = "user not found";
+                 }
+             }
+             catch
+             {
+                 // msg = "error has occure when insert data";
+                 return null;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+             return resultData;
+         }
+
+         public DataSet.DsPSMS.ST_TIMETABLE_DETAILRow searchTimeDetailByTimeHedId(int id)
+         {
+             DataSet.DsPSMS.ST_TIMETABLE_DETAILRow resultData = new DataSet.DsPSMS.ST_TIMETABLE_DETAILDataTable().NewST_TIMETABLE_DETAILRow();
+             try
+             {
+                 timedb.Open();
+                 resultData = timedb.selectTimeDetailBytimeHedId(id);
+                 //if (resultData != null && resultData.Rows.Count > 0)
+                 //{
+                 //    //msg = resultData.Rows.Count + " user found";
+                 //}
+
+                 //else
+                 //{
+                 //    resultData = null;
+                 //    //msg = "user not found";
+                 //}
+             }
+             catch
+             {
+                // msg = "error has occure when insert data";
+                 return null;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
              return resultData;
          }
     }

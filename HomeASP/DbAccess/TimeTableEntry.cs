@@ -367,5 +367,29 @@ namespace HomeASP.DbAccess
            //return single row
            return dt[0];
        }
+
+       public DataSet.DsPSMS.ST_TIMETABLE_HEDRow selectTimeHedBygradeclass(int gradeId,int classId)
+       {
+           //conn.Open();
+           string query = "SELECT * FROM ST_TIMETABLE_HED WHERE GRADE_ID=" + gradeId+" AND ROOM_ID="+classId;
+           SqlCommand cmd = new SqlCommand(query, conn);
+           SqlDataAdapter da = new SqlDataAdapter(cmd);
+           DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable dt = new DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable();
+           da.Fill(dt);
+           //return single row
+           return dt[0];
+       }
+
+       public DataSet.DsPSMS.ST_TIMETABLE_DETAILRow selectTimeDetailBytimeHedId(int id)
+       {
+           //conn.Open();
+           string query = "SELECT * FROM ST_TIMETABLE_DETAIL WHERE TIMETABLE_ID=" + id;
+           SqlCommand cmd = new SqlCommand(query, conn);
+           SqlDataAdapter da = new SqlDataAdapter(cmd);
+           DataSet.DsPSMS.ST_TIMETABLE_DETAILDataTable dt = new DataSet.DsPSMS.ST_TIMETABLE_DETAILDataTable();
+           da.Fill(dt);
+           
+           return dt[0];
+       }
     }
 }
