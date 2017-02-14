@@ -32,11 +32,11 @@
           margin-right:5px;
         }
         
-        #stupageinner {
+        #stupagedetailinner {
     width:100%;
     margin:5px 7px 7px 0px;
     background-color:#1A7EBA!important;
-    padding:100px 150px;
+    padding:100px 120px;
     min-height:520px;
     min-width:800px;
 }   
@@ -127,7 +127,7 @@
                 </li>
                 </ul>
                     <div id="stupagewrapper">
-                        <div id="stupageinner">
+                        <div id="stupagedetailinner">
                             <form id="bookingForm" runat="server">
 
                                 &nbsp;<asp:Image ID="picturebox" runat="server" Height="133px" Width="142px" />
@@ -157,11 +157,19 @@
                                      <td><asp:Label ID="lblNrc" Text="Show NRC" runat="server" /></td>
                                 </tr> 
 
+                                <tr> <td>&nbsp; &nbsp;<asp:Label ID="Label" Text="Gender" runat="server" /></td>
+                                     <td><asp:Label ID="lblGender" Text="Show Gender" runat="server" /></td>
+                                </tr>
+
                                 <tr> <td>&nbsp;&nbsp; <asp:Label ID="Label6" Text="Grade" runat="server" /></td> 
                                      <td><asp:Label ID="lblGrade" Text="Show Grade" runat="server" /></td>
                                 </tr> 
 
-                                <tr> <td>&nbsp;&nbsp; <asp:Label ID="Label7" Text="Class" runat="server" /></td> 
+                                <tr> <td>&nbsp;&nbsp; <asp:Label ID="ll" Text="Room" runat="server" /></td>
+                                     <td><asp:Label ID="lblRoom" Text="Show Room" runat="server" /></td>
+                                </tr>
+
+                                <tr> <td>&nbsp;&nbsp; <asp:Label ID="Label7" Text="Education Year" runat="server" /></td> 
                                      <td><asp:Label ID="lblClass" Text="Show Class" runat="server" /></td>
                                 </tr> 
 
