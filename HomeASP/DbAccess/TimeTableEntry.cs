@@ -391,5 +391,37 @@ namespace HomeASP.DbAccess
            
            return dt[0];
        }
+
+      public DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable isExitTimeHedData(DataSet.DsPSMS.ST_TIMETABLE_HEDRow dr)
+       {
+           if (dr == null)
+               return null;
+           string query = "SELECT * FROM ST_TIMETABLE_HED ";
+           string where = "";
+           if (dr.GRADE_ID != null)
+           {
+               where += " GRADE_ID = '" + dr.GRADE_ID + "'";
+           }
+
+           if (dr.ROOM_ID != null)
+           {
+               if (where.Length > 0)
+                   where += " AND ROOM_ID= '" + dr.ROOM_ID + "'";
+           }
+           if (dr.ROOM_TEACHER_ID != null)
+           {
+               if (where.Length > 0)
+                   where += " AND ROOM_TEACHER_ID= '" + dr.ROOM_TEACHER_ID + "'";
+           }
+
+           if (where.Length > 0)
+               query += " WHERE " + where;
+
+           SqlCommand cmd = new SqlCommand(query, conn);
+           SqlDataAdapter da = new SqlDataAdapter(cmd);
+           DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable dt = new DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable();
+           da.Fill(dt);
+           return dt;
+       }
     }
 }
