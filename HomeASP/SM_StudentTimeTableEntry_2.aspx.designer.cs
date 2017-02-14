@@ -121,6 +121,15 @@ namespace HomeASP {
         protected global::System.Web.UI.WebControls.DropDownList ddlmonsublist;
         
         /// <summary>
+        /// errmonlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errmonlist;
+        
+        /// <summary>
         /// ddltuesublist control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,15 @@ namespace HomeASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddltuesublist;
+        
+        /// <summary>
+        /// errtuelist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errtuelist;
         
         /// <summary>
         /// ddlwedsublist control.
@@ -139,6 +157,15 @@ namespace HomeASP {
         protected global::System.Web.UI.WebControls.DropDownList ddlwedsublist;
         
         /// <summary>
+        /// errwedlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errwedlist;
+        
+        /// <summary>
         /// ddlthusublist control.
         /// </summary>
         /// <remarks>
@@ -148,6 +175,15 @@ namespace HomeASP {
         protected global::System.Web.UI.WebControls.DropDownList ddlthusublist;
         
         /// <summary>
+        /// errthulist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errthulist;
+        
+        /// <summary>
         /// ddlfrisublist control.
         /// </summary>
         /// <remarks>
@@ -155,6 +191,15 @@ namespace HomeASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlfrisublist;
+        
+        /// <summary>
+        /// errfrilist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errfrilist;
         
         /// <summary>
         /// btntimedetailAdd control.

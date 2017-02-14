@@ -86,13 +86,6 @@ namespace HomeASP
 
             if (resultDt != null)
             {
-                resultDt.Columns.Remove(resultDt.Columns["EDU_YEAR"]);
-                resultDt.Columns.Remove(resultDt.Columns["CRT_DT_TM"]);
-                resultDt.Columns.Remove(resultDt.Columns["CRT_USER_ID"]);
-                resultDt.Columns.Remove(resultDt.Columns["UPD_DT_TM"]);
-                resultDt.Columns.Remove(resultDt.Columns["UPD_USER_ID"]);
-                resultDt.Columns.Remove(resultDt.Columns["DEL_FLG"]);
-
                 foreach (DataSet.DsPSMS.ST_TIMETABLE_HEDRow row in resultDt.Rows)
                 {
                     int gradeId;
@@ -127,37 +120,37 @@ namespace HomeASP
                 }
                 gvRoomTeacher.DataSource = resultDt;
                 gvRoomTeacher.DataBind();
-                gvRoomTeacher.HeaderRow.Cells[2].Text = "NO";
-                gvRoomTeacher.HeaderRow.Cells[3].Text = "ROOM TEACHER";
-                gvRoomTeacher.HeaderRow.Cells[4].Text = "GRADE";
-                gvRoomTeacher.HeaderRow.Cells[5].Text = "ROOM";
             }
         }
 
         protected void btnRoomteaSave_Click(object sender, EventArgs e)
         {
             bool  isOK = true;
-            if (btnRoomteaSave.Text.Equals("INSERT"))
+            if (checkValidation())
             {
-                timetablehed.GRADE_ID = ddlentrygradelist.SelectedItem.Value;
-                timetablehed.ROOM_ID = ddlentryclasslist.SelectedItem.Value;
-                timetablehed.ROOM_TEACHER_ID = ddlentryteacherlist.SelectedItem.Value;
-                timetablehed.DEL_FLG = 0;
-                isOK = timeService.saveTimetableHedData(timetablehed, out msg);
-            }
-            else if (btnRoomteaSave.Text.Equals("UPDATE"))
-            {
-                timetablehed.GRADE_ID = ddlentrygradelist.SelectedItem.Value;
-                timetablehed.ROOM_ID = ddlentryclasslist.SelectedItem.Value;
-                timetablehed.ROOM_TEACHER_ID = ddlentryteacherlist.SelectedItem.Value;
-                isOK = timeService.updateTimeTableHed(timetablehed, updateTimeHedId, out msg);
-            }
+                if (btnRoomteaSave.Text.Equals("INSERT"))
+                {
+                    timetablehed.GRADE_ID = ddlentrygradelist.SelectedItem.Value;
+                    timetablehed.ROOM_ID = ddlentryclasslist.SelectedItem.Value;
+                    timetablehed.ROOM_TEACHER_ID = ddlentryteacherlist.SelectedItem.Value;
+                    timetablehed.DEL_FLG = 0;
+                    isOK = timeService.saveTimetableHedData(timetablehed, out msg);
+                }
+                else if (btnRoomteaSave.Text.Equals("UPDATE"))
+                {
+                    timetablehed.GRADE_ID = ddlentrygradelist.SelectedItem.Value;
+                    timetablehed.ROOM_ID = ddlentryclasslist.SelectedItem.Value;
+                    timetablehed.ROOM_TEACHER_ID = ddlentryteacherlist.SelectedItem.Value;
+                    isOK = timeService.updateTimeTableHed(timetablehed, updateTimeHedId, out msg);
+                }
 
-            if (isOK)
-            {
-                DisplayRoomTeacher();
-                resetForm();
+                if (isOK)
+                {
+                    DisplayRoomTeacher();
+                    resetForm();
+                }
             }
+            
         }
 
         protected void resetForm()
@@ -166,6 +159,9 @@ namespace HomeASP
             ddlentryclasslist.SelectedIndex = 0;
             ddlentryteacherlist.SelectedIndex = 0;
             btnRoomteaSave.Text = "INSERT";
+            errmsgclasslist.Visible = false;
+            errmsggradelist.Visible = false;
+            errmsgteaacherlist.Visible = false;
         }
 
         protected void btnRoomTeaUpdate_Click(object sender, EventArgs e)
@@ -197,6 +193,42 @@ namespace HomeASP
                 Session["TimetableHedId"] = timetablrHedId;
                 Response.Redirect("SM_StudentTimeTableEntry_2.aspx");
             }
+        }
+
+        public bool checkValidation()
+        {
+            bool chkFlag = true;
+
+            if (ddlentrygradelist.SelectedIndex == 0)
+            {
+                errmsggradelist.Visible = true;
+                chkFlag = false;
+            }
+            else
+            {
+                errmsggradelist.Visible = false;
+            }
+
+            if (ddlentryclasslist.SelectedIndex == 0)
+            {
+                errmsgclasslist.Visible = true;
+                chkFlag = false;
+            }
+            else
+            {
+                errmsgclasslist.Visible = false;
+            }
+            if (ddlentryteacherlist.SelectedIndex == 0)
+            {
+                errmsgteaacherlist.Visible = true;
+                chkFlag = false;
+            }
+            else
+            {
+                errmsgteaacherlist.Visible = false;
+            }
+
+            return chkFlag;
         }
     }
 }

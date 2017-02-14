@@ -3,7 +3,7 @@
 <!-- Layout -->
 <html>
 <head id="Head1" runat="server">
-    <title>Home </title>
+    <title>Student TimeTable Entry </title>
     <link rel="stylesheet" href="styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="styles/custom.css" type="text/css" />    
     <link rel="stylesheet" href="styles/font-awesome.css" type="text/css" />    
@@ -18,6 +18,12 @@
             height: 410px;
             width: 1290px;
             margin-right: 90px;
+        }
+        .auto-style1 {
+            width: 210px;
+        }
+        .auto-style2 {
+            width: 110px;
         }
         </style>
 </head>
@@ -97,27 +103,37 @@
                     <div id="page-wrapper">
                         <div id="page-inner">
                             <form id="bookingForm" runat="server">
-                                &nbsp;&nbsp;&nbsp;&nbsp; Grade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="ddlentrygradelist" runat="server" Height="20px" Width="155px" ForeColor="Black" AppendDataBoundItems="True" AutoPostBack="True">
-                                </asp:DropDownList>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-&nbsp;&nbsp;&nbsp; Class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="ddlentryclasslist" runat="server" Height="20px" Width="155px" ForeColor="Black" AppendDataBoundItems="True">
-                                </asp:DropDownList>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                <br />
-&nbsp;&nbsp;&nbsp; Room Teacher&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="ddlentryteacherlist" runat="server" Height="20px" Width="155px" ForeColor="Black" AppendDataBoundItems="True">
-                                </asp:DropDownList>
-                                <br />
+                               <br />
+                                <table style="color:white;">
+                                    <tr>
+                                        <td class="auto-style2">Grade</td>
+                                        <td><asp:DropDownList ID="ddlentrygradelist" runat="server" Height="25px" Width="160px" ForeColor="Black" AppendDataBoundItems="True" AutoPostBack="True">
+                                            </asp:DropDownList></td>
+                                        <td class="auto-style1">
+                                            <asp:Label ID="errmsggradelist" runat="server" Text="Please select grade !" ForeColor="Red" Visible="False"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style2">Class</td>
+                                        <td><asp:DropDownList ID="ddlentryclasslist" runat="server" Height="25px" Width="160px" ForeColor="Black" AppendDataBoundItems="True">
+                                        </asp:DropDownList></td>
+                                        <td class="auto-style1"><asp:Label ID="errmsgclasslist" runat="server" Text="Please select class!" ForeColor="Red" Visible="False"></asp:Label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style2">Room Teacher</td>
+                                        <td><asp:DropDownList ID="ddlentryteacherlist" runat="server" Height="25px" Width="160px" ForeColor="Black" AppendDataBoundItems="True">
+                                        </asp:DropDownList></td>
+                                        <td class="auto-style1"><asp:Label ID="errmsgteaacherlist" runat="server" Text="Please select Room Teacher !" ForeColor="Red" Visible="False"></asp:Label></td>
+                                    </tr>
+                                </table>
                                 <br />
 &nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnRoomteaSave" runat="server" ForeColor="Black" Height="25px" Text="INSERT" Width="96px" OnClick="btnRoomteaSave_Click" />
-&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnroomteaCancel" runat="server" ForeColor="Black" Height="25px" Text="CANCEL" Width="96px" OnClick="btnroomteaCancel_Click" />
+                                <asp:Button ID="btnRoomteaSave" runat="server" ForeColor="Black" Height="30px" Text="INSERT" Width="100px" OnClick="btnRoomteaSave_Click" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btnroomteaCancel" runat="server" ForeColor="Black" Height="30px" Text="CANCEL" Width="100px" OnClick="btnroomteaCancel_Click" />
                                 <br />
                                 <br />
-                                <asp:GridView ID="gvRoomTeacher" runat="server" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Height="180px" Width="331px">
+                                <asp:GridView ID="gvRoomTeacher" runat="server" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Height="164px" Width="473px" AutoGenerateColumns="False">
                                     <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                                     <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
                                     <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
@@ -128,6 +144,15 @@
                                     <SortedDescendingCellStyle BackColor="#F6F0C0" />
                                     <SortedDescendingHeaderStyle BackColor="#7E0000" />
                                     <Columns>
+                                         <asp:BoundField HeaderText="GRADE"
+                                            DataField="GRADE_ID"
+                                        SortExpression="GRADE_ID"></asp:BoundField>
+                                        <asp:BoundField HeaderText="ROOM"
+                                            DataField="ROOM_ID"
+                                        SortExpression="ROOM_ID"></asp:BoundField>
+                                        <asp:BoundField HeaderText="ROOM TEACHER"
+                                            DataField="ROOM_TEACHER_ID"
+                                        SortExpression="ROOM_TEACHER_ID"></asp:BoundField>
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btnRoomTeacherEdit" runat="server" Text="Edit" CommandName='<%# Eval("TIMETABLE_ID") %>' OnClick="btnRoomTeaUpdate_Click"></asp:LinkButton>
@@ -140,8 +165,6 @@
                                         </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </form>
                         </div>
                     </div>

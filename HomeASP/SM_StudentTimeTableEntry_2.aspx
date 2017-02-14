@@ -104,11 +104,11 @@
                             <form id="bookingForm" runat="server">
                                 &nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-                                <table style="width: 32%; height: 197px; color:white;">
+                                <table style="width: 46%; height: 199px; color:white;">
                                     <tr>
                                         <td class="auto-style2">Period</td>
                                         <td>
-                                            <asp:DropDownList ID="ddlperiodlist" runat="server" Height="18px" Width="167px" ForeColor="Black">
+                                            <asp:DropDownList ID="ddlperiodlist" runat="server" Height="25px" Width="160px" ForeColor="Black">
                                                 <asp:ListItem>Period 1</asp:ListItem>
                                                 <asp:ListItem>Period 2</asp:ListItem>
                                                 <asp:ListItem>Period 3</asp:ListItem>
@@ -118,55 +118,71 @@
                                                 <asp:ListItem>Period 7</asp:ListItem>
                                             </asp:DropDownList>
                                         </td>
+                                        <td></td>
+                                        
                                     </tr>
                                     <tr>
                                         <td class="auto-style2">MON</td>
                                         <td>
-                                            <asp:DropDownList ID="ddlmonsublist" runat="server" Height="18px" Width="167px" ForeColor="Black">
+                                            <asp:DropDownList ID="ddlmonsublist" runat="server" Height="25px" Width="160px" ForeColor="Black">
                                             </asp:DropDownList>
+                                        </td>
+                                        <td class="auto-style1">
+                                            <asp:Label ID="errmonlist" runat="server" Text="Please select subject !" ForeColor="Red" Visible="False"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="auto-style2">TUE</td>
                                         <td>
-                                            <asp:DropDownList ID="ddltuesublist" runat="server" Height="18px" Width="167px" ForeColor="Black">
+                                            <asp:DropDownList ID="ddltuesublist" runat="server" Height="25px" Width="160px" ForeColor="Black">
                                             </asp:DropDownList>
+                                        </td>
+                                        <td class="auto-style1">
+                                            <asp:Label ID="errtuelist" runat="server" Text="Please select subject !" ForeColor="Red" Visible="False"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="auto-style2">WED</td>
                                         <td>
-                                            <asp:DropDownList ID="ddlwedsublist" runat="server" ForeColor="Black" Height="18px" Width="167px">
+                                            <asp:DropDownList ID="ddlwedsublist" runat="server" ForeColor="Black" Height="25px" Width="160px">
                                             </asp:DropDownList>
+                                        </td>
+                                         <td class="auto-style1">
+                                            <asp:Label ID="errwedlist" runat="server" Text="Please select subject !" ForeColor="Red" Visible="False"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="auto-style2">THU</td>
                                         <td>
-                                            <asp:DropDownList ID="ddlthusublist" runat="server" ForeColor="Black" Height="18px" Width="167px">
+                                            <asp:DropDownList ID="ddlthusublist" runat="server" ForeColor="Black" Height="25px" Width="160px">
                                             </asp:DropDownList>
+                                        </td>
+                                         <td class="auto-style1">
+                                            <asp:Label ID="errthulist" runat="server" Text="Please select subject !" ForeColor="Red" Visible="False"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="auto-style2">FRI</td>
                                         <td>
-                                            <asp:DropDownList ID="ddlfrisublist" runat="server" ForeColor="Black" Height="18px" Width="167px">
+                                            <asp:DropDownList ID="ddlfrisublist" runat="server" ForeColor="Black" Height="25px" Width="160px">
                                             </asp:DropDownList>
+                                        </td>
+                                         <td class="auto-style1">
+                                            <asp:Label ID="errfrilist" runat="server" Text="Please select subject !" ForeColor="Red" Visible="False"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="auto-style1" colspan="2">
-                                            <asp:Button ID="btntimedetailAdd" runat="server" ForeColor="Black" Height="26px" OnClick="btntimedetailAdd_Click" Text="ADD" Width="117px" />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <asp:Button ID="btntimedetailcancel" runat="server" ForeColor="Black" Height="29px" OnClick="btntimedetailcancel_Click" Text="CANCEL" Width="119px" />
+                                        <td class="auto-style1" colspan="3">
+                                            <asp:Button ID="btntimedetailAdd" runat="server" ForeColor="Black" Height="30px" OnClick="btntimedetailAdd_Click" Text="ADD" Width="100px" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <asp:Button ID="btntimedetailcancel" runat="server" ForeColor="Black" Height="30px" OnClick="btntimedetailcancel_Click" Text="CANCEL" Width="100px" />
                                         </td>
                                     </tr>
                                     </table>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;
                                 <br />
-&nbsp;&nbsp;
-                                <br />
-                                <asp:GridView ID="gvtimedetail" runat="server" CellPadding="4" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" Height="191px" Width="394px">
+                                <asp:GridView ID="gvtimedetail" runat="server" CellPadding="4" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" Height="189px" Width="419px" AutoGenerateColumns="False">
                                     <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                                     <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
                                     <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
@@ -177,6 +193,26 @@
                                     <SortedDescendingCellStyle BackColor="#F6F0C0" />
                                     <SortedDescendingHeaderStyle BackColor="#7E0000" />
                                     <Columns>
+                                        <asp:BoundField HeaderText="PERIOD"
+                                        DataField="TIMETABLE_TIME"
+                                        SortExpression="TIMETABLE_TIME"></asp:BoundField>
+                                    <asp:BoundField HeaderText="MONDAY"
+                                        DataField="MONDAY"
+                                        SortExpression="MONDAY" ItemStyle-Width="142px"></asp:BoundField>
+                                    <asp:BoundField HeaderText="TUESDAY"
+                                        DataField="TUESDAY"
+                                        SortExpression="TUESDAY" ItemStyle-Width="142px"></asp:BoundField>
+                                    <asp:BoundField HeaderText="WEDNESDAY"
+                                        DataField="WEDNESDAY"
+                                        SortExpression="WEDNESDAY" ItemStyle-Width="142px"></asp:BoundField>
+                                    <asp:BoundField HeaderText="THURSDAY"
+                                        DataField="THURSDAY"
+                                        SortExpression="THURSDAY" ItemStyle-Width="142px"></asp:BoundField>
+                                    <asp:BoundField HeaderText="FRIDAY"
+                                        DataField="FRIDAY"
+                                        SortExpression="FRIDAY" ItemStyle-Width="142px">
+                                        <ItemStyle Width="142px"></ItemStyle>
+                                    </asp:BoundField>
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btnTimeDetailEdit" runat="server" Text="Edit" CommandName='<%# Eval("ID") %>' OnClick="btnTimeDetailUpdate_Click"></asp:LinkButton>

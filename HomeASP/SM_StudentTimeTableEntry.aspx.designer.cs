@@ -112,6 +112,15 @@ namespace HomeASP {
         protected global::System.Web.UI.WebControls.DropDownList ddlentrygradelist;
         
         /// <summary>
+        /// errmsggradelist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errmsggradelist;
+        
+        /// <summary>
         /// ddlentryclasslist control.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,15 @@ namespace HomeASP {
         protected global::System.Web.UI.WebControls.DropDownList ddlentryclasslist;
         
         /// <summary>
+        /// errmsgclasslist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errmsgclasslist;
+        
+        /// <summary>
         /// ddlentryteacherlist control.
         /// </summary>
         /// <remarks>
@@ -128,6 +146,15 @@ namespace HomeASP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlentryteacherlist;
+        
+        /// <summary>
+        /// errmsgteaacherlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errmsgteaacherlist;
         
         /// <summary>
         /// btnRoomteaSave control.

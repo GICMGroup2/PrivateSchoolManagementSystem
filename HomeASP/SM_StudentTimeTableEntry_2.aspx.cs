@@ -119,34 +119,37 @@ namespace HomeASP
         protected void btntimedetailAdd_Click(object sender, EventArgs e)
         {
             bool isOK = true;
-            if (btntimedetailAdd.Text.Equals("ADD"))
+            if (checkValidation())
             {
-                timedetail.TIMETABLE_ID = timeHedId;
-                timedetail.TIMETABLE_TIME = ddlperiodlist.SelectedItem.Value;
-                timedetail.MONDAY = ddlmonsublist.SelectedItem.Value;
-                timedetail.TUESDAY = ddltuesublist.SelectedItem.Value;
-                timedetail.WEDNESDAY = ddlwedsublist.SelectedItem.Value;
-                timedetail.THURSDAY = ddlthusublist.SelectedItem.Value;
-                timedetail.FRIDAY = ddlfrisublist.SelectedItem.Value;
-                timedetail.DEL_FLG = 0;
-                isOK = timeService.saveTimetableDetailData(timedetail,out msg);
-            }
-            else if (btntimedetailAdd.Text.Equals("UPDATE"))
-            {
-                timedetail.TIMETABLE_ID = timeHedId;
-                timedetail.TIMETABLE_TIME = ddlperiodlist.SelectedItem.Value;
-                timedetail.MONDAY = ddlmonsublist.SelectedItem.Value;
-                timedetail.TUESDAY = ddltuesublist.SelectedItem.Value;
-                timedetail.WEDNESDAY = ddlwedsublist.SelectedItem.Value;
-                timedetail.THURSDAY = ddlthusublist.SelectedItem.Value;
-                timedetail.FRIDAY = ddlfrisublist.SelectedItem.Value;
-                isOK = timeService.updateTimeTableDetail(timedetail, timeDetailId, out msg);
-            }
+                if (btntimedetailAdd.Text.Equals("ADD"))
+                {
+                    timedetail.TIMETABLE_ID = timeHedId;
+                    timedetail.TIMETABLE_TIME = ddlperiodlist.SelectedItem.Value;
+                    timedetail.MONDAY = ddlmonsublist.SelectedItem.Value;
+                    timedetail.TUESDAY = ddltuesublist.SelectedItem.Value;
+                    timedetail.WEDNESDAY = ddlwedsublist.SelectedItem.Value;
+                    timedetail.THURSDAY = ddlthusublist.SelectedItem.Value;
+                    timedetail.FRIDAY = ddlfrisublist.SelectedItem.Value;
+                    timedetail.DEL_FLG = 0;
+                    isOK = timeService.saveTimetableDetailData(timedetail, out msg);
+                }
+                else if (btntimedetailAdd.Text.Equals("UPDATE"))
+                {
+                    timedetail.TIMETABLE_ID = timeHedId;
+                    timedetail.TIMETABLE_TIME = ddlperiodlist.SelectedItem.Value;
+                    timedetail.MONDAY = ddlmonsublist.SelectedItem.Value;
+                    timedetail.TUESDAY = ddltuesublist.SelectedItem.Value;
+                    timedetail.WEDNESDAY = ddlwedsublist.SelectedItem.Value;
+                    timedetail.THURSDAY = ddlthusublist.SelectedItem.Value;
+                    timedetail.FRIDAY = ddlfrisublist.SelectedItem.Value;
+                    isOK = timeService.updateTimeTableDetail(timedetail, timeDetailId, out msg);
+                }
 
-            if (isOK)
-            {
-                DisplayTimeDetail(timeHedId);
-                resetForm();
+                if (isOK)
+                {
+                    DisplayTimeDetail(timeHedId);
+                    resetForm();
+                }
             }
         }
 
@@ -206,13 +209,7 @@ namespace HomeASP
 
             if (resultDt != null)
             {
-                resultDt.Columns.Remove(resultDt.Columns["CRT_DT_TM"]);
-                resultDt.Columns.Remove(resultDt.Columns["CRT_USER_ID"]);
-                resultDt.Columns.Remove(resultDt.Columns["UPD_DT_TM"]);
-                resultDt.Columns.Remove(resultDt.Columns["UPD_USER_ID"]);
-                resultDt.Columns.Remove(resultDt.Columns["DEL_FLG"]);
-                resultDt.Columns.Remove(resultDt.Columns["TIMETABLE_ID"]);
-
+                
                 foreach (DataSet.DsPSMS.ST_TIMETABLE_DETAILRow row in resultDt.Rows)
                 {
                     int subjectId;
@@ -261,14 +258,61 @@ namespace HomeASP
 
                 gvtimedetail.DataSource = resultDt;
                 gvtimedetail.DataBind();
-                gvtimedetail.HeaderRow.Cells[2].Text = "NO";
-                gvtimedetail.HeaderRow.Cells[3].Text = "PERIOD";
-                gvtimedetail.HeaderRow.Cells[4].Text = "MONDAY";
-                gvtimedetail.HeaderRow.Cells[5].Text = "TUESDAY";
-                gvtimedetail.HeaderRow.Cells[6].Text = "WEDNESDAY";
-                gvtimedetail.HeaderRow.Cells[7].Text = "THURSDAY";
-                gvtimedetail.HeaderRow.Cells[8].Text = "FRIDAY";
             }
+        }
+
+        public bool checkValidation()
+        {
+            bool chkFlag = true;
+
+            if (ddlmonsublist.SelectedIndex == 0)
+            {
+                errmonlist.Visible = true;
+                chkFlag = false;
+            }
+            else
+            {
+                errmonlist.Visible = false;
+            }
+
+            if (ddltuesublist.SelectedIndex == 0)
+            {
+                errtuelist.Visible = true;
+                chkFlag = false;
+            }
+            else
+            {
+                errtuelist.Visible = false;
+            }
+            if (ddlwedsublist.SelectedIndex == 0)
+            {
+                errwedlist.Visible = true;
+                chkFlag = false;
+            }
+            else
+            {
+                errwedlist.Visible = false;
+            }
+            if (ddlthusublist.SelectedIndex == 0)
+            {
+                errthulist.Visible = true;
+                chkFlag = false;
+            }
+            else
+            {
+                errthulist.Visible = false;
+            }
+            if (ddlfrisublist.SelectedIndex == 0)
+            {
+                errfrilist.Visible = true;
+                chkFlag = false;
+            }
+            else
+            {
+                errfrilist.Visible = false;
+            }
+
+            return chkFlag;
         }
     }
 }
