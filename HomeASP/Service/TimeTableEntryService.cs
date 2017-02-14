@@ -711,5 +711,29 @@ namespace HomeASP.Service
              }
              return resultData;
          }
+
+         public DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable getAttendanceByDate(DataSet.DsPSMS.ST_TIMETABLE_HEDRow dr)
+         {
+             if (dr == null)
+                 return null;
+             try
+             {
+                 timedb.Open();
+                 DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable dt = timedb.isExitTimeHedData(dr);
+                 if (dt != null && (dt.Rows.Count > 0))
+                     return dt;
+                 else
+                     return null;
+             }
+             catch
+             {
+                 return null;
+             }
+             finally
+             {
+                 timedb.Close();
+             }
+         }
+
     }
 }
