@@ -103,6 +103,7 @@
                     <div id="page-wrapper">
                         <div id="page-inner">
                             <form id="bookingForm" runat="server">
+                                <asp:Label ID="errmsgexist" runat="server" ForeColor="#FF3300" Text="Already Exist ! Please choose other data !" Visible="False"></asp:Label>
                                <br />
                                 <table style="color:white;">
                                     <tr>

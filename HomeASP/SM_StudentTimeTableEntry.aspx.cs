@@ -134,7 +134,16 @@ namespace HomeASP
                     timetablehed.ROOM_ID = ddlentryclasslist.SelectedItem.Value;
                     timetablehed.ROOM_TEACHER_ID = ddlentryteacherlist.SelectedItem.Value;
                     timetablehed.DEL_FLG = 0;
-                    isOK = timeService.saveTimetableHedData(timetablehed, out msg);
+                    if (checkAldyRecord(timetablehed))
+                    {
+                        errmsgexist.Visible = true;
+                    }
+                    else
+                    {
+                        errmsgexist.Visible = false;
+                        isOK = timeService.saveTimetableHedData(timetablehed, out msg);
+                    }
+                    
                 }
                 else if (btnRoomteaSave.Text.Equals("UPDATE"))
                 {
@@ -162,6 +171,7 @@ namespace HomeASP
             errmsgclasslist.Visible = false;
             errmsggradelist.Visible = false;
             errmsgteaacherlist.Visible = false;
+            errmsgexist.Visible = false;
         }
 
         protected void btnRoomTeaUpdate_Click(object sender, EventArgs e)
@@ -229,6 +239,24 @@ namespace HomeASP
             }
 
             return chkFlag;
+        }
+
+        private bool checkAldyRecord(DataSet.DsPSMS.ST_TIMETABLE_HEDRow drr)
+        {
+            bool alreadyExist = false;
+            for (int i = 0; i < gvRoomTeacher.Rows.Count; i++)
+            {
+                DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable result = timeService.isExistTimeHed(drr);
+                if (result != null && result.Rows.Count > 0)
+                {
+                    alreadyExist = true;
+                }
+                else
+                {
+                    alreadyExist = false;
+                }
+            }
+            return alreadyExist;
         }
     }
 }
