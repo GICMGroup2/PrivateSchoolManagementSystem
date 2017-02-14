@@ -712,7 +712,7 @@ namespace HomeASP.Service
              return resultData;
          }
 
-         public DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable getAttendanceByDate(DataSet.DsPSMS.ST_TIMETABLE_HEDRow dr)
+         public DataSet.DsPSMS.ST_TIMETABLE_HEDDataTable isExistTimeHed(DataSet.DsPSMS.ST_TIMETABLE_HEDRow dr)
          {
              if (dr == null)
                  return null;
