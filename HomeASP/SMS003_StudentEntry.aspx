@@ -18,7 +18,11 @@
 <link href="Styles/calendar-blue.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
-        
+        function UploadFile(fileUpload) {
+            if (fileUpload.value != '') {
+                document.getElementById("<%=btnUpload.ClientID %>").click();
+            }
+        }
     </script>
 
     <style type="text/css">
@@ -137,12 +141,14 @@
                                   
                                 <asp:Image ID="picturebox" runat="server" Height="130px" Width="145px" />
                                 &nbsp; &nbsp;
-                                <asp:Label ID="photo" runat="server" Text="Choose Photo" />
+                                <asp:FileUpload ID="FileUpload1" runat="server" />
                                 <br />
-
+                                <asp:Label ID="lblMessage" runat="server" Text="File uploaded successfully." ForeColor="Green" Visible="false" />
+                                <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="Upload" Style="display: none" />
+                                 <br />
                                                                                               
                                 <div style="height: 36px">
-                                <table  align="left" style="background-color:#302c2c; height: 918px; width: 450px; margin-right: 47px;"> 
+                                <table  align="left" style="background-color:#302c2c; height: 518px; width: 450px; margin-right: 47px;"> 
                                 <tr> <td class="auto-style6">&nbsp; Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                                      <td>&nbsp;<asp:TextBox ID="stuname" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox></td>
                                 </tr>  
@@ -181,8 +187,8 @@
                                               <asp:RadioButton ID="Female" runat="server" Text="Female" GroupName="Gender" /></td>
                                </tr>
 
-                               <tr> <td class="auto-style1">&nbsp; Date of Birth </td>
-                                    <td class="auto-style1">&nbsp;<asp:TextBox runat="server" ID="dob" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black" />
+                               <tr> <td class="auto-style6">&nbsp; Date of Birth </td>
+                                    <td>&nbsp;<asp:TextBox runat="server" ID="dob" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black" />
                                               <asp:Button ID="btndobcalendar" runat="server" ForeColor="#FF0066" OnClick="btndobcalendar_Click" Text="Calendar" />
                                     <div> <asp:Panel ID="p1" runat="server" Height="16px" Visible="false" Width="271px">
                                           &nbsp; <asp:Calendar ID="Calendar" runat="server" OnSelectionChanged="Calendar_SelectionChanged" BackColor="White" Height="200px" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Width="220px">
@@ -216,7 +222,11 @@
                                                </asp:DropDownList>
                                               
                                     </td>
-                                </tr>                                        
+                                </tr>    
+                                    
+                               <tr><td class="auto-style6">&nbsp; Phone </td>
+                                   <td>&nbsp;<asp:TextBox ID="stuphone" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox></td>
+                               </tr>                                    
                        </table> 
 
                       
@@ -280,14 +290,9 @@
                                 <asp:Button ID="showlist" runat="server" Text="Show List" Width="101px" OnClick="showlist_Click" OnClientClick="window.open('SMS004_StudentList.aspx','OtherPage');" ForeColor="#FF0066"/>&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="display" runat="server" Text="Display" Width="100px" OnClick="display_Click" OnClientClick="window.open('SMS005_StudentDetail.aspx','OtherPage');" ForeColor="#FF0066"/>&nbsp;&nbsp;
                                 <asp:Button ID="clear" runat="server" Text="Clear" Width="100px" OnClick="clear_Click" ForeColor="#FF0066" />       
-                                </div>
-                                   
-                            
-                                     
-                                          
-                                                             
-                     
-                                </form>
+                                </div>     
+                                                            
+                        </form>
                             
                         </div>
                     </div>

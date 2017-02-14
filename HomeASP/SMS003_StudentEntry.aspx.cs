@@ -18,8 +18,7 @@ namespace HomeASP
 {
     public partial class SMS003 : Page
     {
-        Page ch;
-        Page child;
+        
         string msg = "";
 
         StudentInfoService stuentry = new StudentInfoService();
@@ -40,6 +39,89 @@ namespace HomeASP
             system.ImageUrl = "~/Images/system.jpg";
             picturebox.ImageUrl = "~/Images/school.jpg";
             //education.Text = Convert.ToString(DateTime.Today.Year);
+
+            FileUpload1.Attributes["onchange"] = "UploadFile(this)";
+
+            DsPSMS.ST_STUDENT_DATARow stuentryupdate = new DsPSMS.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
+            if (Session["EDU_YEAR"] != null)
+            {
+                education.Text = (string)(Session["EDU_YEAR"] ?? " ");
+            }
+
+            if (Session["STUDENT_ID"] != null)
+            {
+                stuid.Text = (string)(Session["STUDENT_ID"] ?? " ");
+            }
+
+
+            if (Session["STUDENT_NAME"] != null)
+            {
+                stuname.Text = (string)(Session["STUDENT_NAME"] ?? " ");
+            }
+
+            if (Session["ROLL_NO"] != null)
+            {
+                rollno.Text = (string)(Session["ROLL_NO"] ?? " ");
+            }
+
+            //if (Session["GENDER"] != null)
+            //{
+            //    Gender.Text = (string)(Session["GENDER"] ?? " ");
+            //}
+
+            if (Session["DOB"] != null)
+            {
+                dob.Text = (string)(Session["DOB"] ?? " ");
+            }
+
+            if (Session["PHONE"] != null)
+            {
+                stuphone.Text = (string)(Session["PHONE"] ?? " ");
+            }
+
+            if (Session["NRC_NO"] != null)
+            {
+                nrcno.Text = (string)(Session["NRC_NO"] ?? " ");
+            }
+
+            if (Session["PASSWORD"] != null)
+            {
+                password.Text = (string)(Session["PASSWORD"] ?? " ");
+            }
+
+            if (Session["GRADE_ID"] != null)
+            {
+                grade.Text = (string)(Session["GRADE_ID"] ?? " ");
+            }
+
+            if(Session["ROOM_ID"]!=null)
+            {
+                roomid.Text = (string)(Session["ROOM_ID"] ?? " ");
+            }
+
+            if (Session["FATHER_NAME"] != null)
+            {
+                father.Text = (string)(Session["FATHER_NAME"] ?? " ");
+            }
+
+            if (Session["MOTHER_NAME"] != null)
+            {
+                mother.Text = (string)(Session["MOTHER_NAME"] ?? " ");
+            }
+
+            if (Session["ADDRESS"] != null)
+            {
+                address.Text = (string)(Session["ADDRESS"] ?? " ");
+            }
+
+            if (Session["CONTACT_PHONE"] != null)
+            {
+                phone.Text = (string)(Session["CONTACT_PHONE"] ?? " ");
+            }
+            if (Session["EMAIL"] != null)
+            {
+                email.Text = (string)(Session["EMAIL"] ?? " ");
+            }
 
         }
 
@@ -64,7 +146,7 @@ namespace HomeASP
 
 
             dob.Text = Convert.ToString(dr.DOB);
-            phone.Text = dr["PHONE"].ToString();
+            stuphone.Text = dr["PHONE"].ToString();
             nrcno.Text = dr["NRC_NO"].ToString();
             password.Text = dr["PASSWORD"].ToString();
             grade.Text = dr["GRADE_ID"].ToString();
@@ -131,11 +213,11 @@ namespace HomeASP
                         dr[4] = " Male ";
 
                     // picture input kyan tay
-
+                    
                     dr[6] = dob.Text;
 
                     if (phone.Text.Trim().Length != 0)
-                        dr[7] = phone.Text;
+                        dr[7] = stuphone.Text;
                     else
                         dr[7] = "";
 
@@ -160,7 +242,7 @@ namespace HomeASP
                             //{
                             //    if(ckeckAge())
                             //{
-                            if (cashtype.Text.Length != 0)
+                            if (cashtype.Text.Length == 0)
                             { dr[12] = ""; }
                             else
                             {
@@ -244,11 +326,14 @@ namespace HomeASP
             { Response.Write("<script>alert('Check student name')</script>"); }
         }
 
-        protected void savephoto_Click(object sender, EventArgs e)
+        protected void Upload(object sender, EventArgs e)
         {
+           // FileUpload1.SaveAs(Server.MapPath("~/Images/" + Path.GetFileName(FileUpload1.FileName)));
+            FileUpload1.SaveAs("C:/Users/Lenovo/Desktop/dataimage/" + FileUpload1.FileName);
+            lblMessage.Visible = true;
 
         }
-
+       
         protected void showlist_Click(object sender, EventArgs e)
         {
             Response.Redirect("SMS004_StudentList.aspx");
@@ -290,6 +375,7 @@ namespace HomeASP
         {
             if (cashtype.Text == "Annually")
             {
+                
                 firstmonth.Enabled = false;
                 thirdmonth.Enabled = false;
                 fourmonth.Enabled = false;
