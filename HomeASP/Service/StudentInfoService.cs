@@ -47,7 +47,7 @@ namespace HomeASP.Service
         }
 
         // Get all student data
-        public DataTable getAllData(out string msg)
+        public DataSet.DsPSMS.ST_STUDENT_DATADataTable getAllData(out string msg)
         {
             DataSet.DsPSMS.ST_STUDENT_DATADataTable dt = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();
             try
@@ -118,6 +118,32 @@ namespace HomeASP.Service
             return isOk;
         }
 
+        public bool removedata(DsPSMS.ST_STUDENT_DATARow dr, out string msg)
+        {
+            bool isOk = true;
+            if (dr == null)
+            {
+                msg = "data is empty";
+                return false;
+            }
+            try
+            {
+                Open();
+                int result = stu.deletestudentdata(dr);
+                msg = "deleted";
+            }
+            catch
+            {
+                msg = "error occurs when deleting student data";
+                return false;
+            }
+            finally
+            {
+                Close();
+            }
+            return isOk;
+        }
+
         // Get student by option
         public DataSet.DsPSMS.ST_STUDENT_DATADataTable getAllDataByOption(DataSet.DsPSMS.ST_STUDENT_DATARow dr)
         {
@@ -159,6 +185,46 @@ namespace HomeASP.Service
 
             return stuDr;
         }
+
+        public DataSet.DsPSMS.ST_GRADE_MSTDataTable getAllgrade(out string msg)
+        {
+            DataSet.DsPSMS.ST_GRADE_MSTDataTable result = new DataSet.DsPSMS.ST_GRADE_MSTDataTable();
+            try
+            {
+                result = stu.selectAllGrade();
+                if (result != null && result.Rows.Count > 0)
+                {
+                    msg = result.Rows.Count + "user found";
+                }
+                else
+                {
+                    result = null;
+                    msg = "user not found";
+                }
+            }
+            catch
+            {
+                msg = "error has occure when insert data";
+                return null;
+            }
+            finally
+            {
+                Close();
+            }
+            return result;
+
+        }
+
+
+        //public DataSet.DsPSMS.ST_STUDENT_DATADataTable regetGradeYear(out string msg)
+        //{
+        //    DataSet.DsPSMS.ST_STUDENT_DATADataTable result = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();
+        //    try
+        //    {
+        //        Open();
+        //        result= stu.selectgr
+
+        //}
         public DsPSMS.ST_STUDENT_DATARow getStuName(DsPSMS.ST_STUDENT_DATARow dr, out string msg)
         {
             DataSet.DsPSMS.ST_STUDENT_DATARow stuDr = new DataSet.DsPSMS.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
@@ -170,7 +236,7 @@ namespace HomeASP.Service
             }
             catch
             {
-                msg = "error occurs when selecting cash type";
+                msg = "error occurs when selecting name";
                 return null;
             }
             finally
@@ -180,6 +246,30 @@ namespace HomeASP.Service
 
             return stuDr;
         }
+
+        public DataSet.DsPSMS.ST_STUDENT_DATADataTable searchgradeyear(string gradid,string eduyearid)
+        {
+            string msg;
+            DataSet.DsPSMS.ST_STUDENT_DATADataTable gyear = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();
+            try
+            {
+                Open();
+                gyear = stu.selectgyear(gradid,eduyearid);
+                msg = "Have Data";
+            }
+            catch
+            {
+                msg = "error occurs when searching grade and education year";
+                return null;
+            }
+            finally
+            {
+                Close();
+            }
+            return gyear;
+
+       }
+        
 
     }
 }

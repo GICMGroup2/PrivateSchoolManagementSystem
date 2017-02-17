@@ -14,7 +14,7 @@ namespace HomeASP.DbAccess
 {
     public class StudentInfo : dbAccess
     {
-
+        int result;
         //SqlConnection conn = new SqlConnection();
         //dbAccess db = new dbAccess();
         //Inserting Student Data
@@ -125,6 +125,18 @@ namespace HomeASP.DbAccess
 
         }
 
+        //select grade data
+        public DataSet.DsPSMS.ST_GRADE_MSTDataTable selectAllGrade()
+        {
+            string query = "SELECT * FROM ST_GRADE_MST";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet.DsPSMS.ST_GRADE_MSTDataTable dt = new DataSet.DsPSMS.ST_GRADE_MSTDataTable();
+            da.Fill(dt);
+            return dt;
+
+        }
+
         //Update Student Data
         public void updateStudent(DataRow dr)
         {
@@ -175,6 +187,18 @@ namespace HomeASP.DbAccess
             Close();
         }
 
+        public int deletestudentdata(DsPSMS.ST_STUDENT_DATARow dr)
+        {
+            if (dr == null)
+                return -1;
+            Open();
+            string query = "UPDATE ST_STUDENT_DATA SET DEL_FLG =" + 1 + "WHERE STUDENT_ID =" + dr["STUDENT_ID"];
+            SqlCommand cmd = new SqlCommand(query, conn);
+            result=cmd.ExecuteNonQuery();
+            Close();
+            return result;
+        }
+
         //select Cash Type from ST_STUDENT_DATA table
         public DataSet.DsPSMS.ST_STUDENT_DATARow selectCashType(DataSet.DsPSMS.ST_STUDENT_DATARow dr)
         {
@@ -199,6 +223,18 @@ namespace HomeASP.DbAccess
             da.Fill(stuDt);
             Close();
             return stuDt[0];
+        }
+
+        public DataSet.DsPSMS.ST_STUDENT_DATADataTable selectgyear(string gradeid,string eduyearid)
+        {
+            DsPSMS.ST_STUDENT_DATADataTable gyearr = new DsPSMS.ST_STUDENT_DATADataTable();
+            Open();
+            string query = "SELECT * from ST_STUDENT_DATA WHERE GRADE_ID='" + gradeid + "' AND EDU_YEAR= '" + eduyearid+"'";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(gyearr);
+            Close();
+            return gyearr;
         }
 
 
