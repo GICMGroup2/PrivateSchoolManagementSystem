@@ -39,6 +39,42 @@
         }
 
        
+         .auto-style2
+        {
+            width: 93px;
+        }
+
+       
+         .auto-style3
+        {
+            width: 126px;
+        }
+
+       
+         .auto-style9
+        {
+            height: 29px;
+            width: 173px;
+        }
+        
+       
+         .auto-style12
+        {
+            width: 89px;
+            height: 29px;
+        }
+        .auto-style15
+        {
+            height: 29px;
+            width: 126px;
+        }
+        .auto-style16
+        {
+            width: 69px;
+            height: 29px;
+        }
+        
+       
          </style>  
 
    
@@ -119,65 +155,97 @@
                     <div id="stupagewrapper">
                         <div id="stupageinner">
                             <form id="bookingForm" runat="server">
+                            <div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            <asp:Label ID="errgrade" runat="server" Text="Please Select Grade!" ForeColor="Red" Font-Size="Medium"></asp:Label>
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+
+                            <asp:Label ID="erreducation"  runat ="server" Text="Please Select Education Year!" ForeColor="Red" Font-Size="Medium"></asp:Label></div>
+                            <table style="width:85%; color: #FFFFFF; height: 59px;">
+                                <tr>
+                                    <td class="auto-style16"><asp:Label ID="namesearch" runat="server" Text="Name"> </asp:Label>&nbsp; &nbsp; &nbsp; </td>
+                                    <td class="auto-style15"><asp:TextBox ID="searchstuname" runat="server" Width="168px" ForeColor="Black"></asp:TextBox></td>
+
+                                   
+                                    <td class="auto-style12"> &nbsp; &nbsp; <asp:Label ID="Label1" runat="server" Text="Grade"></asp:Label></td>   
+                                    <td class="auto-style9"><asp:DropDownList ID="stulistgrade" runat="server" Height="33px" Width="168px" ForeColor="Black"> 
+                                                            <asp:ListItem>Select </asp:ListItem>
+                                                            <asp:ListItem>Grade1</asp:ListItem>
+                                                            <asp:ListItem>Grade2</asp:ListItem>
+                                                            <asp:ListItem>Grade3</asp:ListItem>
+                                                            <asp:ListItem>Grade4</asp:ListItem>
+                                                            <asp:ListItem>Grade5</asp:ListItem>
+                                                            <asp:ListItem>Grade6</asp:ListItem>
+                                                            <asp:ListItem>Grade7</asp:ListItem>
+                                                            <asp:ListItem>Grade8</asp:ListItem>
+                                                            <asp:ListItem>Grade9</asp:ListItem>
+                                                            <asp:ListItem>Grade10</asp:ListItem>
+                                                            </asp:DropDownList>
+                                    </td>
+                                     <td class="auto-style2"> <asp:Label ID="Label6" runat="server" Text="Class Year"></asp:Label>&nbsp; </td>
+                                    <td class="auto-style3"><asp:DropDownList ID="comboYear" runat="server" Height="33px" Width="163px" ForeColor="Black"> 
+                                                           
+                                                            <asp:ListItem>Select Year</asp:ListItem>
+                                                           
+                                                            <asp:ListItem>2001 - 2002</asp:ListItem>
+                                                            <asp:ListItem>2003-2004</asp:ListItem>
+                                                            <asp:ListItem>2005-2006</asp:ListItem>
+                                                            <asp:ListItem>2007-2008</asp:ListItem>
+                                                            <asp:ListItem>2009-2010</asp:ListItem>
+                                                            <asp:ListItem>2010-2011</asp:ListItem>
+                                                            <asp:ListItem>2011-2012</asp:ListItem>
+                                                            <asp:ListItem>2012-2013</asp:ListItem>
+                                                            <asp:ListItem>2013-2014</asp:ListItem>
+                                                            <asp:ListItem>2014-2015</asp:ListItem>
+                                                            </asp:DropDownList></td>
+                                                                        
+                                 </tr>
                                 
-                                <asp:Table runat="server" CellSpacing="0" ForeColor="White" Height="94px" CellPadding="3" Width="795px"> 
-                                <asp:TableRow>
-
-                                <asp:TableCell>
-                                <asp:Label runat="server" Text="Name"> </asp:Label>&nbsp; &nbsp; &nbsp;
-                                <asp:TextBox ID="stulistname" runat="server" Width="166px"></asp:TextBox> </asp:TableCell>
-
-                                <asp:TableCell><asp:Label runat="server" Text="Grade"></asp:Label>&nbsp; &nbsp;
-                                <asp:DropDownList ID="stulistgrade" runat="server" Height="33px" Width="168px"> </asp:DropDownList></asp:TableCell>
-
-                                <asp:TableCell><asp:Label  runat="server" Text="Student ID"></asp:Label>&nbsp; &nbsp;
-                                <asp:TextBox ID="stulistid" runat="server" Width="166px"></asp:TextBox><br /></asp:TableCell></asp:TableRow>
-
-
-                                <asp:TableRow><asp:TableCell>
-                                <asp:Label ID="Label2" runat="server" Text="Roll No"></asp:Label>&nbsp; &nbsp;
-                                <asp:TextBox ID="stulistroll" runat="server" Width="166px"></asp:TextBox></asp:TableCell>
-                              
-                                    
-                               
-                                <asp:TableCell> 
-                                
-                                <asp:Label Text="Class" runat="server"></asp:Label> &nbsp; &nbsp;
-                                    <asp:DropDownList ID="stulistclass" runat="server" Height="33px" Width="168px"> </asp:DropDownList>
-                                </asp:TableCell>
-
-                                <asp:TableCell>
-                               
-                                <asp:Label ID="Label4" runat="server" Text="Class Year"></asp:Label>&nbsp; &nbsp;
-                                <asp:DropDownList ID="DropDownList1" runat="server" Height="33px" Width="166px"> </asp:DropDownList>
-
-                                </asp:TableCell>
-                                    </asp:TableRow>
-                               </asp:Table> 
-                                <br />
-
-                                <div align="center">
-
-                                    <asp:Button ID="search" runat="server" Text="Search" BackColor="Gray" Width="103px" /> &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:Button ID="searchall" runat="server" Text="Search All" BackColor="Gray" /> &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:Button ID="detail" runat="server" Text="Detail" BackColor="Gray" Width="103px" /> &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:Button ID="add" runat="server" Text="Add" BackColor="Gray" Width="103px" /> &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:Button ID="edit" runat="server" Text="Edit" BackColor="Gray" Width="103px" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                        </table>
+                        <br />
+                                <div>
+                                    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                                    <asp:Button ID="btnSearch" runat="server" Text="Search" Width="103px" ForeColor="#FF0066" OnClick="btnSearch_Click" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="btnDetail" runat="server" Text="Detail" Width="103px" ForeColor="#FF0066" OnClientClick="window.open('SMS005_StudentDetail.aspx','OtherPage');" OnClick="btnDetail_Click" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add" Width="103px" ForeColor="#FF0066" OnClientClick="window.open('SMS003_StudentEntry.aspx','OtherPage');" OnClick="btnAdd_Click1"/> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="103px" ForeColor="#FF0066" OnClick="btnEdit_Click" OnClientClick="window.open('SMS003_StudentEntry.aspx','OtherPage');" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="btnDelete" runat="server" Text="Delete" Width="103px" ForeColor="#FF0066" OnClick="btnDelete_Click" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <br />
                                   
                                 </div>
                                  <br />
-                          <asp:TextBox ID="TextBox2" runat="server" TextMode="MultiLine" Height="400" Width="800"></asp:TextBox>
+                                <%-- <asp:TextBox ID="showdata" runat="server" TextMode="MultiLine" Height="400" Width="800"></asp:TextBox>
                         <script type="text/javascript">
                          window.onload = function () {
                          var textarea = document.getElementById('<%=TextBox2.ClientID %>');
                          textarea.scrollTop = textarea.scrollHeight;
                             }
                         </script>
+                                --%>
+
+
+                           <asp:Label ID="errorSeach" ForeColor="Red" Font-Size="Medium" style="float:left" runat ="server"></asp:Label>
+                           &nbsp;
+                           <asp:Label ID="showerror" Font-Size="Medium" ForeColor="Red" runat="server" />
                                 
-                           
+                                <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Height="222px" Width="802px">
+                                    <AlternatingRowStyle BackColor="#DCDCDC" />
+                                    <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                                    <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                    <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                                    <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                    <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                    <SortedDescendingHeaderStyle BackColor="#000065" />
+                                </asp:GridView>
+
                                 
-                            </form>
+
+                                </form>
                         </div>
                     </div>
             </div>           
