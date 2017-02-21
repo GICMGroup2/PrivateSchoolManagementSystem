@@ -153,6 +153,38 @@ namespace HomeASP.DbAccess
             result = cmd.ExecuteNonQuery();
             return result;
         }
+
+        public DataSet.DsPSMS.ST_STUDENT_DATADataTable selectStudentId(DataSet.DsPSMS.ST_STUDENT_DATARow dr)
+        {
+            string query = "SELECT * FROM ST_STUDENT_DATA WHERE STUDENT_NAME = '" + dr.STUDENT_NAME + "' AND GRADE_ID = '" + dr.GRADE_ID + "' AND ROOM_ID = '" + dr.ROOM_ID + "'";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet.DsPSMS.ST_STUDENT_DATADataTable dt = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();
+            da.Fill(dt);
+            return dt;
+        }
+
+        public DataSet.DsPSMS.ST_ATTENDANCE_DATADataTable selectAttendanceList(DataSet.DsPSMS.ST_ATTENDANCE_DATARow dr)
+        {
+            string query = "SELECT * FROM ST_ATTENDANCE_DATA WHERE STUDENT_ID IN (" + dr.STUDENT_ID + ")";
+            if (dr.ATTENDANCE_DATE.Substring(0, 2) != "00")
+            {
+                query += " AND DAY(ATTENDANCE_DATE) LIKE " + dr.ATTENDANCE_DATE.Substring(0, 2);
+            }
+            if (dr.ATTENDANCE_DATE.Substring(3, 2) != "00")
+            {
+                query += " AND MONTH(ATTENDANCE_DATE) LIKE " + dr.ATTENDANCE_DATE.Substring(3, 2);
+            }
+            if (dr.ATTENDANCE_DATE.Substring(6, 4) != "0000")
+            {
+                query += " AND YEAR(ATTENDANCE_DATE) LIKE " + dr.ATTENDANCE_DATE.Substring(6, 4);
+            }
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet.DsPSMS.ST_ATTENDANCE_DATADataTable dt = new DataSet.DsPSMS.ST_ATTENDANCE_DATADataTable();
+            da.Fill(dt);
+            return dt;
+        }
     }
 }
    
