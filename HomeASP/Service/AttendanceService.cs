@@ -156,5 +156,43 @@ namespace HomeASP.Service
                 db.Close();
             }
         }
+
+        public DataSet.DsPSMS.ST_STUDENT_DATADataTable selectStudentId(DataSet.DsPSMS.ST_STUDENT_DATARow sr)
+        {
+            DataSet.DsPSMS.ST_STUDENT_DATADataTable result = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();            
+            try
+            {
+                db.Open();
+                result = db.selectStudentId(sr);
+            }
+            catch
+            {                
+                return null;
+            }
+            finally
+            {
+                db.Close();
+            }
+            return result;
+        }
+
+        public DataSet.DsPSMS.ST_ATTENDANCE_DATADataTable selectAttendanceList(DataSet.DsPSMS.ST_ATTENDANCE_DATARow dr)
+        {
+            DataSet.DsPSMS.ST_ATTENDANCE_DATADataTable result = new DataSet.DsPSMS.ST_ATTENDANCE_DATADataTable();            
+            try
+            {
+                db.Open();
+                result = db.selectAttendanceList(dr);                
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                db.Close();
+            }
+            return result;
+        }
     }
 }
