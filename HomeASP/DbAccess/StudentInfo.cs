@@ -38,10 +38,9 @@ namespace HomeASP.DbAccess
             data += ", '" + dr.ROLL_NO + "'";
 
             data += ", '" + dr.GENDER + "'";
-            if(!dr.IsPHOTO_PATHNull())
-                data += ", '" + dr.PHOTO_PATH + "'";
-            else
-                data += ", '  '";
+            
+            data += ", '" + dr.PHOTO_PATH + "'";
+           
             data += ", '" + dr.DOB + "'";
 
             data += ", '" + dr.PHONE + "'";
@@ -143,9 +142,9 @@ namespace HomeASP.DbAccess
             Open();
             string query = "";
             string data = "";
-            int result = 0;
+            int result ;
 
-            query = "UPDATE ST_STUDENT_DATA SET";
+            query = "UPDATE ST_STUDENT_DATA SET ";
             data += "STUDENT_ID ='" + dr["STUDENT_ID"] + "'";
             data += ", STUDENT_NAME = '" + dr["STUDENT_NAME"] + "'";
             data += ", ROLL_NO= '" + dr["ROLL_NO"] + "'";
@@ -173,6 +172,7 @@ namespace HomeASP.DbAccess
             SqlCommand cmd = new SqlCommand(query, conn);
             result = cmd.ExecuteNonQuery();
             Close();
+            
         }
 
         // Delete student data
@@ -198,6 +198,19 @@ namespace HomeASP.DbAccess
             Close();
             return result;
         }
+
+        //Select student image
+        //public DataSet.DsPSMS.ST_STUDENT_DATARow selectImage(DataSet.DsPSMS.ST_STUDENT_DATARow dr)
+        //{
+        //    DsPSMS.ST_STUDENT_DATADataTable stuDt = new DsPSMS.ST_STUDENT_DATADataTable();
+        //    Open();
+        //    string query = "SELECT* FROM ST_STUDENT_DATA WHERE PHOTO_PATH'" + dr.STUDENT_ID + "' AND EDU_YEAR='" + dr.EDU_YEAR + "' AND STUDENT_NAME='" + dr.STUDENT_NAME + "'AND GRADE_ID='" + dr.GRADE_ID + "'";
+        //    SqlCommand cmd = new SqlCommand(query, conn);
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    da.Fill(stuDt);
+        //    Close();
+        //    return stuDt[0];
+        //}
 
         //select Cash Type from ST_STUDENT_DATA table
         public DataSet.DsPSMS.ST_STUDENT_DATARow selectCashType(DataSet.DsPSMS.ST_STUDENT_DATARow dr)
@@ -225,11 +238,25 @@ namespace HomeASP.DbAccess
             return stuDt[0];
         }
 
-        public DataSet.DsPSMS.ST_STUDENT_DATADataTable selectgyear(string gradeid,string eduyearid)
+        public DataSet.DsPSMS.ST_STUDENT_DATADataTable selectngyear(string name,string gradeid,string eduyearid)
+        {
+            DsPSMS.ST_STUDENT_DATADataTable nagyearr = new DsPSMS.ST_STUDENT_DATADataTable();
+            Open();
+            string query = "SELECT * from ST_STUDENT_DATA WHERE GRADE_ID='" + gradeid + "' AND EDU_YEAR= '" + eduyearid+"' AND STUDENT_NAME Like'"+name+"%'";
+            
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(nagyearr);
+            Close();
+            return nagyearr;
+        }
+
+        public DataSet.DsPSMS.ST_STUDENT_DATADataTable selectgyear(string grade, string eduyear)
         {
             DsPSMS.ST_STUDENT_DATADataTable gyearr = new DsPSMS.ST_STUDENT_DATADataTable();
             Open();
-            string query = "SELECT * from ST_STUDENT_DATA WHERE GRADE_ID='" + gradeid + "' AND EDU_YEAR= '" + eduyearid+"'";
+            string query = "SELECT * from ST_STUDENT_DATA WHERE GRADE_ID='" + grade + "' AND EDU_YEAR= '" + eduyear + "'";
+           
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(gyearr);
@@ -237,6 +264,18 @@ namespace HomeASP.DbAccess
             return gyearr;
         }
 
+        public DataSet.DsPSMS.ST_STUDENT_DATADataTable selectIdNaEdGd(DataSet.DsPSMS.ST_STUDENT_DATARow dr)
+        {
+            DsPSMS.ST_STUDENT_DATADataTable gyearr = new DsPSMS.ST_STUDENT_DATADataTable();
+            Open();
+            string query = "SELECT * from ST_STUDENT_DATA WHERE STUDENT_ID='" + dr.STUDENT_ID + "' AND EDU_YEAR= '" + dr.EDU_YEAR + "' AND STUDENT_NAME='" + dr.STUDENT_NAME + "' AND GRADE_ID = '" + dr.GRADE_ID +"'";
+            //string query = "SELECT * from ST_STUDENT_DATA WHERE GRADE_ID='" + gradeid + "' AND EDU_YEAR= '" + eduyearid + "'";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(gyearr);
+            Close();
+            return gyearr;
+        }
 
     }
 }

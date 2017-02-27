@@ -144,6 +144,30 @@ namespace HomeASP.Service
             return isOk;
         }
 
+        //Student Image
+        //public DataSet.DsPSMS.ST_STUDENT_DATADataTable studentimage(string photoselect)
+        //{
+        //    string msg;
+        //    DataSet.DsPSMS.ST_STUDENT_DATADataTable namegyear = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();
+        //    try
+        //    {
+        //        Open();
+        //        namegyear = stu.selectImage(photoselect);
+        //        msg = "Have Data";
+        //    }
+        //    catch
+        //    {
+        //        msg = "error occurs when searching name, grade and education year";
+        //        return null;
+        //    }
+        //    finally
+        //    {
+        //        Close();
+        //    }
+        //    return namegyear;
+
+        //}
+
         // Get student by option
         public DataSet.DsPSMS.ST_STUDENT_DATADataTable getAllDataByOption(DataSet.DsPSMS.ST_STUDENT_DATARow dr)
         {
@@ -216,15 +240,7 @@ namespace HomeASP.Service
         }
 
 
-        //public DataSet.DsPSMS.ST_STUDENT_DATADataTable regetGradeYear(out string msg)
-        //{
-        //    DataSet.DsPSMS.ST_STUDENT_DATADataTable result = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();
-        //    try
-        //    {
-        //        Open();
-        //        result= stu.selectgr
-
-        //}
+       
         public DsPSMS.ST_STUDENT_DATARow getStuName(DsPSMS.ST_STUDENT_DATARow dr, out string msg)
         {
             DataSet.DsPSMS.ST_STUDENT_DATARow stuDr = new DataSet.DsPSMS.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
@@ -247,14 +263,62 @@ namespace HomeASP.Service
             return stuDr;
         }
 
-        public DataSet.DsPSMS.ST_STUDENT_DATADataTable searchgradeyear(string gradid,string eduyearid)
+        public DataSet.DsPSMS.ST_STUDENT_DATADataTable searchnamegradeyear(string name,string gradid,string eduyearid)
+        {
+            string msg;
+            DataSet.DsPSMS.ST_STUDENT_DATADataTable namegyear = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();
+            try
+            {
+                Open();
+                namegyear = stu.selectngyear(name,gradid,eduyearid);
+                msg = "Have Data";
+            }
+            catch
+            {
+                msg = "error occurs when searching name, grade and education year";
+                return null;
+            }
+            finally
+            {
+                Close();
+            }
+            return namegyear;
+
+       }
+
+        public DataSet.DsPSMS.ST_STUDENT_DATADataTable searchgradeyear(string grade, string eduyear)
         {
             string msg;
             DataSet.DsPSMS.ST_STUDENT_DATADataTable gyear = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();
             try
             {
                 Open();
-                gyear = stu.selectgyear(gradid,eduyearid);
+                gyear = stu.selectgyear(grade, eduyear);
+                msg = "Have Data";
+
+            }
+            catch
+            {
+                msg = "error occurs when searching grade and education year";
+                return null;
+
+            }
+            finally
+            {
+                Close();
+            }
+            return gyear;
+
+        }
+
+        public DataSet.DsPSMS.ST_STUDENT_DATARow searchIdNaEdGd(DataSet.DsPSMS.ST_STUDENT_DATARow dr)
+        {
+            string msg;
+            DataSet.DsPSMS.ST_STUDENT_DATADataTable gyear = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();
+            try
+            {
+                Open();
+                gyear = stu.selectIdNaEdGd(dr);
                 msg = "Have Data";
             }
             catch
@@ -266,10 +330,9 @@ namespace HomeASP.Service
             {
                 Close();
             }
-            return gyear;
+            return gyear[0];
 
-       }
-        
+        }
 
     }
 }
