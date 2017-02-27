@@ -18,7 +18,7 @@ namespace HomeASP
 {
     public partial class SMS003 : Page
     {
-        
+
         string msg = "";
 
         StudentInfoService stuentry = new StudentInfoService();
@@ -37,11 +37,10 @@ namespace HomeASP
             examInfo.ImageUrl = "~/Images/exam.png";
             teacherInfo.ImageUrl = "~/Images/teacher.png";
             system.ImageUrl = "~/Images/system.jpg";
-            picturebox.ImageUrl = "~/Images/school.jpg";
-            //education.Text = Convert.ToString(DateTime.Today.Year);
-
-            FileUpload1.Attributes["onchange"] = "UploadFile(this)";
-
+          
+            
+            if( !IsPostBack)
+            {
             DsPSMS.ST_STUDENT_DATARow stuentryupdate = new DsPSMS.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
             if (Session["EDU_YEAR"] != null)
             {
@@ -64,10 +63,18 @@ namespace HomeASP
                 rollno.Text = (string)(Session["ROLL_NO"] ?? " ");
             }
 
-            //if (Session["GENDER"] != null)
-            //{
-            //    Gender.Text = (string)(Session["GENDER"] ?? " ");
-            //}
+            if (Session["GENDER"] != null)
+            {
+                if (Session["GENDER"].Equals("Female"))
+                { Female.Checked = true; }
+                else
+                { Male.Checked = true; }
+            }
+            
+            if (Session["PHOTO_PATH"] != null)
+            {
+                studentpicture.ImageUrl = (string)(Session["PHOTO_PATH"] ?? " ");
+            }
 
             if (Session["DOB"] != null)
             {
@@ -121,6 +128,22 @@ namespace HomeASP
             if (Session["EMAIL"] != null)
             {
                 email.Text = (string)(Session["EMAIL"] ?? " ");
+            }
+            if (Session["CASH_TYPE1"] != null)
+            {
+                cashtype.Text = (string)(Session["CASH_TYPE1"] ?? " ");
+            }
+            if (Session["CASH_TYPE2"] != null)
+            {
+                if (Session["CASH_TYPE2"].Equals("1"))
+                { firstmonth.Checked = true; }
+                if (Session["CASH_TYPE2"].Equals("3"))
+                { thirdmonth.Checked = true; }
+                if (Session["CASH_TYPE2"].Equals("4"))
+                { fourmonth.Checked = true; }
+
+            }
+           
             }
 
         }
@@ -181,169 +204,462 @@ namespace HomeASP
             email.Text = dr["EMAIL"].ToString();
 
         }
+
+        public string getFilePath()
+        {
+            string strPath = "";
+
+            string folderPath = Server.MapPath("~/Images/");
+
+            //Check whether Directory (Folder) exists.
+            if (!Directory.Exists(folderPath))
+            {
+                //If Directory (Folder) does not exists. Create it.
+                Directory.CreateDirectory(folderPath);
+            }
+
+            //Save the File to the Directory (Folder).
+            strPath = folderPath + Path.GetFileName(FileUpload1.FileName);
+            FileUpload1.SaveAs(strPath);
+            
+
+            return strPath;
+        }
         // Saving data
         protected void saved_Click(object sender, EventArgs e)
         {
-            bool isOk;
+
             dr = new DataSet.DsPSMS.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
             dt = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();
 
-
+            //string str = getFilePath();
 
 
 
             if (stuid.Text.Trim().Length != 0)
             {
-                //dr[0] =Convert.ToInt16( education.Text);
-               // dr[0] = int.Parse(education.Text);
-                dr[0] = education.Text;
-                dr[1] = Convert.ToString(stuid.Text);
+                if (education.Text != null)
+                {
+                    string edu = education.Text;
+                    dr[0] = edu;
+                }
+                else
+                {
+
+                    Response.Write("<script>alert('Please Enter Education Year !')</script>");
+                }
+
+
+                if (stuid.Text.Trim().Length != 0)
+                {
+                    dr[1] = Convert.ToString(stuid.Text);
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Student ID !')</script>");
+                }
+
+
                 if (stuname.Text.Trim().Length != 0)
                 {
                     dr[2] = stuname.Text;
-
-                    if (rollno.Text.Trim().Length != 0)
-                        dr[3] = rollno.Text;
-                    else
-                        dr[3] = "";
-
-                    if (Female.Checked == true)
-                        dr[4] = "Female ";
-                    if (Male.Checked == true)
-                        dr[4] = " Male ";
-
-                    // picture input kyan tay
-                    
-                    dr[6] = dob.Text;
-
-                    if (phone.Text.Trim().Length != 0)
-                        dr[7] = stuphone.Text;
-                    else
-                        dr[7] = "";
-
-                    if (nrcno.Text.Trim().Length != 0)
-                        dr[8] = nrcno.Text;
-
-                    if (password.Text.Trim().Length != 0)
-                    {
-                        dr[9] = password.Text;
-
-                        if (grade.Text.Trim().Length != 0)
-                        {
-                            dr[10] = grade.Text;
-
-                            if (roomid.Text.Trim().Length != 0)
-                                dr[11] = roomid.Text;
-                            else
-                                dr[11] = "";
-
-                            //
-                            //if(dt.Rows.Count == 0 || dt == null)
-                            //{
-                            //    if(ckeckAge())
-                            //{
-                            if (cashtype.Text.Length == 0)
-                            { dr[12] = ""; }
-                            else
-                            {
-                                dr[12] = cashtype.Text;
-
-                                if (cashtype.Text == "Monthly")
-                                {
-                                    if (firstmonth.Checked == true)
-                                        dr[13] = "1";
-                                    if (thirdmonth.Checked == true)
-                                        dr[13] = "3";
-                                    if (fourmonth.Checked == true)
-                                        dr[13] = "4";
-                                }
-                                else
-                                    dr[13] = "";
-                            }
-
-                            if (father.Text.Trim().Length != 0)
-                                dr[14] = father.Text;
-                            else
-                                dr[14] = "";
-
-                            if (mother.Text.Trim().Length != 0)
-                                dr[15] = mother.Text;
-                            else
-                                dr[15] = "";
-
-                            if (address.Text.Trim().Length != 0)
-                                dr[16] = address.Text;
-                            else
-                                dr[16] = "";
-
-                            if (phone.Text.Trim().Length != 0)
-                                dr[17] = phone.Text;
-                            else
-                                dr[17] = "";
-
-                            if (email.Text.Trim().Length == 0)
-                            {
-                                dr[18] = "";
-                                dr[19] = "";
-                                dr[20] = "";
-                                dr[21] = "";
-                                bool result = stuentry.saveData(dr, "ST_STUDENT_DATA", out msg);
-
-                            }
-                            else
-                            {
-                                isOk = IsValidEmail(email.Text);
-                                if (isOk == true)
-                                {
-                                    dr[18] = email.Text;
-                                    dr[19] = "";
-                                    dr[20] = "";
-                                    dr[21] = "";
-                                    bool result = stuentry.saveData(dr, "ST_STUDENT_DATA", out msg);
-                                }
-                                else
-
-                                { Response.Write("<script>alert('Please check your Email address')</script>"); }
-
-                            }
-                        }
-
-
-                        else
-                        { Response.Write("<script>alert('Student is already exsist')</script>"); }
-                    }
-
-
-                    else
-                    { Response.Write("<script>alert('Enter student grade')</script>"); }
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Student Name !')</script>");
                 }
 
+
+                if (rollno.Text.Trim().Length != 0)
+                {
+                    dr[3] = rollno.Text;
+                }
                 else
-                { Response.Write("<script>alert('Enter password for security')</script>"); }
-            }
+                {
+                    Response.Write("<script>alert('Please Enter Roll No. !')</script>");
+                }
 
-            else
-            { Response.Write("<script>alert('Check student name')</script>"); }
+                if (Female.Checked == true)
+                    dr[4] = "Female ";
+
+                if (Male.Checked == true)
+                    dr[4] = " Male ";
+
+
+                
+
+                    dr[5] = FileUpload1.FileName;
+
+               
+
+
+
+                if (dob.Text.Trim().Length != 0)
+                {
+                    dr[6] = dob.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter DOB !')</script>");
+                }
+
+
+                if (phone.Text.Trim().Length != 0)
+                {
+                    dr[7] = stuphone.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Student Phone !')</script>");
+                }
+
+
+                if (nrcno.Text.Trim().Length != 0)
+                {
+                    dr[8] = nrcno.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Student NRC No. !')</script>");
+                }
+
+
+                if (password.Text.Trim().Length != 0)
+                {
+                    dr[9] = password.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Password !')</script>");
+                }
+
+
+                if (grade.Text.Trim().Length != 0)
+                {
+                    dr[10] = grade.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Grade !')</script>");
+                }
+
+
+                if (roomid.Text.Trim().Length != 0)
+                {
+                    dr[11] = roomid.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Room !')</script>");
+                }
+
+
+                if (cashtype.Text.Length == 0)
+                { Response.Write("<script>alert('Please Select Cash Type !')</script>"); }
+                else
+                {
+                    dr[12] = cashtype.Text;
+
+                    if (cashtype.Text == "Monthly")
+                    {
+                        if (firstmonth.Checked == true)
+                            dr[13] = "1";
+                        if (thirdmonth.Checked == true)
+                            dr[13] = "3";
+                        if (fourmonth.Checked == true)
+                            dr[13] = "4";
+                    }
+                    else
+                        dr[13] = "";
+                }
+
+                if (father.Text.Trim().Length != 0)
+                {
+                    dr[14] = father.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Father Name !')</script>");
+                }
+
+
+                if (mother.Text.Trim().Length != 0)
+                {
+                    dr[15] = mother.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Mother Name !')</script>");
+                }
+
+
+
+                if (address.Text.Trim().Length != 0)
+                {
+                    dr[16] = address.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Address !')</script>");
+                }
+
+
+                if (phone.Text.Trim().Length != 0)
+                {
+                    dr[17] = phone.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Phone !')</script>");
+                }
+
+
+                if (email.Text.Trim().Length == 0)
+                {
+                    dr[18] = "";
+                    dr[19] = "";
+                    dr[20] = "";
+                    dr[21] = "";
+                    bool result = stuentry.saveData(dr, "ST_STUDENT_DATA", out msg);
+
+                }
+                else
+                {
+                    dr[18] = email.Text;
+                    dr[19] = "";
+                    dr[20] = "";
+                    dr[21] = "";
+                    bool result = stuentry.saveData(dr, "ST_STUDENT_DATA", out msg);
+
+                }
+
+            } Response.Write("<script>alert('Your Student Entry is Successful !')</script>");
+
         }
 
-        protected void Upload(object sender, EventArgs e)
+        protected void btnupdate_Click(object sender, EventArgs e)
         {
-           // FileUpload1.SaveAs(Server.MapPath("~/Images/" + Path.GetFileName(FileUpload1.FileName)));
-            FileUpload1.SaveAs("C:/Users/Lenovo/Desktop/dataimage/" + FileUpload1.FileName);
-            lblMessage.Visible = true;
+            dr = new DataSet.DsPSMS.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
+            dt = new DataSet.DsPSMS.ST_STUDENT_DATADataTable();
 
+
+            if (stuid.Text.Trim().Length != 0)
+            {
+                if (education.Text != null)
+                {
+                    string edu = education.Text;
+                    dr[0] = edu;
+                }
+                else
+                {
+
+                    Response.Write("<script>alert('Please Enter Education Year !')</script>");
+                }
+
+
+                if (stuid.Text.Trim().Length != 0)
+                {
+                    dr[1] = Convert.ToString(stuid.Text);
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Student ID !')</script>");
+                }
+
+
+                if (stuname.Text.Trim().Length != 0)
+                {
+                    dr[2] = stuname.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Student Name !')</script>");
+                }
+
+
+                if (rollno.Text.Trim().Length != 0)
+                {
+                    dr[3] = rollno.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Roll No. !')</script>");
+                }
+
+                if (Female.Checked == true)
+                    dr[4] = "Female ";
+
+                if (Male.Checked == true)
+                    dr[4] = " Male ";
+
+                
+                string upFile = (string)(Session["PHOTO_PATH"] ?? " ");
+                if (FileUpload1.FileName == "")
+                {
+                    dr[5] = upFile;
+                }
+                else
+                {
+                    if (!upFile.Equals(FileUpload1.FileName))
+                    {
+                        string str = getFilePath();
+                        dr[5] = FileUpload1.FileName;
+                    }
+                    else
+                    {
+                        dr[5] = FileUpload1.FileName;
+                    }
+                }
+
+                if (dob.Text.Trim().Length != 0)
+                {
+                    dr[6] = dob.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter DOB !')</script>");
+                }
+
+
+                if (phone.Text.Trim().Length != 0)
+                {
+                    dr[7] = stuphone.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Student Phone !')</script>");
+                }
+
+
+                if (nrcno.Text.Trim().Length != 0)
+                {
+                    dr[8] = nrcno.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Student NRC No. !')</script>");
+                }
+
+
+                if (password.Text.Trim().Length != 0)
+                {
+                    dr[9] = password.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Password !')</script>");
+                }
+
+
+                if (grade.Text.Trim().Length != 0)
+                {
+                    dr[10] = grade.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Grade !')</script>");
+                }
+
+
+                if (roomid.Text.Trim().Length != 0)
+                {
+                    dr[11] = roomid.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Room !')</script>");
+                }
+
+
+                if (cashtype.Text.Length == 0)
+                { Response.Write("<script>alert('Please Select Cash Type !')</script>"); }
+                else
+                {
+                    dr[12] = cashtype.Text;
+
+                    if (cashtype.Text == "Monthly")
+                    {
+                        if (firstmonth.Checked == true)
+                            dr[13] = "1";
+                        if (thirdmonth.Checked == true)
+                            dr[13] = "3";
+                        if (fourmonth.Checked == true)
+                            dr[13] = "4";
+                    }
+                    else
+                        dr[13] = "";
+                }
+
+                if (father.Text.Trim().Length != 0)
+                {
+                    dr[14] = father.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Father Name !')</script>");
+                }
+
+
+                if (mother.Text.Trim().Length != 0)
+                {
+                    dr[15] = mother.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Mother Name !')</script>");
+                }
+
+
+
+                if (address.Text.Trim().Length != 0)
+                {
+                    dr[16] = address.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Address !')</script>");
+                }
+
+
+                if (phone.Text.Trim().Length != 0)
+                {
+                    dr[17] = phone.Text;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Please Enter Phone !')</script>");
+                }
+
+
+                if (email.Text.Trim().Length == 0)
+                {
+                    dr[18] = "";
+                    dr[19] = "";
+                    dr[20] = "";
+                    dr[21] = "";
+                    bool result = stuentry.updatedata(this.dr, out msg);
+
+                }
+                else
+                {
+                    dr[18] = email.Text;
+                    dr[19] = "";
+                    dr[20] = "";
+                    dr[21] = "";
+                    bool result = stuentry.updatedata(this.dr, out msg);
+
+                }
+            }
         }
-       
+
+
         protected void showlist_Click(object sender, EventArgs e)
         {
             Response.Redirect("SMS004_StudentList.aspx");
 
         }
 
-        protected void display_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("SMS005_StudentDetail.aspx");
-        }
+
 
         protected void clear_Click(object sender, EventArgs e)
         {
@@ -375,7 +691,7 @@ namespace HomeASP
         {
             if (cashtype.Text == "Annually")
             {
-                
+
                 firstmonth.Enabled = false;
                 thirdmonth.Enabled = false;
                 fourmonth.Enabled = false;
@@ -389,21 +705,28 @@ namespace HomeASP
         }
 
 
-        bool IsValidEmail(string email)
+        protected void photoUpload_Click(object sender, EventArgs e)
         {
-            try
+           
+            string strPhoto = getFilePath();
+            if (strPhoto != null)
             {
-                var mail = new System.Net.Mail.MailAddress(email);
-                return true;
+                studentpicture.ImageUrl = "~/Images/" + FileUpload1.FileName;
             }
-            catch
-            { return false; }
-        }
+            
+           
+            
+            
 
-                
-        
-               
-            }
+        }
+       
+
+
+
+
+
+
+    }
 }
 
 

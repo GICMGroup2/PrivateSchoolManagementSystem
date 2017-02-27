@@ -155,12 +155,10 @@
                     <div id="stupagewrapper">
                         <div id="stupageinner">
                             <form id="bookingForm" runat="server">
-                            <div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                            <asp:Label ID="errgrade" runat="server" Text="Please Select Grade!" ForeColor="Red" Font-Size="Medium"></asp:Label>
+                            <div> &nbsp;&nbsp;<asp:label ForeColor="Red" Text="Please Enter Name!" runat="server" ID="errname" Visible="false"></asp:label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            <asp:Label ID="errgrade" runat="server" Text="Please Select Grade!" ForeColor="Red" Font-Size="Medium" Visible="false"></asp:Label>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-
-                            <asp:Label ID="erreducation"  runat ="server" Text="Please Select Education Year!" ForeColor="Red" Font-Size="Medium"></asp:Label></div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="erreducation"  runat ="server" Text="Please Select Education Year!" ForeColor="Red" Font-Size="Medium" Visible="false"></asp:Label></div>
                             <table style="width:85%; color: #FFFFFF; height: 59px;">
                                 <tr>
                                     <td class="auto-style16"><asp:Label ID="namesearch" runat="server" Text="Name"> </asp:Label>&nbsp; &nbsp; &nbsp; </td>
@@ -204,9 +202,11 @@
                         </table>
                         <br />
                                 <div>
-                                    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                                    &nbsp;&nbsp;
                                     <asp:Button ID="btnSearch" runat="server" Text="Search" Width="103px" ForeColor="#FF0066" OnClick="btnSearch_Click" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="btnSearchGEdu" runat="server" Text="Search Grade & Year"  ForeColor="#FF0066" OnClick="btnSearchGEdu_Click" Width="174px" /> &nbsp;&nbsp;&nbsp;&nbsp;
                                     <asp:Button ID="btnDetail" runat="server" Text="Detail" Width="103px" ForeColor="#FF0066" OnClientClick="window.open('SMS005_StudentDetail.aspx','OtherPage');" OnClick="btnDetail_Click" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                
                                     <asp:Button ID="btnAdd" runat="server" Text="Add" Width="103px" ForeColor="#FF0066" OnClientClick="window.open('SMS003_StudentEntry.aspx','OtherPage');" OnClick="btnAdd_Click1"/> &nbsp;&nbsp;&nbsp;&nbsp;
                                     <asp:Button ID="btnEdit" runat="server" Text="Edit" Width="103px" ForeColor="#FF0066" OnClick="btnEdit_Click" OnClientClick="window.open('SMS003_StudentEntry.aspx','OtherPage');" />
                                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -230,7 +230,7 @@
                            &nbsp;
                            <asp:Label ID="showerror" Font-Size="Medium" ForeColor="Red" runat="server" />
                                 
-                                <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Height="222px" Width="802px">
+                                <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" Height="222px" Width="802px" AutoGenerateColumns="False" Visible="true">
                                     <AlternatingRowStyle BackColor="#DCDCDC" />
                                     <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                                     <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
@@ -241,6 +241,18 @@
                                     <SortedAscendingHeaderStyle BackColor="#0000A9" />
                                     <SortedDescendingCellStyle BackColor="#CAC9C9" />
                                     <SortedDescendingHeaderStyle BackColor="#000065" />
+                                    <Columns>
+                                    <asp:BoundField HeaderText="ID" DataField="STUDENT_ID" SortExpression="STUDENT_ID" />
+                                    <asp:BoundField HeaderText="Education Year" DataField="EDU_YEAR" SortExpression="EDU_YEAR" />
+                                    <asp:BoundField HeaderText="Student Name" DataField="STUDENT_NAME" SortExpression="STUDENT_NAME" />
+                                    <asp:BoundField HeaderText="Grade" DataField="GRADE_ID" SortExpression="GRADE_ID" />
+                                    <asp:BoundField HeaderText="Gender" DataField="GENDER" SortExpression="GENDER" />
+                                  
+                               
+
+                                    
+                                    </Columns>
+
                                 </asp:GridView>
 
                                 

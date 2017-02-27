@@ -17,7 +17,7 @@ namespace HomeASP
     {
         StudentInfoService stuentry = new StudentInfoService();
        // DsPSMS.ST_STUDENT_DATADataTable show = new DsPSMS.ST_STUDENT_DATADataTable();
-        string userid = "";
+      //  string userid = "";
         string msg;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -29,9 +29,10 @@ namespace HomeASP
             teacherInfo.ImageUrl = "~/Images/teacher.png";
             system.ImageUrl = "~/Images/system.jpg";
 
-
+           
+           
             showgrid();
-            
+           
            
         }
 
@@ -49,13 +50,7 @@ namespace HomeASP
         base.Render(writer);
     }
 
-    protected void showGridData(DsPSMS.ST_STUDENT_DATARow dr)
-    {
-        DsPSMS.ST_STUDENT_DATADataTable studata = new DsPSMS.ST_STUDENT_DATADataTable();
-        studata = stuentry.getAllData(out msg);
-        GridView1.DataSource = studata;
-        GridView1.DataBind();
-    }
+    
 
    protected void btnSearch_Click(object sender, EventArgs e)
     {
@@ -67,7 +62,9 @@ namespace HomeASP
 
             string eduyearid = comboYear.SelectedItem.Value;
 
-            DsPSMS.ST_STUDENT_DATADataTable studentData = stuentry.searchgradeyear(gradeid, eduyearid);
+            string name = searchstuname.Text;
+            
+            DsPSMS.ST_STUDENT_DATADataTable studentData = stuentry.searchnamegradeyear(name, gradeid, eduyearid);
             if (studentData != null)
             {
                 displayGrid(studentData);
@@ -103,10 +100,67 @@ namespace HomeASP
         {
             erreducation.Visible=false;
         }
+        if (searchstuname.Text == null)
+        {
+            errname.Visible = true;
+            check = false;
+        }
         return check;
     }
 
-    
+
+    protected void btnSearchGEdu_Click(object sender, EventArgs e)
+    {
+        DsPSMS.ST_STUDENT_DATARow studata = new DsPSMS.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
+        if (ValidationGradeEdu())
+        {
+            string grade = stulistgrade.SelectedItem.Value;
+
+            string eduyear = comboYear.SelectedItem.Value;
+
+           
+
+            DsPSMS.ST_STUDENT_DATADataTable studentgyearData = stuentry.searchgradeyear(grade, eduyear);
+            if (studentgyearData != null)
+            {
+                displaygyearGrid(studentgyearData);
+            }
+            else
+            {
+                GridView1.Visible = false;
+                errorSeach.Visible = true;
+                errorSeach.Text = "There is no data";
+            }
+
+        }
+    }
+
+    public bool ValidationGradeEdu()
+    {
+        bool checkgedu = true;
+        if (stulistgrade.SelectedIndex == 0)
+        {
+            errgrade.Visible = true;
+            checkgedu = false;
+        }
+        else
+        {
+            errgrade.Visible = false;
+        }
+        if (comboYear.SelectedIndex == 0)
+        {
+            erreducation.Visible = true;
+            checkgedu = false;
+        }
+        else
+        {
+            erreducation.Visible = false;
+        }
+        
+        return checkgedu;
+
+    }
+            
 
     protected void btnDetail_Click(object sender, EventArgs e)
         {
@@ -115,25 +169,25 @@ namespace HomeASP
             { showerror.Text = "Please select the row that you want to view"; }
             else
             {
-                Session["EDU_YEAR"] = GridView1.SelectedRow.Cells[0].Text;
-                Session["STUDENT_ID"] = GridView1.SelectedRow.Cells[1].Text;
+                Session["STUDENT_ID"] = GridView1.SelectedRow.Cells[0].Text;
+                Session["EDU_YEAR"] = GridView1.SelectedRow.Cells[1].Text;
                 Session["STUDENT_NAME"] = GridView1.SelectedRow.Cells[2].Text;
-                Session["ROLL_NO"] = GridView1.SelectedRow.Cells[3].Text;
-                Session["GENDER"] = GridView1.SelectedRow.Cells[4].Text;
-                Session["PHOTO_PATH"] = GridView1.SelectedRow.Cells[5].Text;
-                Session["DOB"] = GridView1.SelectedRow.Cells[6].Text;
-                Session["PHONE"] = GridView1.SelectedRow.Cells[7].Text;
-                Session["NRC_NO"] = GridView1.SelectedRow.Cells[8].Text;
-                Session["PASSWORD"] = GridView1.SelectedRow.Cells[9].Text;
-                Session["GRADE_ID"] = GridView1.SelectedRow.Cells[10].Text;
-                Session["ROOM_ID"] = GridView1.SelectedRow.Cells[11].Text;
-                Session["CASH_TYPE1"] = GridView1.SelectedRow.Cells[12].Text;
-                Session["CASH_TYPE2"] = GridView1.SelectedRow.Cells[13].Text;
-                Session["FATHER_NAME"] = GridView1.SelectedRow.Cells[14].Text;
-                Session["MOTHER_NAME"] = GridView1.SelectedRow.Cells[15].Text;
-                Session["ADDRESS"] = GridView1.SelectedRow.Cells[16].Text;
-                Session["CONTACT_PHONE"] = GridView1.SelectedRow.Cells[17].Text;
-                Session["EMAIL"] = GridView1.SelectedRow.Cells[18].Text;
+                Session["GRADE_ID"] = GridView1.SelectedRow.Cells[3].Text;
+                //Session["GENDER"] = GridView1.SelectedRow.Cells[4].Text;
+                //Session["PHOTO_PATH"] = GridView1.SelectedRow.Cells[5].Text;
+                //Session["DOB"] = GridView1.SelectedRow.Cells[6].Text;
+                //Session["PHONE"] = GridView1.SelectedRow.Cells[7].Text;
+                //Session["NRC_NO"] = GridView1.SelectedRow.Cells[8].Text;
+                //Session["PASSWORD"] = GridView1.SelectedRow.Cells[9].Text;
+                //Session["GRADE_ID"] = GridView1.SelectedRow.Cells[10].Text;
+                //Session["ROOM_ID"] = GridView1.SelectedRow.Cells[11].Text;
+                //Session["CASH_TYPE1"] = GridView1.SelectedRow.Cells[12].Text;
+                //Session["CASH_TYPE2"] = GridView1.SelectedRow.Cells[13].Text;
+                //Session["FATHER_NAME"] = GridView1.SelectedRow.Cells[14].Text;
+                //Session["MOTHER_NAME"] = GridView1.SelectedRow.Cells[15].Text;
+                //Session["ADDRESS"] = GridView1.SelectedRow.Cells[16].Text;
+                //Session["CONTACT_PHONE"] = GridView1.SelectedRow.Cells[17].Text;
+                //Session["EMAIL"] = GridView1.SelectedRow.Cells[18].Text;
 
                 Response.Redirect("SMS005_StudentDetail.aspx");
             }
@@ -220,7 +274,15 @@ namespace HomeASP
                 GridView1.DataBind();
             }
         }
-            
+
+        protected void displaygyearGrid(DsPSMS.ST_STUDENT_DATADataTable studentgyear)
+        {
+            if (studentgyear != null)
+            {
+                GridView1.DataSource = studentgyear;
+                GridView1.DataBind();
+            }
+        }
 
      
     }

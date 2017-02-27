@@ -17,13 +17,13 @@
 <script src="Scripts/calendar-en.min.js" type="text/javascript"></script>
 <link href="Styles/calendar-blue.css" rel="stylesheet" type="text/css" />
 
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         function UploadFile(fileUpload) {
             if (fileUpload.value != '') {
                 document.getElementById("<%=btnUpload.ClientID %>").click();
             }
         }
-    </script>
+    </script>--%>
 
     <style type="text/css">
         #bookingForm
@@ -57,9 +57,9 @@
     margin: 0px 0px 0px 170px;
    
 }    
-        .auto-style1
+        .auto-style2
         {
-            height: 327px;
+            width: 132px;
         }
       </style>
 </head>
@@ -137,44 +137,50 @@
                 </ul>
                     <div id="stupagewrapper">
                         <div id="stupageinner">
-                            <form id="bookingForm" runat="server">                            
+                            <form id="bookingForm" runat="server">  
+                               <asp:Image runat="server" ID="studentpicture" Height="152px" Width="155px" />
+                                                          
                                   
-                                <asp:Image ID="picturebox" runat="server" Height="130px" Width="145px" />
+                                <asp:Label runat="server" Text="Select a file to upload : "></asp:Label>
                                 &nbsp; &nbsp;
-                                <asp:FileUpload ID="FileUpload1" runat="server" />
-                                <br />
-                                <asp:Label ID="lblMessage" runat="server" Text="File uploaded successfully." ForeColor="Green" Visible="false" />
-                                <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="Upload" Style="display: none" />
+                                 <asp:FileUpload ID="FileUpload1" runat="server" ForeColor="#FF0066" />
+                                
+                                <asp:Button ID="photoUpload" runat="server" ForeColor="#FF0066" OnClick="photoUpload_Click" Text="Upload" Width="104px" />
+                                &nbsp; &nbsp; 
                                  <br />
                                                                                               
                                 <div style="height: 36px">
                                 <table  align="left" style="background-color:#302c2c; height: 518px; width: 450px; margin-right: 47px;"> 
                                 <tr> <td class="auto-style6">&nbsp; Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                                     <td>&nbsp;<asp:TextBox ID="stuname" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox></td>
+                                     <td>&nbsp;<asp:TextBox ID="stuname" runat="server"  Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox>
+                                               <asp:RegularExpressionValidator ID="regexpName" runat="server" ControlToValidate="stuname" ValidationExpression="^[a-zA-Z'.\s]{1,40}$" ForeColor="Red"> <br />Input within a to z,not contain int!</asp:RegularExpressionValidator>
+                                     </td>
                                 </tr>  
 
-                                <tr> <td class="auto-style6">&nbsp; Grade ID</td>
+                                <tr> <td class="auto-style6">&nbsp; Grade </td>
                                      <td>&nbsp;<asp:DropDownList ID="grade" runat="server" Width="190px" Height="30px" ForeColor="Black" >
                                             
-                                               <asp:ListItem>Grade 1</asp:ListItem>
-                                               <asp:ListItem>Grade 2</asp:ListItem>
-                                               <asp:ListItem>Grade 3</asp:ListItem>
-                                               <asp:ListItem>Grade 4</asp:ListItem>
-                                               <asp:ListItem>Grade 5</asp:ListItem>
-                                               <asp:ListItem>Grade 6</asp:ListItem>
-                                               <asp:ListItem>Grade 7</asp:ListItem>
-                                               <asp:ListItem>Grade 8</asp:ListItem>
-                                               <asp:ListItem>Grade 9</asp:ListItem>
-                                               <asp:ListItem>Grade 10</asp:ListItem>
+                                               <asp:ListItem>Grade1</asp:ListItem>
+                                               <asp:ListItem>Grade2</asp:ListItem>
+                                               <asp:ListItem>Grade3</asp:ListItem>
+                                               <asp:ListItem>Grade4</asp:ListItem>
+                                               <asp:ListItem>Grade5</asp:ListItem>
+                                               <asp:ListItem>Grade6</asp:ListItem>
+                                               <asp:ListItem>Grade7</asp:ListItem>
+                                               <asp:ListItem>Grade8</asp:ListItem>
+                                               <asp:ListItem>Grade9</asp:ListItem>
+                                               <asp:ListItem>Grade10</asp:ListItem>
                                             </asp:DropDownList>
                                      </td>
                                </tr>  
 
                                <tr> <td class="auto-style6">&nbsp; Student ID</td>
-                                    <td>&nbsp;<asp:TextBox ID="stuid" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black" ></asp:TextBox></td>
+                                    <td>&nbsp;<asp:TextBox ID="stuid" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black" ></asp:TextBox>
+                                              <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="stuid" ForeColor="Red" ValidationExpression="^[0-9]*$" > <br />Only numeric allowed !</asp:RegularExpressionValidator>
+                                    </td>
                                </tr>       
                                     
-                               <tr> <td class="auto-style6">&nbsp; Room ID</td>
+                               <tr> <td class="auto-style6">&nbsp; Room</td>
                                     <td>&nbsp;<asp:TextBox ID="roomid" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox></td>
                                </tr>
                                    
@@ -225,7 +231,9 @@
                                 </tr>    
                                     
                                <tr><td class="auto-style6">&nbsp; Phone </td>
-                                   <td>&nbsp;<asp:TextBox ID="stuphone" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox></td>
+                                   <td>&nbsp;<asp:TextBox ID="stuphone" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox>
+                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server"  ControlToValidate="stuphone" ValidationExpression="(^\+[0-9]{3}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{7}$|[0-9\-\s]{9}$)" ForeColor="Red"> <br />Wrong Entry! Example: +959000000000</asp:RegularExpressionValidator>
+                                   </td>
                                </tr>                                    
                        </table> 
 
@@ -235,38 +243,50 @@
                        
                        <table align="right" style="background-color:#302c2c; height: 494px; width: 443px; margin-right: 47px;">
                                  <tr>
-                                       <td class="auto-style11">&nbsp; Father Name</td>
-                                       <td class="auto-style14"><asp:TextBox ID="father" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black" ></asp:TextBox></td>
+                                       <td class="auto-style2">&nbsp; Father Name</td>
+                                       <td class="auto-style14"><asp:TextBox ID="father" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black" ></asp:TextBox>
+                                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="father" ValidationExpression="^[a-zA-Z'.\s]{1,40}$" ForeColor="Red"> <br />Input within a to z,not contain int!</asp:RegularExpressionValidator>
+                                       </td>
                                  </tr>
 
                                  <tr>
-                                        <td class="auto-style11">&nbsp; Mother Name</td>
-                                        <td class="auto-style14"><asp:TextBox ID="mother" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox></td>
+                                        <td class="auto-style2">&nbsp; Mother Name</td>
+                                        <td class="auto-style14"><asp:TextBox ID="mother" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox>
+                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="mother" ValidationExpression="^[a-zA-Z'.\s]{1,40}$" ForeColor="Red"> <br />Input within a to z,not contain int!</asp:RegularExpressionValidator>
+                                        </td>
                                  </tr>
                                                             
                                  <tr>
-                                        <td class="auto-style11">&nbsp; Contact Phone</td>
-                                        <td class="auto-style14"> <asp:TextBox ID="phone" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox></td>
+                                        <td class="auto-style2">&nbsp; Contact Phone</td>
+                                        <td class="auto-style14"> <asp:TextBox ID="phone" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox>
+                                                                   <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server"  ControlToValidate="phone" ValidationExpression="^(^\+[0-9]{3}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{7}$|[0-9\-\s]{9}$)" ForeColor="Red"> <br />Wrong Entry! Example: +959000000000</asp:RegularExpressionValidator>
+
+                                        </td>
                                  </tr>
                                  
                                  <tr>
-                                        <td class="auto-style13">&nbsp; Email</td>
-                                        <td class="auto-style15"><asp:TextBox ID="email" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox>&nbsp;</td>
+                                        <td class="auto-style2">&nbsp; Email</td>
+                                        <td class="auto-style15"><asp:TextBox ID="email" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox>
+                                                                <asp:RegularExpressionValidator ID="regEmail" ControlToValidate="email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Runat="server" ForeColor="Red" > <br />Email address is wrong.Eg. aaa@gmail.com</asp:RegularExpressionValidator>
+                                        </td>
                                  </tr>
 
                                  <tr>
-                                        <td class="auto-style11">&nbsp; Password</td>
-                                        <td class="auto-style14"><asp:TextBox ID="password" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox></td>
+                                        <td class="auto-style2">&nbsp; Password</td>
+                                        <td class="auto-style14"><asp:TextBox ID="password" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox>
+                                                                <asp:RegularExpressionValidator ID="Regex1" runat="server" ControlToValidate="password"
+                                                                 ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" ForeColor="Red"  ><br />Minimum 8 characters atleast 1 Alphabet and 1 Number</asp:RegularExpressionValidator>
+                                        </td>
                                  </tr>
 
                                  <tr>
-                                        <td class="auto-style11">&nbsp; Address   
+                                        <td class="auto-style2">&nbsp; Address   
                                         </td>
                                         <td class="auto-style14"> <asp:TextBox ID="address" runat="server" Width="190px" Height="30px" BorderStyle="Ridge" ForeColor="Black"></asp:TextBox></td>
                                  </tr>
 
                                  <tr>
-                                        <td class="auto-style11">&nbsp; Cash Type</td>
+                                        <td class="auto-style2">&nbsp; Cash Type</td>
                                         <td class="auto-style14"> <asp:DropDownList ID="cashtype" runat="server" Width="190px" Height="30px" ForeColor="Black" OnSelectedIndexChanged="cashtype_SelectedIndexChanged">
                                                                 <asp:ListItem>Annually</asp:ListItem>
                                                                 <asp:ListItem>Monthly</asp:ListItem>
@@ -288,7 +308,7 @@
                                 
                                 <asp:Button ID="save" runat="server" Text="Save Info" OnClick="saved_Click" ForeColor="#FF0066" /> &nbsp;
                                 <asp:Button ID="showlist" runat="server" Text="Show List" Width="101px" OnClick="showlist_Click" OnClientClick="window.open('SMS004_StudentList.aspx','OtherPage');" ForeColor="#FF0066"/>&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="display" runat="server" Text="Display" Width="100px" OnClick="display_Click" OnClientClick="window.open('SMS005_StudentDetail.aspx','OtherPage');" ForeColor="#FF0066"/>&nbsp;&nbsp;
+                                <asp:Button ID="Update" runat="server" Text="Update" Width="100px" OnClick="btnupdate_Click" ForeColor="#FF0066"/>&nbsp;&nbsp;
                                 <asp:Button ID="clear" runat="server" Text="Clear" Width="100px" OnClick="clear_Click" ForeColor="#FF0066" />       
                                 </div>     
                                                             

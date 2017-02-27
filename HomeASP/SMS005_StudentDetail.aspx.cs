@@ -20,8 +20,8 @@ namespace HomeASP
     {
         string msg = "";
         StudentInfoService stuservice = new StudentInfoService();
-        
-               
+
+
         public SMS005()
         {
         }
@@ -35,103 +35,60 @@ namespace HomeASP
             teacherInfo.ImageUrl = "~/Images/teacher.png";
             system.ImageUrl = "~/Images/system.jpg";
             picturebox.ImageUrl = "~/Images/school.jpg";
-           
+
             DsPSMS.ST_STUDENT_DATARow studetail = new DsPSMS.ST_STUDENT_DATADataTable().NewST_STUDENT_DATARow();
             if (Session["EDU_YEAR"] != null)
             {
-                lblClass.Text = (string)(Session["EDU_YEAR"] ?? " ");
+                studetail.EDU_YEAR = (string)(Session["EDU_YEAR"] ?? " ");
             }
 
             if (Session["STUDENT_ID"] != null)
             {
-                lblID.Text = (string)(Session["STUDENT_ID"] ?? " ");
+                studetail.STUDENT_ID = (string)(Session["STUDENT_ID"] ?? " ");
             }
 
 
             if (Session["STUDENT_NAME"] != null)
             {
-                lblName.Text = (string)(Session["STUDENT_NAME"] ?? " ");
-            }
-
-            if (Session["ROLL_NO"] != null)
-            {
-                lblRoll.Text = (string)(Session["ROLL_NO"] ?? " ");
-            }
-
-            if (Session["GENDER"] != null)
-            {
-                lblGender.Text = (string)(Session["GENDER"] ?? " ");
-            }
-
-            if (Session["DOB"] != null)
-            {
-                lbldob.Text = (string)(Session["DOB"] ?? " ");
-            }
-
-            if (Session["PHONE"] != null)
-            {
-                lblPhone.Text = (string)(Session["PHONE"] ?? " ");
-            }
-
-            if (Session["NRC_NO"] != null)
-            {
-                lblNrc.Text = (string)(Session["NRC_NO"] ?? " ");
-            }
-
-            if (Session["PASSWORD"] != null)
-            {
-                lblPwd.Text = (string)(Session["PASSWORD"] ?? " ");
+                studetail.STUDENT_NAME = (string)(Session["STUDENT_NAME"] ?? " ");
             }
 
             if (Session["GRADE_ID"] != null)
             {
-                lblGrade.Text = (string)(Session["GRADE_ID"] ?? " ");
+                studetail.GRADE_ID = (string)(Session["GRADE_ID"] ?? " ");
             }
 
-            if(Session["ROOM_ID"]!=null)
-            {
-                lblRoom.Text = (string)(Session["ROOM_ID"] ?? " ");
-            }
+            studetail = stuservice.searchIdNaEdGd(studetail);
 
-            if (Session["FATHER_NAME"] != null)
+            if (studetail != null)
             {
-                lblFather.Text = (string)(Session["FATHER_NAME"] ?? " ");
-            }
-
-            if (Session["MOTHER_NAME"] != null)
-            {
-                lblMother.Text = (string)(Session["MOTHER_NAME"] ?? " ");
-            }
-
-            if (Session["ADDRESS"] != null)
-            {
-                lblAddress.Text = (string)(Session["ADDRESS"] ?? " ");
-            }
-
-            if (Session["CONTACT_PHONE"] != null)
-            {
-                lblCphone.Text = (string)(Session["CONTACT_PHONE"] ?? " ");
-            }
-            if (Session["EMAIL"] != null)
-            {
-                lblEmail.Text = (string)(Session["EMAIL"] ?? " ");
-            }
-
-            if (Session["CASH_TYPE1"] != null)
-            {
-                lblCashtype.Text = (string)(Session["CASH_TYPE1"] ?? " ");
-            }
-
-            if (Session["CASH_TYPE2"] != null)
-            {
-                lblCashMonth.Text = (string)(Session["CASH_TYPE2"] ?? " ");
+                lblClass.Text = studetail.EDU_YEAR;
+                lblID.Text = studetail.STUDENT_ID;
+                lblName.Text = studetail.STUDENT_NAME;
+                lblRoll.Text = studetail.ROLL_NO;
+                lblGender.Text = studetail.GENDER;
+                lbldob.Text = studetail.DOB;
+               //picturebox.Text = studetail.PHOTO_PATH;
+                picturebox.ImageUrl = "~/Images/" + studetail.PHOTO_PATH;
+                lblPhone.Text = studetail.PHONE;
+                lblNrc.Text = studetail.NRC_NO;
+                lblPwd.Text = studetail.PASSWORD;
+                lblGrade.Text = studetail.GRADE_ID;
+                lblRoom.Text = studetail.ROOM_ID;
+                lblFather.Text = studetail.FATHER_NAME;
+                lblMother.Text = studetail.MOTHER_NAME;
+                lblAddress.Text = studetail.ADDRESS;
+                lblCphone.Text = studetail.CONTACT_PHONE;
+                lblEmail.Text = studetail.EMAIL;
+                lblCashtype.Text = studetail.CASH_TYPE1;
+                lblCashMonth.Text = studetail.CASH_TYPE2;
             }
         }
 
-        
 
-                      
-               
+
+
+
         protected void btnedit_Click(object sender, EventArgs e)
         {
             Session["EDU_YEAR"] = lblClass.Text;
@@ -139,7 +96,7 @@ namespace HomeASP
             Session["STUDENT_NAME"] = lblName.Text;
             Session["ROLL_NO"] = lblRoll.Text;
             Session["GENDER"] = lblGender.Text;
-            Session["PHOTO_PATH"] = picturebox.AlternateText;
+            Session["PHOTO_PATH"] = picturebox.ImageUrl;
             Session["DOB"] = lbldob.Text;
             Session["PHONE"] = lblPhone.Text;
             Session["NRC_NO"] = lblNrc.Text;
@@ -154,7 +111,7 @@ namespace HomeASP
             Session["CONTACT_PHONE"] = lblCphone.Text;
             Session["EMAIL"] = lblEmail.Text;
             Response.Redirect("SMS003_StudentEntry.aspx");
-           
+
         }
 
         protected void btnprint_Click(object sender, EventArgs e)
@@ -165,9 +122,10 @@ namespace HomeASP
         protected void btnprevious_Click(object sender, EventArgs e)
         {
             Response.Redirect("SMS004_StudentList.aspx");
+            
         }
 
-       
+
 
 
     }
