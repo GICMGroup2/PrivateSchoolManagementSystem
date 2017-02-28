@@ -97,7 +97,6 @@ namespace HomeASP.DbAccess
             //conn.Open();
             string query = "DELETE FROM ST_SALARY WHERE MONTH= '" + month + "' AND REMARK =" + remark;
             SqlCommand cmd = new SqlCommand(query, conn);
-            //SqlDataAdapter da = new SqlDataAdapter(cmd);
             cmd.ExecuteNonQuery();
             return 1;
         }
