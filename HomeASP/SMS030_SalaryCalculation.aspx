@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <form id="form1" runat="server">
     <div>
         <div id="title" runat="server" align="center" style="font-family: 'Times New Roman', Times, serif; font-size: xx-large; font-weight: normal; font-style: normal; font-variant: normal; text-transform: none; color: #FFFFFF; background-color: #1A7EBA; height: 40px;">
             Student Management System
@@ -62,14 +63,16 @@
                             <li><a href="#">Account Creation</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">
-                            <asp:Image ID="system" runat="server" Height="100px" Width="150px" BackColor="#1A74BA" ToolTip="System Information" /><br />
-                        </a>
-                    </li>
                 </ul>
             </div>
             <br class="clear" />
+                <ul>
+                    <li>
+                        <a href="#">
+                            
+
+                    </li>
+                </ul>
         </div>
     </div>
     <div id="Div1" class="wrapper col1" runat="server" height="561px">
@@ -89,16 +92,96 @@
                 </ul>
                     <div id="page-wrapper">
                         <div id="page-inner">
-                            <form id="bookingForm" class="booking-form">
-                              
+                            <asp:RadioButtonList ID="radiobtnsalary" runat="server" ForeColor="White" Height="34px" RepeatDirection="Horizontal" Width="283px" AutoPostBack="True">
+                                <asp:ListItem Selected="True">Teacher</asp:ListItem>
+                                <asp:ListItem>Staff</asp:ListItem>
+                            </asp:RadioButtonList>
+                            <br />
+                            Month&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlmonthList" runat="server" ForeColor="Black" Height="25px" Width="160px">
+                                <asp:ListItem Value="0">Select  Month</asp:ListItem>
+                                <asp:ListItem Value="1">January</asp:ListItem>
+                                <asp:ListItem Value="2">February</asp:ListItem>
+                                <asp:ListItem Value="3">March</asp:ListItem>
+                                <asp:ListItem Value="4">April</asp:ListItem>
+                                <asp:ListItem Value="5">May</asp:ListItem>
+                                <asp:ListItem Value="6">June</asp:ListItem>
+                                <asp:ListItem Value="7">July</asp:ListItem>
+                                <asp:ListItem Value="8">August</asp:ListItem>
+                                <asp:ListItem Value="9">September</asp:ListItem>
+                                <asp:ListItem Value="10">October</asp:ListItem>
+                                <asp:ListItem Value="11">November</asp:ListItem>
+                                <asp:ListItem Value="12">December</asp:ListItem>
+                            </asp:DropDownList>
+                            &nbsp;
+                            <asp:Label ID="lblerrorsalary" runat="server" ForeColor="#FF3300" Visible="False">* Please select month ! *</asp:Label>
+                            <br />
+                            <br />
+                            <asp:Button ID="btnsalarysearch" runat="server" ForeColor="Black" Height="28px" OnClick="btnsalarysearch_Click" Text="Search" Width="135px" />
+                            <br />
+                            <br />
+                            <asp:Panel ID="panelsalary" runat="server" Height="276px" Width="1038px">
+                                <asp:GridView ID="gvsalarylist" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Height="95px" Width="16px" AllowPaging="True" OnRowDataBound="gvsalarylist_RowDataBound">
+                                    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+                                    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+                                    <RowStyle BackColor="White" ForeColor="#330099" />
+                                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+                                    <SortedAscendingCellStyle BackColor="#FEFCEB" />
+                                    <SortedAscendingHeaderStyle BackColor="#AF0101" />
+                                    <SortedDescendingCellStyle BackColor="#F6F0C0" />
+                                    <SortedDescendingHeaderStyle BackColor="#7E0000" />
+                                    <Columns>
+                                        <asp:BoundField HeaderText="ID"
+                                            DataField=""
+                                            SortExpression="" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol">
+                                            <HeaderStyle CssClass="hiddencol"></HeaderStyle>
+                                            <ItemStyle CssClass="hiddencol"></ItemStyle>
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="NAME"
+                                            DataField=""
+                                        SortExpression="" ItemStyle-Width="142px" ></asp:BoundField>
+                                        <asp:BoundField HeaderText="SALARY"
+                                            DataField=""
+                                        SortExpression="" ItemStyle-Width="142px"></asp:BoundField>
 
-
-                             </form>
+                                        <asp:TemplateField HeaderText="LEAVE TIME" ControlStyle-Width="140px">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtLeaveTime" runat="server" AutoPostBack="true"></asp:TextBox>
+                                            </ItemTemplate>
+                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="LEAVE AMOUNT" ControlStyle-Width="140px">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtLeaveAmt" runat="server" AutoPostBack="true"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="LATE TIME" ControlStyle-Width="140px">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtlateTime" runat="server" AutoPostBack="true"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="LATE AMOUNT" ControlStyle-Width="140px">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtLateAmt" runat="server" AutoPostBack="true"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="OT AMOUNT" ControlStyle-Width="140px">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtOtAmt" runat="server" AutoPostBack="true"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        
+                                    </Columns>
+                                    
+                                </asp:GridView>
+                                <br />
+                                &nbsp;<asp:Button ID="btnsalarycal" runat="server" ForeColor="Black" Height="28px" Text="Calculate" Width="135px" OnClick="btnsalarycal_Click" Visible="False" />
+                            </asp:Panel>
                         </div>
                     </div>
             </div>           
         </div>        
     </div>    
+    </form>
 </body>
 </html>
 
